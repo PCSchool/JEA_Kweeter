@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" name="JEA_Payara:javaEEApplication exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/JEA_Payara_javaEEApplication_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="JEA_Payara/javaeeApplication/javaEEApplication" />
+    </root>
+  </artifact>
+</component>
