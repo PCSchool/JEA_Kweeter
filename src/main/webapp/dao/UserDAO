@@ -1,0 +1,29 @@
+import Domain.Kweet;
+import Domain.User;
+
+import java.util.List;
+
+public interface UserDAO {
+
+    void create(User user);
+
+    void delete(User user);
+
+    void update(User user);
+
+    void addFollowing(User user);
+
+    void addFollower(User user);
+
+    List<Kweet> getAllKweets();
+
+    List<User> getAllUsers();
+
+    List<User> getAllFollowers();
+
+    List<User> getAllFollowing();
+
+    User getUser(int id);
+
+
+}

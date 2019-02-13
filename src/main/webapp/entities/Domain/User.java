@@ -146,9 +146,4 @@ public class User {
             System.out.println("User: removeKweet(Kweet kweet) - remove");
         }
     }
-
-    @Override
-    public String toString() {
-        return username;
-    }
 }
