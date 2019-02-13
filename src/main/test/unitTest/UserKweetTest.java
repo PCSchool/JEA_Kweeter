@@ -9,6 +9,9 @@ import org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
+//mockito toevoegen voor testen
+//integratietesten: framework nodig
+//dao specific objects in dal / context
 public class UserKweetTest {
 
     private List<User> users;
