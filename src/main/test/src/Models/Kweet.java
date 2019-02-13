@@ -22,10 +22,11 @@ public class Kweet {
      * @param text
      * @param inReplyToId
      */
-    public Kweet(String text, Long inReplyToId, String inReplyToName) {
+    public Kweet(Long id, String text, Long inReplyToId, String inReplyToName) {
         if(text.isEmpty()){
             throw new InvalidParameterException("Kweet: parameter text cant be null.");
         }
+        this.id = id;
         this.text = text;
         this.inReplyToId = inReplyToId;
         this.inReplyToName = inReplyToName;

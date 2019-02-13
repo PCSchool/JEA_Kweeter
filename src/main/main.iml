@@ -15,7 +15,7 @@
           <factory-entry name="microCoffeePU" />
         </datasource-mapping>
         <naming-strategy-map />
-        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/META-INF/persistence.xml" />
+        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/test/META-INF/persistence.xml" />
       </configuration>
     </facet>
   </component>

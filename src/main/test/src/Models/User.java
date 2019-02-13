@@ -1,9 +1,10 @@
 package src.Models;
 
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
-import Domain.Kweet;
+import src.Models.Kweet;
 import Domain.Roles;
 
 public class User {
@@ -31,6 +32,24 @@ public class User {
             throw new InvalidParameterException("User: parameters username, name and password cant be empty.");
         }
 
+        this.username = username;
+        this.name = name;
+        this.password = password;
+        this.biography = biography;
+        this.location = location;
+        this.role = role;
+
+        if(validation()){
+            throw new IllegalArgumentException("User: parameters dont meet the conditions.");
+        }
+    }
+
+    public User(Long id, String username, String name, String password, String biography, String location, Roles role) {
+        if(username.isEmpty() || name.isEmpty() || password.isEmpty()){
+            throw new InvalidParameterException("User: parameters username, name and password cant be empty.");
+        }
+
+        this.id = id;
         this.username = username;
         this.name = name;
         this.password = password;
@@ -109,28 +128,43 @@ public class User {
         return true;
     }
 
-    public boolean createKweet(String text, Long inReplyToId, String inReplyToName){
-        Kweet kweet = new Kweet(text, inReplyToId, inReplyToName);
-        if(kweet.validation()){
-            kweets.add(kweet);
-            return true;
+    public boolean addFollowers(User user){
+        if(followers.contains(user)){
+            return false;
         }
-        return false;
+        followers.add(user);
+        return true;
     }
 
-    private void updateProfile(String name, String biography, String location){
+    public void createKweet(Kweet kweet){
+        if(kweet.validation()){
+            kweets.add(kweet);
+        }
+    }
+
+    public void updateProfile(String name, String biography, String location){
         this.name = name;
         this.biography = biography;
         this.location = location;
     }
 
-    private void updateUserRole(User user, Roles role){
+    public void updateUserRole(User user, Roles role){
         if(this.role == Roles.ADMINISTRATOR || this.role == Roles.MODERATOR){
             user.setRole(role);
         }
     }
 
-    private void removeKweet(Kweet kweet){
+    public ArrayList<ArrayList<Kweet>> getAllKweetsFollowers(){
+        ArrayList<ArrayList<Kweet>> kweetList = new ArrayList<ArrayList<Kweet>>();
+        if(this.role == Roles.ADMINISTRATOR || this.role == Roles.MODERATOR){
+            for(User f : followers){
+                kweetList.add((ArrayList<Kweet>) f.getKweets());
+            }
+        }
+        return kweetList;
+    }
+
+    public void removeKweet(Kweet kweet, User user){
         if(this.role == Roles.ADMINISTRATOR || this.role == Roles.MODERATOR){
             System.out.println("User: removeKweet(Kweet kweet) - remove");
         }
