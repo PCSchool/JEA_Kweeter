@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 import src.Models.Kweet;
 import Domain.Roles;
+import static org.mockito.Mockito.*;
 
 public class User {
 
@@ -44,7 +45,7 @@ public class User {
         }
     }
 
-    public User(Long id, String username, String name, String password, String biography, String location, Roles role) {
+    public User(String username, String name, String password, String biography, Roles role) {
         if(username.isEmpty() || name.isEmpty() || password.isEmpty()){
             throw new InvalidParameterException("User: parameters username, name and password cant be empty.");
         }
@@ -119,29 +120,27 @@ public class User {
         return name;
     }
 
-    // Methods
-    public boolean addFollowing(User user){
-        if(following.contains(user)){
-            return false;
+    // Methods CREATE
+    public void addFollowing(User user){
+        if(!following.contains(user)){
+            following.add(user);
+            user.addFollower(this);
         }
-        following.add(user);
-        return true;
     }
 
-    public boolean addFollowers(User user){
-        if(followers.contains(user)){
-            return false;
+    public void addFollower(User user){
+        if(!followers.contains(user)){
+            followers.add(user);
         }
-        followers.add(user);
-        return true;
     }
 
-    public void createKweet(Kweet kweet){
-        if(kweet.validation()){
+    public void addKweet(Kweet kweet){
+        if(!kweets.contains(kweet)){
             kweets.add(kweet);
         }
     }
 
+    //Methods UPDATE
     public void updateProfile(String name, String biography, String location){
         this.name = name;
         this.biography = biography;
@@ -154,6 +153,7 @@ public class User {
         }
     }
 
+    //  Methods GET
     public ArrayList<ArrayList<Kweet>> getAllKweetsFollowers(){
         ArrayList<ArrayList<Kweet>> kweetList = new ArrayList<ArrayList<Kweet>>();
         if(this.role == Roles.ADMINISTRATOR || this.role == Roles.MODERATOR){
@@ -164,14 +164,27 @@ public class User {
         return kweetList;
     }
 
-    public void removeKweet(Kweet kweet, User user){
+    // Methods REMOVE
+    public void removeUserKweet(Kweet kweet, User user){
         if(this.role == Roles.ADMINISTRATOR || this.role == Roles.MODERATOR){
-            System.out.println("User: removeKweet(Kweet kweet) - remove");
+            user.removeKweet(kweet);
         }
     }
 
-    @Override
-    public String toString() {
-        return username;
+    public void removeKweet(Kweet kweet){
+        kweets.remove(kweet);
+    }
+
+    public void removeFollower(User user){
+        if(followers.contains(user)){
+            followers.remove(user);
+        }
+    }
+
+    public void removeFollowing(User user){
+        if(following.contains(user)){
+            following.remove(user);
+            user.removeFollower(this);
+        }
     }
 }

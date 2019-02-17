@@ -13,15 +13,15 @@ public class UserService{
     }
 
     public void createUser(User user){
-        this.UserDAO.create(user);
+        this.UserDAO.createUser(user);
     }
 
     public void updateUser(User user){
-        this.UserDAO.update(user);
+        this.UserDAO.updateUser(user);
     }
 
     public void deleteUser(User user){
-        this.UserDAO.delete(user);
+        this.UserDAO.deleteUser(user);
     }
 
     // -    user started following another user

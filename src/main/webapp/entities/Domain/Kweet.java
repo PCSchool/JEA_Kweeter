@@ -31,62 +31,53 @@ public class Kweet {
 
     /**
      * Constructor Kweet
-     * @param text
-     * @param inReplyToId
+     * @param id id of the Kweet
+     * @param text value of the tweet, must be between 1 - 160 charachters
+     * @param inReplyToId default null, otherwise contains reply id of Kweet
+     * @param inReplyToName default null, otherwise contains name user of Kweet
      */
-    public Kweet(String text, Long inReplyToId, String inReplyToName) {
+    public Kweet(Long id, String text, Long inReplyToId, String inReplyToName) {
         if(text.isEmpty()){
             throw new InvalidParameterException("Kweet: parameter text cant be null.");
         }
+        this.id = id;
         this.text = text;
         this.inReplyToId = inReplyToId;
         this.inReplyToName = inReplyToName;
         this.createDate = LocalDateTime.now();
-    }
-
-    /**
-     * Constructor Kweet for kweets that are no reaction to another kweet
-     * @param text
-     */
-    public Kweet(String text) {
-        this.text = text;
-        this.inReplyToId = null;
-        this.inReplyToName = null;
-        this.createDate = LocalDateTime.now();
+        if(!validation()){
+            throw new IllegalArgumentException("Kweet: parameters invalid");
+        }
     }
 
     public Long getId() {
-        return id;
-    }
-
+            return id;
+        }
     public String getText() {
-        return text;
-    }
+            return text;
+        }
 
     public LocalDateTime getCreateDate() {
-        return createDate;
-    }
+            return createDate;
+        }
 
     public Long getInReplyToId() {
-        return inReplyToId;
-    }
-
+            return inReplyToId;
+        }
     public String getInReplyToName() {
-        return inReplyToName;
-    }
+            return inReplyToName;
+        }
 
     public List<Kweet> getReactions() {
-        return reactions;
-    }
+            return reactions;
+        }
 
     //check validation of kweet
-    public boolean validation(){
+    private boolean validation(){
         boolean isValid = true;
-
         if(text.length() >= 160){
             isValid = false;
         }
-
         return isValid;
     }
 
@@ -95,5 +86,4 @@ public class Kweet {
             reactions.add(kweet);
         }
     }
-
 }

@@ -3,13 +3,13 @@ import Domain.User;
 import java.util.List;
 
 public interface KweetDAO{
-    void create(Kweet kweet);
+    void createKweet(Kweet kweet);
 
-    void update(Kweet kweet);
+    void updateKweet(String string);
 
-    void delete(Kweet kweet, User user);
+    void deleteKweet(Kweet kweet, User user);
 
     List<Kweet> getAll(Kweet kweet);
 
-    void addReaction(Kweet kweet, User id);
+    void addReaction(Kweet kweet,Kweet reaction, User id);
 }

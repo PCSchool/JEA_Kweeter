@@ -5,15 +5,19 @@ import java.util.List;
 
 public interface UserDAO {
 
-    void create(User user);
+    void createUser(User user);
 
-    void delete(User user);
+    void deleteUser(User user);
 
-    void update(User user);
+    void updateUser(User user);
 
     void addFollowing(User user);
 
     void addFollower(User user);
+
+    void removeFollower(User user);
+
+    void removeFollowing(User user);
 
     List<Kweet> getAllKweets();
 

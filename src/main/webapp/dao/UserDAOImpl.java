@@ -4,19 +4,18 @@ import Domain.User;
 import java.util.List;
 
 public class UserDAOImpl implements UserDAO{
-
     @Override
-    public void create(User user) {
+    public void createUser(User user) {
 
     }
 
     @Override
-    public void delete(User user) {
+    public void deleteUser(User user) {
 
     }
 
     @Override
-    public void update(User user) {
+    public void updateUser(User user) {
 
     }
 
@@ -27,6 +26,16 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public void addFollower(User user) {
+
+    }
+
+    @Override
+    public void removeFollower(User user) {
+
+    }
+
+    @Override
+    public void removeFollowing(User user) {
 
     }
 
