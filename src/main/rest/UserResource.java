@@ -1,11 +1,11 @@
-package Boundary;
-import Domain.User;
-import Services.UserService;
+package rest;
+
+import entities.User;
+import services.UserService;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;
-import java.util.List;
 
 @Stateless
 @Path("users")
@@ -17,7 +17,7 @@ public class UserResource {
     @GET
     @Path("{id}")
     public User getUserById(@PathParam("id") Long id){
-        return userService.getUser(id);
+        return  null;
     }
 
     /*@GET
@@ -27,6 +27,8 @@ public class UserResource {
 
     @POST
     public User saveUser(User user){
-        return userService.saveUser(user);
+
+        return null;
+        //return userService.saveUser(user);
     }
 }

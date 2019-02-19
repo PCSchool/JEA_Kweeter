@@ -2,8 +2,8 @@ package unitTest;
 
 import org.junit.Before;
 import org.junit.Test;
-import src.Models.Kweet;
-import src.Models.User;
+import entities.Kweet;
+import entities.User;
 import org.junit.Assert;
 
 public class UnitTestGeneric {
@@ -74,9 +74,19 @@ public class UnitTestGeneric {
         User user = mockDatabase.userList.get(5);
         Assert.assertEquals(user.getKweets().size(), 1);
 
-        user.addKweet(new Kweet(new Long(12), "Today is a good day :D", null, null));
+        user.addKweet(new Kweet("Today is a good day :D", null, null));
         Assert.assertEquals(user.getKweets().size(), 2);
+    }
 
+    @Test
+    public void testUserKweetReaction(){
+        User user = mockDatabase.userList.get(1);
+        Kweet kweet = user.getKweets().get(1);
+        kweet.setId(new Long(1001));
+
+        Assert.assertEquals(kweet.getReactions().size(), 0);
+        kweet.addReaction(new Kweet("This is a test", kweet.getId(), user.getName()));
+        Assert.assertEquals(kweet.getReactions().size(), 1);
     }
 
     @Test

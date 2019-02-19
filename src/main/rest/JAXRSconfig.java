@@ -7,8 +7,8 @@ import javax.ws.rs.core.Application;
 public class JAXRSconfig extends Application{
     /*@Override
     public Set<Class<?>> getClasses() {
-        Set<Class<?>> resources = new java.util.HashSet<>();
-        resources.add(Domain.User.class);
-        return resources;
+        Set<Class<?>> rest = new java.util.HashSet<>();
+        rest.add(entities.User.class);
+        return rest;
     }*/
 }

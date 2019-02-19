@@ -1,0 +1,29 @@
+package dao;
+
+import entities.User;
+import entities.Kweet;
+
+import java.util.List;
+
+public interface UserDAO {
+
+    void updateUser(User user);
+
+    void addFollowing(User user, User following);
+
+    void addFollower(User user, User follower);
+
+    void removeFollower(User user, User follower);
+
+    void removeFollowing(User user, User following);
+
+    List<Kweet> getAllKweets(User user);
+
+    List<User> getAllFollowers(User user);
+
+    List<User> getAllFollowing(User user);
+
+    User getUser(Long id);
+
+
+}

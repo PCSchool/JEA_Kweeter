@@ -1,15 +1,11 @@
 package unitTest;
 
-import Domain.Roles;
+import entities.Roles;
 import org.junit.Before;
-import src.Models.Kweet;
-import src.Models.User;
+import entities.User;
 import org.junit.Test;
-import org.junit.Assert.*;
 
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
