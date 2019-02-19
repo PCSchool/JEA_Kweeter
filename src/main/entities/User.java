@@ -16,6 +16,12 @@ import java.util.regex.Pattern;
 ), @NamedQuery(
         name = "User.count",
         query = "SELECT u FROM User u"
+), @NamedQuery(
+        name = "User.getById",
+        query = "SELECT u FROM User u WHERE u.id :id"
+), @NamedQuery(
+        name = "User.getByUsername",
+        query = "SELECT u FROM User u WHERE u.username :username"
 )})
 public class User {
 

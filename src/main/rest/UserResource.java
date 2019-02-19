@@ -6,6 +6,7 @@ import services.UserService;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import java.util.List;
 
 @Stateless
 @Path("users")
@@ -17,18 +18,18 @@ public class UserResource {
     @GET
     @Path("{id}")
     public User getUserById(@PathParam("id") Long id){
-        return  null;
+        return userService.findUserById(id);
     }
 
-    /*@GET
+    @GET
     public List<User> getUsers(){
         return userService.getAllUsers();
-    }*/
+    }
 
     @POST
-    public User saveUser(User user){
-
-        return null;
-        //return userService.saveUser(user);
+    @Path("register")
+    public String saveUser(User user){
+        userService.createUser(user);
+        return "User registered";
     }
 }

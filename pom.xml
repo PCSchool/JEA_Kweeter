@@ -57,7 +57,7 @@
       <version>2.5.2</version>
       <scope>provided</scope>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+    <!-- Add dependency for Mockito - https://mvnrepository.com/artifact/org.mockito/mockito-all -->
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-all</artifactId>
@@ -69,6 +69,32 @@
       <artifactId>mysql-connector-java</artifactId>
       <version>5.1.47</version>
       <scope>provided</scope>
+    </dependency>
+    <!-- Add dependency for wiremock - http://wiremock.org/docs/getting-started/ -->
+    <dependency>
+      <groupId>com.github.tomakehurst</groupId>
+      <artifactId>wiremock-jre8</artifactId>
+      <version>2.21.0</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- Add dependencies for cucumber test - https://docs.cucumber.io/installation/java/ -->
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-java8</artifactId>
+      <version>4.2.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-junit</artifactId>
+      <version>4.2.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>7.0.0-beta3</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
