@@ -5,17 +5,56 @@
       <artifact name="JEA_Payara:war" />
     </artifacts-to-build>
   </component>
+  <component name="AutomaticModuleUnloader">
+    <loaded-modules>
+      <module name="JEA_Payara" />
+    </loaded-modules>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="f9f6fa31-2795-4d1b-87e0-ba9d11ef349d" name="Default Changelist" comment="">
+    <list default="true" id="f9f6fa31-2795-4d1b-87e0-ba9d11ef349d" name="Default Changelist" comment="updated the service and rest layer">
+      <change afterPath="$PROJECT_DIR$/src/java/rest/FollowerResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/java/rest/KweetResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEA_Payara.iml" beforeDir="false" afterPath="$PROJECT_DIR$/JEA_Payara.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dao/UserDAO" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dao/UserDAO" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dao/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dao/UserDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/rest/UserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/rest/UserResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/unitTest/UnitTestDAL.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/controller/Home/homePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/controller/Home/homePage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/controller/Home/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/controller/Home/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/controller/Style/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/controller/Style/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dao/KweetDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/dao/KweetDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dao/KweetDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/dao/KweetDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dao/UserDAO" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/dao/UserDAO" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dao/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/dao/UserDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/entities/Kweet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/entities/Kweet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/entities/Roles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/entities/Roles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/entities/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/application.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/META-INF/application.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/rest/JAXRSconfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/rest/JAXRSconfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/rest/UserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/rest/UserResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/KweetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/services/KweetService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/StartUpService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/services/StartUpService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/beans.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/webapp/WEB-INF/beans.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/unitTest/MockDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/unitTest/MockDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/unitTest/UnitTestDALMockito.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/unitTest/UnitTestDALMockito.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/unitTest/UnitTestGeneric.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/unitTest/UnitTestGeneric.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/unitTest/UnitTestUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/unitTest/UnitTestUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/META-INF/application.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/META-INF/persistence.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/main.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/webapp/FrontEnd/Home/homePage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/webapp/FrontEnd/Home/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/webapp/FrontEnd/Style/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/webapp/WEB-INF/beans.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/webapp/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/webapp/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven/WEB-INF/web.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -28,10 +67,42 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/dao/UserDAOImpl.java">
+        <entry file="file://$PROJECT_DIR$/src/java/services/UserService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+            <state relative-caret-position="356">
+              <caret line="66" column="44" lean-forward="true" selection-start-line="66" selection-start-column="44" selection-end-line="66" selection-end-column="55" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#467#468#0" expanded="true" />
+                <element signature="e#504#505#0" expanded="true" />
+                <element signature="e#544#545#0" expanded="true" />
+                <element signature="e#580#581#0" expanded="true" />
+                <element signature="e#620#621#0" expanded="true" />
+                <element signature="e#655#656#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/rest/UserResource.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-344">
+              <caret line="21" column="21" lean-forward="true" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#804#805#0" expanded="true" />
+                <element signature="e#855#856#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/unitTest/MockDatabase.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="305">
+              <caret line="47" column="220" selection-start-line="47" selection-start-column="220" selection-end-line="47" selection-end-column="220" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -40,10 +111,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/dao/UserDAO">
+        <entry file="file://$PROJECT_DIR$/src/java/entities/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="32">
-              <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+            <state relative-caret-position="360">
+              <caret line="29" column="3" lean-forward="true" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -51,10 +122,42 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/java/dao/UserDAOImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="296">
+              <caret line="84" column="56" selection-start-line="84" selection-start-column="56" selection-end-line="84" selection-end-column="56" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#364#365#0" expanded="true" />
+                <element signature="e#400#401#0" expanded="true" />
+                <element signature="e#441#442#0" expanded="true" />
+                <element signature="e#478#479#0" expanded="true" />
+                <element signature="e#845#846#0" expanded="true" />
+                <element signature="e#864#865#0" expanded="true" />
+                <element signature="e#1181#1182#0" expanded="true" />
+                <element signature="e#1215#1216#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/services/KweetService.java">
+        <entry file="file://$PROJECT_DIR$/src/java/dao/KweetDAO.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="112">
+              <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/services/KweetService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="224">
               <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -64,10 +167,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/entities/User.java">
+        <entry file="file://$PROJECT_DIR$/src/java/services/StartUpService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="688">
-              <caret line="47" column="62" selection-start-line="47" selection-start-column="58" selection-end-line="47" selection-end-column="62" />
+            <state relative-caret-position="416">
+              <caret line="26" column="1" lean-forward="true" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -76,19 +179,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+        <entry file="file://$PROJECT_DIR$/src/java/dao/UserDAO">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1264">
-              <caret line="79" column="46" selection-start-line="79" selection-start-column="46" selection-end-line="79" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/unitTest/UnitTestDALMockito.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+            <state relative-caret-position="416">
+              <caret line="26" selection-start-line="26" selection-end-line="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -97,42 +191,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/META-INF/persistence.xml">
+        <entry file="file://$PROJECT_DIR$/src/java/entities/Kweet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="64">
-              <caret line="4" column="24" lean-forward="true" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/unitTest/UnitTestUser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="64">
-              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+            <state relative-caret-position="128">
+              <caret line="8" selection-start-line="8" selection-end-line="14" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/unitTest/UnitTestGeneric.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1312">
-              <caret line="88" column="60" selection-start-line="88" selection-start-column="60" selection-end-line="88" selection-end-column="60" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="method#Kweet#0;class#Kweet#0" />
               </folding>
             </state>
           </provider>
@@ -151,28 +216,17 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>org.eclipse.p</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/BackEnd/Domain/User.java" />
-        <option value="$PROJECT_DIR$/src/main/BackEnd/Boundary/UserResource.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/beans.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/FrontEnd/Home/homePage.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/BackEnd/Boundary/JAXRSconfig.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/BackEnd/Services/UserService.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/BackEnd/Boundary/UserResource.java" />
-        <option value="$PROJECT_DIR$/src/main/META-INF/persistence.xml" />
-        <option value="$PROJECT_DIR$/src/main/META-INF/application.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/BackEnd/Domain/Roles.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/BackEnd/Domain/Kweet.java" />
-        <option value="$PROJECT_DIR$/src/main/test/src/User.java" />
-        <option value="$PROJECT_DIR$/src/main/test/src/Kweet.java" />
-        <option value="$PROJECT_DIR$/src/main/test/src/UserTest.java" />
-        <option value="$PROJECT_DIR$/src/main/test/unitTest/KweetTest.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/BackEnd/Domain/User.java" />
         <option value="$PROJECT_DIR$/src/main/test/unitTest/UserCreateTest.java" />
         <option value="$PROJECT_DIR$/src/main/test/META-INF/persistence.xml" />
@@ -201,13 +255,29 @@
         <option value="$PROJECT_DIR$/src/main/test/unitTest/UnitTestDAL.java" />
         <option value="$PROJECT_DIR$/src/main/test/unitTest/UnitTestDALMockito.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/services/services/UserService.java" />
-        <option value="$PROJECT_DIR$/src/main/entities/User.java" />
         <option value="$PROJECT_DIR$/src/main/dao/UserDAO" />
+        <option value="$PROJECT_DIR$/src/main/rest/JAXRSconfig.java" />
         <option value="$PROJECT_DIR$/src/main/rest/UserResource.java" />
-        <option value="$PROJECT_DIR$/src/main/dao/UserDAOImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/entities/User.java" />
         <option value="$PROJECT_DIR$/src/main/services/UserService.java" />
+        <option value="$PROJECT_DIR$/src/main/dao/UserDAOImpl.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/test/unitTest/UnitTestDALMockito.java" />
+        <option value="$PROJECT_DIR$/src/test/unitTest/UnitTestUser.java" />
+        <option value="$PROJECT_DIR$/src/java/META-INF/persistence.xml" />
+        <option value="$PROJECT_DIR$/src/webapp/WEB-INF/beans.xml" />
+        <option value="$PROJECT_DIR$/src/webapp/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/src/java/rest/JAXRSconfig.java" />
+        <option value="$PROJECT_DIR$/src/java/rest/KweetResource.java" />
+        <option value="$PROJECT_DIR$/src/test/unitTest/UnitTestGeneric.java" />
+        <option value="$PROJECT_DIR$/src/java/rest/FollowerResource.java" />
+        <option value="$PROJECT_DIR$/src/java/rest/UserResource.java" />
+        <option value="$PROJECT_DIR$/src/java/dao/UserDAO" />
+        <option value="$PROJECT_DIR$/src/test/unitTest/MockDatabase.java" />
+        <option value="$PROJECT_DIR$/src/java/entities/Kweet.java" />
+        <option value="$PROJECT_DIR$/src/java/services/UserService.java" />
+        <option value="$PROJECT_DIR$/src/java/entities/User.java" />
+        <option value="$PROJECT_DIR$/src/java/dao/UserDAOImpl.java" />
       </list>
     </option>
   </component>
@@ -225,10 +295,10 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="877" />
-    <option name="y" value="26" />
-    <option name="width" value="1049" />
-    <option name="height" value="1007" />
+    <option name="x" value="904" />
+    <option name="y" value="4" />
+    <option name="width" value="1023" />
+    <option name="height" value="1048" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -236,7 +306,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -254,39 +323,41 @@
               <item name="JEA_Payara" type="b2602c69:ProjectViewProjectNode" />
               <item name="JEA_Payara" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="JEA_Payara" type="b2602c69:ProjectViewProjectNode" />
               <item name="JEA_Payara" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="JEA_Payara" type="b2602c69:ProjectViewProjectNode" />
               <item name="JEA_Payara" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="entities" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="JEA_Payara" type="b2602c69:ProjectViewProjectNode" />
               <item name="JEA_Payara" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="rest" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="JEA_Payara" type="b2602c69:ProjectViewProjectNode" />
               <item name="JEA_Payara" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="unitTest" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -297,8 +368,9 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550585960629" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551052080224" />
     <property name="dynamic.classpath" value="true" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -318,12 +390,15 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Puck\IdeaProjects\JEA_Payara\src\main\test\src" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="rest" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Puck\IdeaProjects\JEA_Payara\src\java" />
       <recent name="C:\Users\Puck\IdeaProjects\JEA_Payara\src" />
       <recent name="C:\Users\Puck\IdeaProjects\JEA_Payara\src\main" />
       <recent name="C:\Users\Puck\IdeaProjects\JEA_Payara\src\main\resources" />
       <recent name="C:\Users\Puck\IdeaProjects\JEA_Payara\src\main\webapp\resources" />
-      <recent name="C:\Users\Puck\IdeaProjects\JEA_Payara\src\main\webapp\jms" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -338,7 +413,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.UnitTestGeneric">
+  <component name="RunManager" selected="GlassFish Server.JEA_Payara_Glassfish_5.184.0">
     <configuration name="JEA_Payara_GlassFish 5.184.0" type="GlassfishConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="GlassFish 5.184.0" ALTERNATIVE_JRE_ENABLED="false">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
@@ -612,7 +687,13 @@
       <workItem from="1550522195392" duration="1321000" />
       <workItem from="1550564004445" duration="5752000" />
       <workItem from="1550579412671" duration="2756000" />
-      <workItem from="1550607197245" duration="140000" />
+      <workItem from="1550607197245" duration="7274000" />
+      <workItem from="1550619314152" duration="92000" />
+      <workItem from="1550648860906" duration="832000" />
+      <workItem from="1550649737947" duration="9210000" />
+      <workItem from="1550663882260" duration="462000" />
+      <workItem from="1551043823621" duration="8176000" />
+      <workItem from="1551076562332" duration="2876000" />
     </task>
     <task id="LOCAL-00001" summary="Update Collection Acces Layer">
       <created>1550442098963</created>
@@ -628,11 +709,18 @@
       <option name="project" value="LOCAL" />
       <updated>1550568485881</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added dependencies, start rest layer">
+      <created>1550607500496</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1550607500497</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80043000" />
+    <option name="totallyTimeSpent" value="108825000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -644,10 +732,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="795" y="24" width="950" height="912" extended-state="0" />
+    <frame x="819" y="4" width="926" height="949" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29372197" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22465438" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -659,20 +747,20 @@
       <window_info id="Persistence" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49952334" weight="0.3290653" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.7948473" weight="0.32349166" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.7948473" weight="0.30844554" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49534294" weight="0.32858992" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49534294" weight="0.32802936" />
       <window_info anchor="bottom" id="Application Servers" order="7" sideWeight="0.4970364" weight="0.32729626" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49872988" weight="0.32729626" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50047666" side_tool="true" weight="0.3290653" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49793512" visible="true" weight="0.3277849" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49793512" visible="true" weight="0.32518336" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
-      <window_info anchor="bottom" id="Java Enterprise" order="13" sideWeight="0.49872988" weight="0.3277849" />
-      <window_info anchor="bottom" id="Version Control" order="14" />
-      <window_info anchor="bottom" id="Inspection Results" order="15" sideWeight="0.49952334" weight="0.32948717" />
+      <window_info anchor="bottom" id="Java Enterprise" order="13" sideWeight="0.49872988" weight="0.32680538" />
+      <window_info anchor="bottom" id="Version Control" order="14" weight="0.32925338" />
+      <window_info anchor="bottom" id="Inspection Results" order="15" sideWeight="0.49952334" weight="0.3290653" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -733,7 +821,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Update Collection Acces Layer" />
     <MESSAGE value="Update Collection Acces Layer + added mockito" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Collection Acces Layer + added mockito" />
+    <MESSAGE value="Added dependencies, start rest layer" />
+    <MESSAGE value="updated the service and rest layer" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated the service and rest layer" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>
@@ -747,88 +837,192 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/BackEnd/Service.java" />
     <entry file="file://$PROJECT_DIR$/src/main/BackEnd/User.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/controller/Style/main.css">
+    <entry file="file://$PROJECT_DIR$/src/java/controller/Style/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/beans.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/main.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="34" column="9" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/test/src/User.java" />
     <entry file="file://$PROJECT_DIR$/src/main/test/src/Roles.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/application.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/test/unitTest/UserKweetTest.java" />
     <entry file="file://$PROJECT_DIR$/src/main/test/unitTest/UserCreateTest.java" />
     <entry file="file://$PROJECT_DIR$/src/main/test/src/Models/User.java" />
     <entry file="file://$PROJECT_DIR$/src/main/test/src/Models/Kweet.java" />
     <entry file="file://$PROJECT_DIR$/src/main/webapp/entities/Services/UserService.java" />
     <entry file="file://$PROJECT_DIR$/src/main/webapp/entities/Domain/User.java" />
-    <entry file="file://$PROJECT_DIR$/src/test/unitTest/MockDatabase.java">
+    <entry file="file://$PROJECT_DIR$/src/java/controller/Home/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-176">
-          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+        <state relative-caret-position="144">
+          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/entities/Roles.java">
+    <entry file="file://$PROJECT_DIR$/src/test/unitTest/UnitTestDAL.java" />
+    <entry file="file://$PROJECT_DIR$/src/test/META-INF/persistence.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/main.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="34" column="9" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/controller/Home/homePage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/unitTest/UnitTestDALMockito.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/unitTest/UnitTestUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="63" column="113" selection-start-line="63" selection-start-column="113" selection-end-line="63" selection-end-column="113" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JEA_Payara.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/javax/naming/InitialContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="416" selection-start-line="416" selection-end-line="416" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/META-INF/application.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/webapp/WEB-INF/beans.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/persistence/eclipselink/2.5.2/eclipselink-2.5.2-sources.jar!/org/eclipse/persistence/queries/DatabaseQuery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8928">
+          <caret line="633" selection-start-line="633" selection-end-line="633" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/rest/JAXRSconfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/unitTest/UnitTestGeneric.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="100" column="10" selection-start-line="100" selection-start-column="10" selection-end-line="100" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/rest/FollowerResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/META-INF/persistence.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/persistence/eclipselink/2.5.2/eclipselink-2.5.2-sources.jar!/org/eclipse/persistence/exceptions/ValidationException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9776">
+          <caret line="661" selection-start-line="661" selection-end-line="661" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/persistence/org.eclipse.persistence.core/2.5.2/org.eclipse.persistence.core-2.5.2-sources.jar!/org/eclipse/persistence/exceptions/ValidationException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9776">
+          <caret line="661" selection-start-line="661" selection-end-line="661" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/entities/Roles.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="32">
           <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/entities/Kweet.java">
+    <entry file="file://$PROJECT_DIR$/src/java/rest/KweetResource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="8" selection-start-line="8" selection-end-line="14" selection-end-column="3" />
+        <state relative-caret-position="192">
+          <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#Kweet#0;class#Kweet#0" />
+            <element signature="e#452#453#0" expanded="true" />
+            <element signature="e#496#497#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/rest/JAXRSconfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/dao/KweetDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/dao/KweetDAOImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/java/dao/KweetDAOImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
@@ -838,90 +1032,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+    <entry file="file://$PROJECT_DIR$/src/java/dao/UserDAO">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="6" selection-start-column="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/services/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        <state relative-caret-position="416">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/controller/Home/homePage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/controller/Home/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/services/StartUpService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/unitTest/UnitTestDAL.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/rest/UserResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="11" column="14" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#354#355#0" expanded="true" />
-            <element signature="e#405#406#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/dao/UserDAOImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/dao/UserDAO">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/services/KweetService.java">
+    <entry file="file://$PROJECT_DIR$/src/java/dao/KweetDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/services/StartUpService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="26" column="1" lean-forward="true" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/services/KweetService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
           <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -929,64 +1072,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/entities/User.java">
+    <entry file="file://$PROJECT_DIR$/src/test/unitTest/MockDatabase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="688">
-          <caret line="47" column="62" selection-start-line="47" selection-start-column="58" selection-end-line="47" selection-end-column="62" />
+        <state relative-caret-position="305">
+          <caret line="47" column="220" selection-start-line="47" selection-start-column="220" selection-end-line="47" selection-end-column="220" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/java/services/UserService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1264">
-          <caret line="79" column="46" selection-start-line="79" selection-start-column="46" selection-end-line="79" selection-end-column="46" />
+        <state relative-caret-position="356">
+          <caret line="66" column="44" lean-forward="true" selection-start-line="66" selection-start-column="44" selection-end-line="66" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#467#468#0" expanded="true" />
+            <element signature="e#504#505#0" expanded="true" />
+            <element signature="e#544#545#0" expanded="true" />
+            <element signature="e#580#581#0" expanded="true" />
+            <element signature="e#620#621#0" expanded="true" />
+            <element signature="e#655#656#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/unitTest/UnitTestUser.java">
+    <entry file="file://$PROJECT_DIR$/src/java/rest/UserResource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        <state relative-caret-position="-344">
+          <caret line="21" column="21" lean-forward="true" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#804#805#0" expanded="true" />
+            <element signature="e#855#856#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/entities/Kweet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="8" selection-start-line="8" selection-end-line="14" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#Kweet#0;class#Kweet#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/entities/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="29" column="3" lean-forward="true" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/unitTest/UnitTestGeneric.java">
+    <entry file="file://$PROJECT_DIR$/src/java/dao/UserDAOImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1312">
-          <caret line="88" column="60" selection-start-line="88" selection-start-column="60" selection-end-line="88" selection-end-column="60" />
+        <state relative-caret-position="296">
+          <caret line="84" column="56" selection-start-line="84" selection-start-column="56" selection-end-line="84" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#364#365#0" expanded="true" />
+            <element signature="e#400#401#0" expanded="true" />
+            <element signature="e#441#442#0" expanded="true" />
+            <element signature="e#478#479#0" expanded="true" />
+            <element signature="e#845#846#0" expanded="true" />
+            <element signature="e#864#865#0" expanded="true" />
+            <element signature="e#1181#1182#0" expanded="true" />
+            <element signature="e#1215#1216#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/unitTest/UnitTestDALMockito.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/META-INF/persistence.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="4" column="24" lean-forward="true" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
@@ -1044,12 +1203,11 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>main</last-edited>
+          <last-edited>Web|JEA_Payara</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

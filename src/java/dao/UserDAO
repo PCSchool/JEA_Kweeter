@@ -33,7 +33,4 @@ public interface UserDAO {
 
     List<User> getAllFollowing(User user);
 
-    User getUser(Long id);
-
-
 }

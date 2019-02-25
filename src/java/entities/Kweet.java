@@ -6,14 +6,13 @@ import java.security.InvalidParameterException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@NamedQueries({@NamedQuery(
+/*@NamedQueries({@NamedQuery(
         name = "Kweet.getAll",
         query = "SELECT k FROM Kweet k"
 ), @NamedQuery(
         name = "Kweet.count",
         query = "SELECT k FROM Kweet k"
-)})
-//@Table(name="kweet")
+)})*/
 @Entity(name = "classes.Kweet")
 public class Kweet {
 
@@ -24,6 +23,11 @@ public class Kweet {
     private String text;                 //max 160 charachters
     private LocalDateTime createDate;    // <-- might chance back to DateTime
     private Long inReplyToId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User creator;
+
     private String inReplyToName;
 
     @OneToMany
@@ -39,7 +43,7 @@ public class Kweet {
      * @param inReplyToId default null, otherwise contains reply id of entities.Kweet
      * @param inReplyToName default null, otherwise contains name user of entities.Kweet
      */
-    public Kweet(String text, Long inReplyToId, String inReplyToName) {
+    public Kweet(String text, Long inReplyToId, String inReplyToName, User creator) {
         if(text.isEmpty()){
             throw new InvalidParameterException("entities.Kweet: parameter text cant be null.");
         }
@@ -48,11 +52,13 @@ public class Kweet {
         this.inReplyToId = inReplyToId;
         this.inReplyToName = inReplyToName;
         this.createDate = LocalDateTime.now();
+        this.creator = creator;
 
         if(!validation()){
             throw new IllegalArgumentException("entities.Kweet: parameters invalid");
         }
     }
+
 
     public Long getId() {
         return id;
@@ -73,6 +79,8 @@ public class Kweet {
     }
 
     public void setInReplyToId(long replyToId){this.inReplyToId = replyToId;}
+
+    public User getCreator(){return creator;}
 
     public String getInReplyToName() {
         return inReplyToName;

@@ -3,13 +3,18 @@ package entities;
 import javax.persistence.*;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.regex.Pattern;
 
 //@Table(name = "User")
-//@NamedQuery(name = "User.all", query = "SELECT u FROM User as u")
-@Table(name = "user")
-@Entity(name = "User")
+
+//@Table(name = "User")
+//@Table(name = "User", uniqueConstraints = {@UniqueConstraint( columnNames = {"username"})})
+
+@Entity
+@NamedQuery(name = "User.getAll", query = "SELECT u FROM User as u")
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @NamedQueries({@NamedQuery(
         name = "User.getAll",
         query = "SELECT u FROM User u"
@@ -17,18 +22,17 @@ import java.util.regex.Pattern;
         name = "User.count",
         query = "SELECT u FROM User u"
 ), @NamedQuery(
-        name = "User.getById",
-        query = "SELECT u FROM User u WHERE u.id :id"
-), @NamedQuery(
-        name = "User.getByUsername",
-        query = "SELECT u FROM User u WHERE u.username :username"
+        name = "User.getFollowers",
+        query = "SELECT u FROM User u"
+),@NamedQuery(
+        name = "User.getFollowing",
+        query = "SELECT u FROM User u"
 )})
 public class User {
 
     //Variables
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //GenerationType.AUTO
-    //@Column(name = "user_id", updatable = false, nullable=false)
+    @GeneratedValue(strategy = GenerationType.AUTO) //GenerationType.AUTO //@Column(name = "user_id", updatable = false, nullable=false)
     private Long id;
 
     private String username;
@@ -36,26 +40,31 @@ public class User {
     private String password;
     private String biography;
     private String location;
-    private Roles role;
+    private entities.Roles role;
+
     private static final String PASSWORD_REGEX = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,26}$";
     private static final Pattern PASSWORD_PATTERN = Pattern.compile(PASSWORD_REGEX);
 
     @OneToMany
+    @JoinColumn(name = "kweet_id", referencedColumnName = "user_id")
     private List<Kweet> kweets;
 
-    /*@ManyToMany(cascade = CascadeType.)
-    @JoinTable(name = "user_followers",
-        joinColumns = @JoinColumn(name="user_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "kweet_id", referencedColumnName = "id"));*/
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<User> followers;
-
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_following",
+        joinColumns = {@JoinColumn(name = "follower_id", referencedColumnName = "user_id")},
+        inverseJoinColumns = {@JoinColumn(name = "following_id", referencedColumnName = "user_id")}
+    )
     private List<User> following;
 
+    @ManyToMany(mappedBy = "follower", cascade = CascadeType.PERSIST)
+    private List<User> follower;
 
     //Constructor
-    public User(String username, String name, String password, String biography, String location, Roles role) {
+    // empty constructor
+    public User() {
+    }
+
+    public User(String username, String name, String password, String biography, String location, String role) {
         if (username.isEmpty() || name.isEmpty() || password.isEmpty()) {
             throw new InvalidParameterException("User: parameters username, name and password cant be empty.");
         }
@@ -65,10 +74,14 @@ public class User {
         this.password = password;
         this.biography = biography;
         this.location = location;
-        this.role = role;
-
-        if (validation()) {
-            throw new IllegalArgumentException("User: parameters dont meet the conditions.");
+        if(role.equals(Roles.ADMINISTRATOR.toString())){
+            this.role = Roles.ADMINISTRATOR;
+        }
+        else if(role.equals(Roles.MODERATOR.toString())){
+            this.role = Roles.MODERATOR;
+        }
+        else{
+            this.role = Roles.STANDARD;
         }
     }
 
@@ -86,8 +99,7 @@ public class User {
         return isValid;
     }
 
-    public User() {
-    }
+
 
     //Getters & Setters
     public Long getId() {
@@ -131,7 +143,7 @@ public class User {
     }
 
     public List<User> getFollowers() {
-        return followers;
+        return follower;
     }
 
     public List<User> getFollowing() {
@@ -161,8 +173,8 @@ public class User {
     }
 
     public void addFollower(User user) {
-        if (!followers.contains(user)) {
-            followers.add(user);
+        if (!follower.contains(user)) {
+            follower.add(user);
         }
     }
 
@@ -189,7 +201,7 @@ public class User {
     public ArrayList<ArrayList<Kweet>> getAllKweetsFollowers() {
         ArrayList<ArrayList<Kweet>> kweetList = new ArrayList<ArrayList<Kweet>>();
         if (this.role == Roles.ADMINISTRATOR || this.role == Roles.MODERATOR) {
-            for (User f : followers) {
+            for (User f : follower) {
                 kweetList.add((ArrayList<Kweet>) f.getKweets());
             }
         }
@@ -208,8 +220,8 @@ public class User {
     }
 
     public void removeFollower(User user) {
-        if (followers.contains(user)) {
-            followers.remove(user);
+        if (follower.contains(user)) {
+            follower.remove(user);
         }
     }
 
