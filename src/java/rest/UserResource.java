@@ -22,6 +22,8 @@ public class UserResource {
     // ------------------ GET ------------------
     @GET
     @Path("/{id}")
+    @Consumes({"application/json"})
+    @Produces({"application/json"})
     public User getUserById(@PathParam("id") Long id){
         return userService.findUserById(id);
     }
@@ -34,31 +36,38 @@ public class UserResource {
 
     @GET
     @Path("/{id}/kweets")
-    public List<Kweet> getKweets(@PathParam("id") Long id){
-        return userService.getAllKweets(id);
+    public List<Kweet> getKweets(User user){
+        return userService.getAllKweets(user);
     }
 
     @GET
-    @Path("/{id}/followers")
-    public List<User> getUserFollowers(@PathParam("id") Long id){
-        return userService.getAllFollowers(id);
+    @Path("followers")
+    public List<User> getUserFollowers(User user){
+        return userService.getAllFollowers(user);
     }
 
     @GET
-    @Path("/{id}/following")
-    public List<User> getUserFollowing(@PathParam("id") Long id){
-        return userService.getAllFollowing(id);
+    @Path("following")
+    public List<User> getUserFollowing(User user){
+        return userService.getAllFollowing(user);
     }
 
     // ------------------ POST ------------------
     @POST
-    @Path("register")
-    public Response saveUser(User user) {
+    public Response createUser(User user) {
         userService.createUser(user);
         return Response.ok(user).build();
     }
 
     // ------------------ PUT ------------------
+    @PUT
+    @Path("/{id}/update")
+    public Response updateUser(User user){
+        userService.updateUser(user);
+        return Response.ok(user).build();
+    }
+
+
     @PUT
     @Path("/{id}/addfollowing")
     public Response addFollowing(@PathParam("id") Long id, User following) {

@@ -74,30 +74,30 @@ public class UnitTestGeneric {
         User user = mockDatabase.userList.get(5);
         Assert.assertEquals(user.getKweets().size(), 1);
 
-        user.addKweet(new Kweet("Today is a good day :D", null, null));
+        user.addKweet(new Kweet("Today is a good day :D", null, null, user));
         Assert.assertEquals(user.getKweets().size(), 2);
     }
 
     @Test
     public void testUserKweetReaction(){
-        /*User user = mockDatabase.userList.get(1);
+        User user = mockDatabase.userList.get(1);
         Kweet kweet = user.getKweets().get(1);
         kweet.setId(new Long(1001));
 
         Assert.assertEquals(kweet.getReactions().size(), 0);
-        kweet.addReaction(new Kweet("This is a test", kweet.getId(), user.getName()));
+        kweet.addReaction(new Kweet("This is a test", kweet.getId(), user.getName(), user));
         Assert.assertEquals(kweet.getReactions().size(), 1);
-        */
+
     }
 
     @Test
     public void testUserRemoveKweets(){
-        /*User user = mockDatabase.userList.get(1);
+        User user = mockDatabase.userList.get(1);
         Assert.assertEquals(user.getKweets().size(), 3);
 
         Kweet kweet = user.getKweets().get(1);
         user.removeKweet(kweet);
         Assert.assertEquals(user.getKweets().size(), 2);
-        */
+
     }
 }

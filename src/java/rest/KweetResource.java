@@ -18,9 +18,8 @@ import java.util.List;
 @ApplicationScoped
 public class KweetResource {
 
-
     @GET
     public Response getTest(User user) {
-        return Response.ok().build();
+        return Response.serverError().build();
     }
 }

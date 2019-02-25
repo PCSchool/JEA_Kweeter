@@ -4,18 +4,17 @@ import entities.Kweet;
 import entities.User;
 
 import javax.ejb.Stateless;
-import javax.faces.bean.ApplicationScoped;
 import javax.persistence.*;
 import java.util.List;
 
+@Stateless
 public class UserDAOImpl implements UserDAO{
 
     @PersistenceContext
-    EntityManager em;
+    private EntityManager em;
 
     //  empty constructor
     public UserDAOImpl(){
-
     }
 
     @Override
@@ -42,7 +41,7 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public void addFollowing(User user, User following) {
-
+        this.em.merge(user);
     }
 
     @Override
@@ -58,6 +57,7 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public void removeFollower(User user, User follower) {
+        //DELETE FROM User WHERE
         this.em.merge(user);
     }
 

@@ -13,7 +13,7 @@ import java.util.List;
         name = "Kweet.count",
         query = "SELECT k FROM Kweet k"
 )})*/
-@Entity(name = "classes.Kweet")
+@Entity
 public class Kweet {
 
     @Id

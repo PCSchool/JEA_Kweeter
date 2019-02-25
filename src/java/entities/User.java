@@ -3,17 +3,11 @@ package entities;
 import javax.persistence.*;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.regex.Pattern;
 
-//@Table(name = "User")
-
-//@Table(name = "User")
-//@Table(name = "User", uniqueConstraints = {@UniqueConstraint( columnNames = {"username"})})
 
 @Entity
-@NamedQuery(name = "User.getAll", query = "SELECT u FROM User as u")
 //@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @NamedQueries({@NamedQuery(
         name = "User.getAll",
@@ -28,6 +22,7 @@ import java.util.regex.Pattern;
         name = "User.getFollowing",
         query = "SELECT u FROM User u"
 )})
+@Table(name = "user")
 public class User {
 
     //Variables
@@ -46,18 +41,19 @@ public class User {
     private static final Pattern PASSWORD_PATTERN = Pattern.compile(PASSWORD_REGEX);
 
     @OneToMany
-    @JoinColumn(name = "kweet_id", referencedColumnName = "user_id")
+    @JoinColumn(name = "kweet_id", referencedColumnName = "id")
     private List<Kweet> kweets;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_following",
-        joinColumns = {@JoinColumn(name = "follower_id", referencedColumnName = "user_id")},
-        inverseJoinColumns = {@JoinColumn(name = "following_id", referencedColumnName = "user_id")}
+    @ManyToMany
+    @JoinTable(
+        name = "user_following",
+        joinColumns = { @JoinColumn(name = "follower_id", referencedColumnName = "id")},
+        inverseJoinColumns = {@JoinColumn(name = "following_id", referencedColumnName = "id")}
     )
-    private List<User> following;
+    private List<User> followings;
 
-    @ManyToMany(mappedBy = "follower", cascade = CascadeType.PERSIST)
-    private List<User> follower;
+    @ManyToMany(mappedBy = "followings")
+    private List<User> followers;
 
     //Constructor
     // empty constructor
@@ -143,11 +139,11 @@ public class User {
     }
 
     public List<User> getFollowers() {
-        return follower;
+        return followers;
     }
 
     public List<User> getFollowing() {
-        return following;
+        return followings;
     }
 
     public String getName() {
@@ -166,15 +162,15 @@ public class User {
     }
 
     public void addFollowing(User user) {
-        if (!following.contains(user)) {
-            following.add(user);
+        if (!followings.contains(user)) {
+            followings.add(user);
             user.addFollower(this);
         }
     }
 
     public void addFollower(User user) {
-        if (!follower.contains(user)) {
-            follower.add(user);
+        if (!followers.contains(user)) {
+            followers.add(user);
         }
     }
 
@@ -201,7 +197,7 @@ public class User {
     public ArrayList<ArrayList<Kweet>> getAllKweetsFollowers() {
         ArrayList<ArrayList<Kweet>> kweetList = new ArrayList<ArrayList<Kweet>>();
         if (this.role == Roles.ADMINISTRATOR || this.role == Roles.MODERATOR) {
-            for (User f : follower) {
+            for (User f : followers) {
                 kweetList.add((ArrayList<Kweet>) f.getKweets());
             }
         }
@@ -220,14 +216,14 @@ public class User {
     }
 
     public void removeFollower(User user) {
-        if (follower.contains(user)) {
-            follower.remove(user);
+        if (followers.contains(user)) {
+            followers.remove(user);
         }
     }
 
     public void removeFollowing(User user) {
-        if (following.contains(user)) {
-            following.remove(user);
+        if (followings.contains(user)) {
+            followings.remove(user);
             user.removeFollower(this);
         }
     }

@@ -1,12 +1,11 @@
 package dao;
 
-import entities.User;
 import entities.Kweet;
+import entities.User;
 
 import java.util.List;
 
 public interface UserDAO {
-
     void removeUser(User user);
 
     void createUser(User user);
@@ -32,5 +31,4 @@ public interface UserDAO {
     List<User> getAllFollowers(User user);
 
     List<User> getAllFollowing(User user);
-
 }
