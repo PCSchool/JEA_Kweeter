@@ -26,6 +26,7 @@ public class UserService{
 
     public void createUser(User user){
         if(user != null){
+            System.out.println(user);
             this.userDAO.createUser(user);
         }
     }
@@ -76,16 +77,16 @@ public class UserService{
         return  userDAO.getAllUsers();
     }
 
-    public List<Kweet> getAllKweets(User user) {
-        return userDAO.getAllKweets(user);
+    public List<Kweet> getAllKweets(Long id) {
+        return userDAO.getAllKweets(id);
 }
 
-    public List<User> getAllFollowers(User user) {
-        return userDAO.getAllFollowers(user);
+    public List<User> getAllFollowers(Long id) {
+        return userDAO.getAllFollowers(id);
     }
 
-    public List<User> getAllFollowing(User user) {
-        return userDAO.getAllFollowing(user);
+    public List<User> getAllFollowing(Long id) {
+        return userDAO.getAllFollowing(id);
     }
 
     public User getUser(Long id){

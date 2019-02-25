@@ -29,27 +29,30 @@ public class UserResource {
     }
 
     @GET
-    @Path("users")
+    @Path("getAll")
     public List<User> getUsers(){
         return userService.getAllUsers();
     }
 
     @GET
     @Path("/{id}/kweets")
-    public List<Kweet> getKweets(User user){
-        return userService.getAllKweets(user);
+    @Consumes({"application/json"})
+    @Produces({"application/json"})
+    public List<Kweet> getKweets(@PathParam("id") Long id){
+        return userService.getAllKweets(id);
     }
 
     @GET
-    @Path("followers")
-    public List<User> getUserFollowers(User user){
-        return userService.getAllFollowers(user);
+    @Path("/{id}/followers")
+    public List<User> getUserFollowers(@PathParam("id") Long id){
+        return userService.getAllFollowers(id);
     }
 
     @GET
-    @Path("following")
-    public List<User> getUserFollowing(User user){
-        return userService.getAllFollowing(user);
+    @Path("/{id}/following")
+    public List<User> getUserFollowing(@PathParam("id") Long id){
+
+        return userService.getAllFollowing(id);
     }
 
     // ------------------ POST ------------------

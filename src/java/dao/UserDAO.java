@@ -26,9 +26,9 @@ public interface UserDAO {
 
     List<User> getAllUsers();
 
-    List<Kweet> getAllKweets(User user);
+    List<Kweet> getAllKweets(Long id);
 
-    List<User> getAllFollowers(User user);
+    List<User> getAllFollowers(Long id);
 
-    List<User> getAllFollowing(User user);
+    List<User> getAllFollowing(Long id);
 }

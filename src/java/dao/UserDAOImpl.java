@@ -74,20 +74,19 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
-    public List<Kweet> getAllKweets(User user) {
+    public List<Kweet> getAllKweets(Long id) {
         Query query = this.em.createNamedQuery("User.getAll");
         return query.getResultList();
     }
 
     @Override
-    public List<User> getAllFollowers(User user) {
-        //todo UserDAOImpl --> check from which table u get the followers
+    public List<User> getAllFollowers(Long id) {
         Query query = this.em.createNamedQuery("User.getFollowers");
         return query.getResultList();
     }
 
     @Override
-    public List<User> getAllFollowing(User user)
+    public List<User> getAllFollowing(Long id)
     {
         Query query = this.em.createNamedQuery("User.getFollowing");
         return query.getResultList();

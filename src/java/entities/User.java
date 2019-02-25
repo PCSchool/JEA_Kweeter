@@ -27,8 +27,9 @@ public class User {
 
     //Variables
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) //GenerationType.AUTO //@Column(name = "user_id", updatable = false, nullable=false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //GenerationType.AUTO //@Column(name = "user_id", updatable = false, nullable=false)
     private Long id;
+
 
     private String username;
     private String name;
@@ -79,6 +80,7 @@ public class User {
         else{
             this.role = Roles.STANDARD;
         }
+        System.out.println(this.username + " " + this.password);
     }
 
     private boolean validation() {
