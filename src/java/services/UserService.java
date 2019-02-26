@@ -49,9 +49,8 @@ public class UserService{
         return userDAO.findUserById(id);
     }
 
-    public void addFollowing(User user, User following) {
-        user.addFollowing(following);
-        userDAO.updateUser(user);
+    public void addFollowing(Long user, Long following) {
+        userDAO.addFollowing(user, following);
     }
 
     public void addFollower(User user, User follower) {
@@ -64,9 +63,8 @@ public class UserService{
         userDAO.updateUser(user);
     }
 
-    public void removeFollowing(User user, User following){
-        user.removeFollowing(following);
-        userDAO.updateUser(user);
+    public void removeFollowing(Long id, Long following){
+        userDAO.removeFollowing(id, following);
     }
 
     public UserDAO getUserDAO() {

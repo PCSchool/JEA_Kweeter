@@ -56,11 +56,21 @@ public class User {
     @ManyToMany(mappedBy = "followings")
     private List<User> followers;
 
-    //Constructor
-    // empty constructor
+    /**
+     * empty constructor
+     */
     public User() {
     }
 
+    /**
+     * Main constructor for user
+     * @param username      must be unique, min 6 charachters, max 26 charachters
+     * @param name          cant be empty
+     * @param password      must contain 1 special charachter, 1 lowercase, 1 uppercase, min 6 charachters, max 26 charachters
+     * @param biography     default "", cant be longer then 160 charachters
+     * @param location      default ""
+     * @param role          default STANDARD
+     */
     public User(String username, String name, String password, String biography, String location, String role) {
         if (username.isEmpty() || name.isEmpty() || password.isEmpty()) {
             throw new InvalidParameterException("User: parameters username, name and password cant be empty.");
@@ -83,6 +93,10 @@ public class User {
         System.out.println(this.username + " " + this.password);
     }
 
+    /**
+     * validation for the password and username
+     * @return true if validation is sufficient, otherwise false
+     */
     private boolean validation() {
         boolean isValid = true;
 
@@ -97,72 +111,99 @@ public class User {
         return isValid;
     }
 
-
-
-    //Getters & Setters
+    /**
+     * @return id
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * @return username
+     */
     public String getUsername() {
         return username;
     }
-
+    /**
+     * @return biography
+     */
     public String getBiography() {
         return biography;
     }
-
+    /**
+     * @param biography, max 160 charachters
+     */
     public void setBiography(String biography) {
-        this.biography = biography;
+        if(biography.length() < 160){
+            this.biography = biography;
+        }
     }
-
+    /**
+     * @return location
+     */
     public String getLocation() {
         return location;
     }
-
+    /**
+     * @param location
+     */
     public void setLocation(String location) {
         this.location = location;
     }
-
+    /**
+     * @return role
+     */
     public Roles getRole() {
         return role;
     }
-
+    /**
+     * @param role
+     */
     public void setRole(Roles role) {
         this.role = role;
     }
-
+    /**
+     * @return kweets
+     */
     public List<Kweet> getKweets() {
         return kweets;
     }
-
+    /**
+     * @return followers
+     */
     public List<User> getFollowers() {
         return followers;
     }
-
+    /**
+     * @return following
+     */
     public List<User> getFollowing() {
         return followings;
     }
-
+    /**
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
-    // Methods CREATE
-    public void addUser(User user) {
-        if (this.role == Roles.ADMINISTRATOR || this.role == Roles.MODERATOR) {
-            System.out.println("addUser: add new user to pm");
-        }
-    }
-
+    /**
+     * @param user - add user to following
+     */
     public void addFollowing(User user) {
         if (!followings.contains(user)) {
             followings.add(user);
@@ -170,32 +211,50 @@ public class User {
         }
     }
 
+    /**
+     * @param user - add Follower to user
+     */
     public void addFollower(User user) {
         if (!followers.contains(user)) {
             followers.add(user);
         }
     }
 
+    /**
+     * @param kweet - create kweet
+     */
     public void addKweet(Kweet kweet) {
         if (!kweets.contains(kweet)) {
             kweets.add(kweet);
         }
     }
 
-    //Methods UPDATE
+    /**
+     * Update the profile
+     * @param name
+     * @param biography
+     * @param location
+     */
     public void updateProfile(String name, String biography, String location) {
         this.name = name;
         this.biography = biography;
         this.location = location;
     }
 
+    /**
+     * Update the role
+     * @param user
+     * @param role  only ADMINISTRATOR or MODERATOR can use this function
+     */
     public void updateUserRole(User user, Roles role) {
         if (this.role == Roles.ADMINISTRATOR || this.role == Roles.MODERATOR) {
             user.setRole(role);
         }
     }
 
-    //  Methods GET
+    /**
+     * @return all kweets of the followers of the user
+     */
     public ArrayList<ArrayList<Kweet>> getAllKweetsFollowers() {
         ArrayList<ArrayList<Kweet>> kweetList = new ArrayList<ArrayList<Kweet>>();
         if (this.role == Roles.ADMINISTRATOR || this.role == Roles.MODERATOR) {
@@ -206,23 +265,39 @@ public class User {
         return kweetList;
     }
 
-    // Methods REMOVE
+    /**
+     * Remove a specific kweet of the user
+     * @param kweet
+     * @param user
+     */
     public void removeUserKweet(Kweet kweet, User user) {
         if (this.role == Roles.ADMINISTRATOR || this.role == Roles.MODERATOR) {
             user.removeKweet(kweet);
         }
     }
 
+    /**
+     * Remove a kweet
+     * @param kweet
+     */
     public void removeKweet(Kweet kweet) {
         kweets.remove(kweet);
     }
 
+    /**
+     * remove a follower from followers
+     * @param user
+     */
     public void removeFollower(User user) {
         if (followers.contains(user)) {
             followers.remove(user);
         }
     }
 
+    /**
+     * remove a following from follorings
+     * @param user
+     */
     public void removeFollowing(User user) {
         if (followings.contains(user)) {
             followings.remove(user);

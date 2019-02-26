@@ -33,7 +33,9 @@ public class Kweet {
     @OneToMany
     private List<Kweet> reactions;
 
-    /* empty constructor */
+    /**
+     * empty constructor
+     */
     public Kweet(){
     }
 
@@ -59,40 +61,72 @@ public class Kweet {
         }
     }
 
-
+    /**
+     * @return id
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * @param id
+     */
     public void setId(Long id){this.id = id;}
 
+    /**
+     * @return text
+     */
     public String getText() {
         return text;
     }
 
+    /**
+     * @return createDate
+     */
     public LocalDateTime getCreateDate() {
         return createDate;
     }
 
+    /**
+     * @return inReplyToId
+     */
     public Long getInReplyToId() {
         return inReplyToId;
     }
 
+    /**
+     * @param replyToId
+     */
     public void setInReplyToId(long replyToId){this.inReplyToId = replyToId;}
 
+    /**
+     * @return creator
+     */
     public User getCreator(){return creator;}
 
+    /**
+     * @return inReplyToName
+     */
     public String getInReplyToName() {
         return inReplyToName;
     }
 
+    /**
+     * @param replyToName
+     */
     public void setInReplyToName(String replyToName){this.inReplyToName = replyToName;}
 
+    /**
+     * @return reactions
+     */
     public List<Kweet> getReactions() {
         return reactions;
     }
 
-    //check validation of kweet
+    /**
+     * @return true if validation is correct
+     *          false if validation is incorrect
+     */
     private boolean validation(){
         boolean isValid = true;
 
@@ -103,6 +137,9 @@ public class Kweet {
         return isValid;
     }
 
+    /**
+     * @param kweet - add reaction to a kweet
+     */
     public void addReaction(Kweet kweet){
         if(!reactions.contains(kweet)){
             reactions.add(kweet);
