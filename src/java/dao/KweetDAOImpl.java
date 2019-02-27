@@ -4,10 +4,7 @@ import entities.User;
 import entities.Kweet;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
+import javax.persistence.*;
 import java.util.List;
 
 @Stateless
@@ -18,27 +15,29 @@ public class KweetDAOImpl implements KweetDAO {
 
     // empty constructor
     public KweetDAOImpl(){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence");
-        this.em = emf.createEntityManager();
+        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence");
+        //this.em = emf.createEntityManager();
+    }
+
+
+    @Override
+    public void createKweet(Kweet kweet) {
+        this.em.persist(kweet);
     }
 
     @Override
-    public void createKweet(Kweet kweet, User user) {
-        user.addKweet(kweet);
+    public void deleteKweet(Kweet kweet) {
+        this.em.remove(kweet);
     }
 
     @Override
-    public void deleteKweet(Kweet kweet, User user) {
-        user.removeKweet(kweet);
+    public List<Kweet> getAllReactions(User user) {
+        Query query  = this.em.createQuery("SELECT k FROM Kweet k where k.creator = :id");
+        return query.getResultList();
     }
 
     @Override
-    public List<Kweet> getAllReactions(Kweet kweet) {
-        return kweet.getReactions();
-    }
+    public void addReaction(Kweet kweet, Kweet reaction) {
 
-    @Override
-    public void addReaction(Kweet kweet, Kweet reaction, User user) {
-        kweet.addReaction(reaction);
     }
 }

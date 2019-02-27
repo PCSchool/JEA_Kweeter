@@ -69,10 +69,21 @@ public class UserDAOImpl implements UserDAO{
      */
     @Override
     public void addFollowing(Long user, Long following) {
-        int count = em.createQuery("INSERT INTO user_following VALUES (1, 4)").executeUpdate();
+        this.em.createQuery("SELECT u FROM User u where u.id = :user");
+        User userAccount = this.em.find(User.class, user);
 
+        this.em.createQuery("SELECT u FROM User u where u.id = :following");
+        User userFollowing = this.em.find(User.class, following);
+        userAccount.addFollower(userFollowing);
+        //this.em.merge(userFollowing);
+        this.em.merge(userAccount);
+
+        //Query query = em.createNativeQuery("INSERT INTO followers (user_id, follows_id) VALUES (?, ?)");
+        //query.setParameter(1, following);
+        //query.setParameter(2, user);
+        //query.executeUpdate();
         //int count = em.createQuery("INSERT INTO user_following VALUES (" + following + ", " + user + ")").executeUpdate();
-        System.out.println("UserDAO addFollowing --> " + count);
+        //System.out.println("UserDAO addFollowing --> " + count);
     }
 
     @Override

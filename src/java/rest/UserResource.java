@@ -3,6 +3,7 @@ package rest;
         import entities.Kweet;
         import entities.User;
         import org.eclipse.persistence.annotations.DeleteAll;
+        import services.KweetService;
         import services.UserService;
 
         import javax.ejb.Stateless;
@@ -19,6 +20,9 @@ public class UserResource {
 
     @Inject
     private UserService userService;
+
+    @Inject
+    private KweetService kweetService;
 
     // ------------------ GET ------------------
     @GET
@@ -56,8 +60,9 @@ public class UserResource {
     }
 
     @POST
-    @Path("/{id}/addfollowing")
-    public Response addFollowing(@PathParam("id") Long id, Long followingId) {
+    @Path("/{id}/addfollowing/{followingId}")
+    public Response addFollowing(@PathParam("id") Long id, @PathParam("followingId") Long followingId) {
+        System.out.println(followingId);
         userService.addFollowing(id, followingId);
         return Response.ok().build();
     }
@@ -70,16 +75,19 @@ public class UserResource {
         return Response.ok(user).build();
     }
 
+    @POST
+    @Path("/{id}/kweet")
+    public void createKweet(@PathParam("id") Long id, Kweet kweet){} {
+        //kweetService.createKweet();
+    }
+
     // ------------------ PUT ------------------
     @PUT
     @Path("/{id}/update")
     public Response updateUser(User user){
         userService.updateUser(user);
-        return Response.ok(user).build();
+        return Response.ok().build();
     }
-
-
-
 
     // ------------------ DELETE ------------------
     @DELETE
