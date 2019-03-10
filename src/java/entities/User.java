@@ -55,20 +55,10 @@ public class User {
     public User() {
     }
 
-    /**
-     * Main constructor for user
-     * @param username      must be unique, min 6 charachters, max 26 charachters
-     * @param name          cant be empty
-     * @param password      must contain 1 special charachter, 1 lowercase, 1 uppercase, min 6 charachters, max 26 charachters
-     * @param biography     default "", cant be longer then 160 charachters
-     * @param location      default ""
-     * @param role          default STANDARD
-     */
     public User(String username, String name, String password, String biography, String location, String role) {
         if (username.isEmpty() || name.isEmpty() || password.isEmpty()) {
             throw new InvalidParameterException("User: parameters username, name and password cant be empty.");
         }
-
         this.username = username;
         this.name = name;
         this.password = password;
@@ -83,25 +73,6 @@ public class User {
         else{
             this.role = Roles.STANDARD;
         }
-        System.out.println(this.username + " " + this.password);
-    }
-
-    /**
-     * validation for the password and username
-     * @return true if validation is sufficient, otherwise false
-     */
-    private boolean validation() {
-        boolean isValid = true;
-
-        if (!PASSWORD_PATTERN.matcher(password).matches()) {
-            isValid = false;
-        }
-
-        if (username.length() < 6 || username.length() > 26) {
-            isValid = false;
-        }
-
-        return isValid;
     }
 
     public Long getId() {

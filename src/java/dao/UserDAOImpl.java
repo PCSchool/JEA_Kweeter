@@ -80,8 +80,8 @@ public class UserDAOImpl implements UserDAO{
         userAccount.addFollowing(userFollowing);
         userFollowing.addFollower(userAccount);
 
-        this.em.merge(userFollowing);
-        this.em.merge(userAccount);
+        //this.em.merge(userFollowing);
+        //this.em.merge(userAccount);
         this.em.persist(userFollowing);
         this.em.persist(userAccount);
 

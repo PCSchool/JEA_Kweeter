@@ -28,34 +28,32 @@ public class KweetDAOImpl implements KweetDAO {
     @Override
     public void createKweet(Kweet kweet, Long id) {
         User user = this.em.find(User.class, id);
-        java.util.Date now =new Date();
-        kweet.setCreateDate(now);
+        //java.util.Date now =new Date();
+        kweet.setCreateDate(new java.util.Date());
         kweet.setUser(user);
         //user.addKweet(kweet);
         em.persist(kweet);
     }
 
     @Override
-    public void deleteKweet(Kweet kweet, Long id) {
+    public void removeKweet(Kweet kweet, Long id) {
         User user = this.em.find(User.class, id);
         user.removeKweet(kweet);
-        this.em.merge(user);
         this.em.remove(kweet);
     }
 
     @Override
-    public List<Kweet> getAllReactions(Long id) {
-        Kweet kweet = this.em.find(Kweet.class, id);
-
-        Query query  = this.em.createQuery("SELECT k FROM Kweet k where k.parent = :kweet");
+    public List<Kweet> findByFilter(String message) {
+        Query query  = this.em.createQuery("SELECT k FROM Kweet k where k.message LIKE :message ORDER BY k.createDate ASC ");
         return query.getResultList();
     }
+
 
     @Override
     public void addReaction(Long id, Long kweetid, Kweet reaction) {
         User user = this.em.find(User.class, id);
-        java.util.Date now =new Date();
-        reaction.setCreateDate(now);
+        //java.util.Date now =new Date();
+        reaction.setCreateDate(new java.util.Date());
         reaction.setUser(user);
 
         Kweet parent = this.em.find(Kweet.class, kweetid);
@@ -70,7 +68,7 @@ public class KweetDAOImpl implements KweetDAO {
     public List<Kweet> getKweets(Long id, int amountOfKweets) {
         User user = this.em.find(User.class, id);
         System.out.println(user);
-        Query query  = this.em.createQuery("SELECT k FROM Kweet k where k.user = :user");
+        Query query  = this.em.createQuery("SELECT k FROM Kweet k where k.user = :user ORDER BY k.createDate ASC ");
         return query.getResultList();
     }
 }

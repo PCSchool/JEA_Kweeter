@@ -30,13 +30,12 @@ public class KweetService{
         this.kweetDAO.createKweet(kweet, id);
     }
 
-    public void deleteKweet(Kweet kweet, Long id){
-        this.kweetDAO.deleteKweet(kweet, id);
+    public void removeKweet(Kweet kweet, Long id){
+        this.kweetDAO.removeKweet(kweet, id);
     }
 
-    public List<Kweet> getAllReactions(User user){
-
-        return this.kweetDAO.getAllReactions(user.getId());
+    public List<Kweet> findByFilterKweet(String message){
+        return this.kweetDAO.findByFilter(message);
     }
 
     public List<Kweet> getKweets(Long id, int amount){

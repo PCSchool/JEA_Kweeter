@@ -8,9 +8,9 @@ import java.util.List;
 public interface KweetDAO{
     void createKweet(Kweet kweet, Long id);
 
-    void deleteKweet(Kweet kweet, Long id);
+    void removeKweet(Kweet kweet, Long id);
 
-    List<Kweet> getAllReactions(Long id);
+    List<Kweet> findByFilter(String message);
 
     void addReaction(Long id, Long kweetid, Kweet reaction);
 

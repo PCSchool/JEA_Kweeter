@@ -137,4 +137,13 @@ public class UserResource {
         return Response.ok().build();
     }
 
+    @DELETE
+    @Path("/{id}/{kweetid}")
+    @Consumes({"application/json"})
+    @Produces({"application/json"})
+    public Response removeKweet(@PathParam("id") Long id, @PathParam("kweetid") Long kweetid, Kweet kweet){
+        kweetService.removeKweet(kweet, id);
+        return Response.ok(kweet).build();
+    }
+
 }
