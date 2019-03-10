@@ -74,7 +74,7 @@ public class UnitTestGeneric {
         User user = mockDatabase.userList.get(5);
         Assert.assertEquals(user.getKweets().size(), 1);
 
-        user.addKweet(new Kweet("Today is a good day :D", null, null, user));
+        user.addKweet(new Kweet("Today is a good day :D", null, null));
         Assert.assertEquals(user.getKweets().size(), 2);
     }
 
@@ -85,7 +85,7 @@ public class UnitTestGeneric {
         kweet.setId(new Long(1001));
 
         Assert.assertEquals(kweet.getReactions().size(), 0);
-        kweet.addReaction(new Kweet("This is a test", kweet.getId(), user.getName(), user));
+        kweet.addReaction(new Kweet("This is a test", kweet.getId(), user.getName()));
         Assert.assertEquals(kweet.getReactions().size(), 1);
 
     }

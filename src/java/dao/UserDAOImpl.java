@@ -5,6 +5,7 @@ import entities.User;
 
 import javax.ejb.Stateless;
 import javax.persistence.*;
+import java.io.Console;
 import java.util.List;
 
 /**
@@ -74,9 +75,15 @@ public class UserDAOImpl implements UserDAO{
 
         this.em.createQuery("SELECT u FROM User u where u.id = :following");
         User userFollowing = this.em.find(User.class, following);
-        userAccount.addFollower(userFollowing);
-        //this.em.merge(userFollowing);
+
+        //todo fix follower - following
+        userAccount.addFollowing(userFollowing);
+        userFollowing.addFollower(userAccount);
+
+        this.em.merge(userFollowing);
         this.em.merge(userAccount);
+        this.em.persist(userFollowing);
+        this.em.persist(userAccount);
 
         //Query query = em.createNativeQuery("INSERT INTO followers (user_id, follows_id) VALUES (?, ?)");
         //query.setParameter(1, following);

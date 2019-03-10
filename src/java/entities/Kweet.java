@@ -3,7 +3,11 @@ package entities;
 import javax.persistence.*;
 
 import java.security.InvalidParameterException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /*@NamedQueries({@NamedQuery(
@@ -20,18 +24,23 @@ public class Kweet {
     @GeneratedValue(strategy = GenerationType.AUTO)
     //@Column(name = "kweet_id", updatable = false, nullable=false)
     private Long id;
-    private String text;                 //max 160 charachters
-    private LocalDateTime createDate;    // <-- might chance back to DateTime
+    private String message;                 //max 160 charachters
+    @Temporal(TemporalType.TIMESTAMP)
+    private java.util.Date createDate;
     private Long inReplyToId;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User creator;
-
     private String inReplyToName;
 
-    @OneToMany
-    private List<Kweet> reactions;
+    //(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "USER_ID", nullable = false)
+    private User user;
+
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JoinTable(name = "KWEET_ID")
+    private List<Kweet> reactions = new ArrayList<>();
 
     /**
      * empty constructor
@@ -41,24 +50,40 @@ public class Kweet {
 
     /**
      * Constructor entities.Kweet
-     * @param text value of the tweet, must be between 1 - 160 charachters
+     * @param message value of the tweet, must be between 1 - 160 charachters
      * @param inReplyToId default null, otherwise contains reply id of entities.Kweet
      * @param inReplyToName default null, otherwise contains name user of entities.Kweet
      */
-    public Kweet(String text, Long inReplyToId, String inReplyToName, User creator) {
-        if(text.isEmpty()){
+    public Kweet(String message, Long inReplyToId, String inReplyToName) {
+        /*if(text.isEmpty()){
             throw new InvalidParameterException("entities.Kweet: parameter text cant be null.");
-        }
+        }*/
 
-        this.text = text;
+        this.message = message;
         this.inReplyToId = inReplyToId;
         this.inReplyToName = inReplyToName;
-        this.createDate = LocalDateTime.now();
-        this.creator = creator;
 
-        if(!validation()){
+        //DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        //this.createDate = new Date();
+
+        /*if(!validation()){
             throw new IllegalArgumentException("entities.Kweet: parameters invalid");
-        }
+        }*/
+    }
+
+    public Kweet(String message, Long inReplyToId, String inReplyToName, Date date) {
+        /*if(text.isEmpty()){
+            throw new InvalidParameterException("entities.Kweet: parameter text cant be null.");
+        }*/
+
+        this.message = message;
+        this.inReplyToId = inReplyToId;
+        this.inReplyToName = inReplyToName;
+        this.createDate = date;
+
+        /*if(!validation()){
+            throw new IllegalArgumentException("entities.Kweet: parameters invalid");
+        }*/
     }
 
     /**
@@ -73,18 +98,23 @@ public class Kweet {
      */
     public void setId(Long id){this.id = id;}
 
-    /**
-     * @return text
-     */
-    public String getText() {
-        return text;
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     /**
      * @return createDate
      */
-    public LocalDateTime getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
     /**
@@ -102,7 +132,11 @@ public class Kweet {
     /**
      * @return creator
      */
-    public User getCreator(){return creator;}
+    public User getCreator(){return user;}
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     /**
      * @return inReplyToName
@@ -130,7 +164,7 @@ public class Kweet {
     private boolean validation(){
         boolean isValid = true;
 
-        if(text.length() >= 160){
+        if(message.length() >= 160){
             isValid = false;
         }
 

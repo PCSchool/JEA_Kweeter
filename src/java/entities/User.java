@@ -31,6 +31,7 @@ public class User {
     private Long id;
 
 
+    @Column(unique = true)
     private String username;
     private String name;
     private String password;
@@ -41,19 +42,21 @@ public class User {
     private static final String PASSWORD_REGEX = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,26}$";
     private static final Pattern PASSWORD_PATTERN = Pattern.compile(PASSWORD_REGEX);
 
-    @OneToMany
-    @JoinColumn(name = "kweet_id", referencedColumnName = "id")
+    //@JoinColumn(name = "fk_kweet")  //, referencedColumnName = "id"
+
+    @OneToMany(mappedBy = "user")
     private List<Kweet> kweets;
 
-    @ManyToMany
+    //name --> "user_following"
+    @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
-        name = "user_following",
+        name = "followings",
         joinColumns = { @JoinColumn(name = "follower_id", referencedColumnName = "id")},
         inverseJoinColumns = {@JoinColumn(name = "following_id", referencedColumnName = "id")}
     )
     private List<User> followings;
 
-    @ManyToMany(mappedBy = "followings")
+    @ManyToMany(mappedBy = "followings", cascade = {CascadeType.ALL})
     private List<User> followers;
 
     /**
@@ -131,6 +134,15 @@ public class User {
     public String getUsername() {
         return username;
     }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     /**
      * @return biography
      */
@@ -205,19 +217,14 @@ public class User {
      * @param user - add user to following
      */
     public void addFollowing(User user) {
-        if (!followings.contains(user)) {
-            followings.add(user);
-            user.addFollower(this);
-        }
+        followings.add(user);
     }
 
     /**
      * @param user - add Follower to user
      */
     public void addFollower(User user) {
-        if (!followers.contains(user)) {
-            followers.add(user);
-        }
+        followers.add(user);
     }
 
     /**
@@ -250,19 +257,6 @@ public class User {
         if (this.role == Roles.ADMINISTRATOR || this.role == Roles.MODERATOR) {
             user.setRole(role);
         }
-    }
-
-    /**
-     * @return all kweets of the followers of the user
-     */
-    public ArrayList<ArrayList<Kweet>> getAllKweetsFollowers() {
-        ArrayList<ArrayList<Kweet>> kweetList = new ArrayList<ArrayList<Kweet>>();
-        if (this.role == Roles.ADMINISTRATOR || this.role == Roles.MODERATOR) {
-            for (User f : followers) {
-                kweetList.add((ArrayList<Kweet>) f.getKweets());
-            }
-        }
-        return kweetList;
     }
 
     /**

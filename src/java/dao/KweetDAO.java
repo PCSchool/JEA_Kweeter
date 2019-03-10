@@ -6,11 +6,13 @@ import entities.Kweet;
 import java.util.List;
 
 public interface KweetDAO{
-    void createKweet(Kweet kweet);
+    void createKweet(Kweet kweet, Long id);
 
-    void deleteKweet(Kweet kweet);
+    void deleteKweet(Kweet kweet, Long id);
 
-    List<Kweet> getAllReactions(User user);
+    List<Kweet> getAllReactions(Long id);
 
-    void addReaction(Kweet kweet, Kweet reaction);
+    void addReaction(Kweet reaction);
+
+    List<Kweet> getKweets(Long id, int amountOfKweets);
 }

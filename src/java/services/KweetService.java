@@ -4,6 +4,7 @@ import entities.User;
 import entities.Kweet;
 import dao.KweetDAO;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Stateless
 public class KweetService{
-    //@EJB
+    @EJB
     KweetDAO kweetDAO;
 
     @PersistenceContext
@@ -21,17 +22,21 @@ public class KweetService{
     public KweetService(){
     }
 
-    public void createKweet(Kweet kweet, User user){
-        this.kweetDAO.createKweet(kweet, user);
+    public void createKweet(Kweet kweet, Long id){
+        this.kweetDAO.createKweet(kweet, id);
     }
 
-    public void deleteKweet(Kweet kweet, User user){
-        this.kweetDAO.deleteKweet(kweet, user);
+    public void deleteKweet(Kweet kweet, Long id){
+        this.kweetDAO.deleteKweet(kweet, id);
     }
 
-    public List<Kweet> getAllReactions(Kweet kweet){
+    public List<Kweet> getAllReactions(User user){
 
-        return this.kweetDAO.getAllReactions(kweet);
+        return this.kweetDAO.getAllReactions(user.getId());
+    }
+
+    public List<Kweet> getKweets(Long id, int amount){
+        return this.kweetDAO.getKweets(id, amount);
     }
 
     public void createKweetReaction(Kweet kweet, Kweet reaction){

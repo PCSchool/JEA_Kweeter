@@ -1,5 +1,6 @@
 <html>
 <body>
-<h2>Hello World!</h2>
+<h2>Kweeter</h2>
+<h3>Application Java EE</h3>
 </body>
 </html>

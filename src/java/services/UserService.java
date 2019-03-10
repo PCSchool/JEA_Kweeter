@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.List;
 
 
+import dao.KweetDAO;
 import dao.UserDAO;
 import dao.UserDAOImpl;
 import entities.Kweet;
@@ -19,6 +20,9 @@ public class UserService{
 
     @EJB
     UserDAO userDAO;
+
+    @EJB
+    KweetDAO kweetDAO;
 
     // -    constructor
     public UserService(){
@@ -39,23 +43,26 @@ public class UserService{
         this.userDAO.updateUser(user);
     }
 
-    /*public User findUserByName(String name){
-        Query q = this.em.createNamedQuery("User.byName");
-        q.setParameter("name", name);
-        return  (User)q.getSingleResult();
-    }*/
-
     public User findUserById(long id){
         return userDAO.findUserById(id);
     }
 
     public void addFollowing(Long user, Long following) {
-        userDAO.addFollowing(user, following);
+        //userDAO.addFollowing(user, following);
+        User addFollowing = userDAO.findUserById(user);
+        User userFollowing = userDAO.findUserById(following);
+        addFollowing.addFollower(userFollowing);
+        userDAO.updateUser(addFollowing);
+        userDAO.updateUser(userFollowing);
     }
 
     public void addFollower(User user, User follower) {
         user.addFollower(follower);
         userDAO.updateUser(user);
+    }
+
+    public void addReactionToKweet(Kweet kweet){
+        kweetDAO.addReaction(kweet);
     }
 
     public void removeFollower(User user, User follower) {
@@ -65,10 +72,6 @@ public class UserService{
 
     public void removeFollowing(Long id, Long following){
         userDAO.removeFollowing(id, following);
-    }
-
-    public UserDAO getUserDAO() {
-        return userDAO;
     }
 
     public List<User> getAllUsers(){
@@ -87,7 +90,5 @@ public class UserService{
         return userDAO.getAllFollowing(id);
     }
 
-    public User getUser(Long id){
-        return userDAO.findUserById(id);
-    }
+
 }

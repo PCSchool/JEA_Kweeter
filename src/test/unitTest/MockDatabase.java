@@ -41,9 +41,15 @@ public class MockDatabase {
         userList.get(9).addFollowing(userList.get(1));
         userList.get(10).addFollowing(userList.get(1));
 
+
+        userList.get(1).addKweet(new Kweet( "on Can built must no check she pretty going aften otherwise roof old get ", null, null));
+        userList.get(2).addKweet(new Kweet( "disposed finished mrs knows ample has once lady but not am hope get by bred Own", null, null));
+        userList.get(3).addKweet(new Kweet( "Subjects ham as or would yet to forming to right breakfast do thus we what people only Led juvenile oh newspaper but dine concealed offending when", null, null));
+        userList.get(4).addKweet(new Kweet( "Admitting have you any offended nay snug terms excuse do temper though compliment should", null, null));
+
         // add 10 kweets
         //entities.Kweet(Long id, String text, Long inReplyToId, String inReplyToName) {
-        userList.get(1).addKweet(new Kweet( "on Can built must no check she pretty going aften otherwise roof old get ", null, null, userList.get(1)));
+        /*userList.get(1).addKweet(new Kweet( "on Can built must no check she pretty going aften otherwise roof old get ", null, null, userList.get(1)));
         userList.get(2).addKweet(new Kweet( "disposed finished mrs knows ample has once lady but not am hope get by bred Own", null, null, userList.get(1)));
         userList.get(3).addKweet(new Kweet( "Subjects ham as or would yet to forming to right breakfast do thus we what people only Led juvenile oh newspaper but dine concealed offending when", null, null, userList.get(7)));
         userList.get(4).addKweet(new Kweet( "Admitting have you any offended nay snug terms excuse do temper though compliment should", null, null, userList.get(4)));
@@ -52,6 +58,6 @@ public class MockDatabase {
         userList.get(7).addKweet(new Kweet("Inquietude next right middleton speedily being can cant merely at met you mrs ya formed", null, null, userList.get(3)));
         userList.get(8).addKweet(new Kweet( "True felicity here hence why i Collected true an jennings came What few out offices ", null, null, userList.get(2)));
         userList.get(9).addKweet(new Kweet("Dear my totally saw does in plan between drawn", null, null, userList.get(5)));
-        userList.get(10).addKweet(new Kweet("Admitting have you any offended nay snug terms excuse do temper though compliment should", null, null, userList.get(8)));
+        userList.get(10).addKweet(new Kweet("Admitting have you any offended nay snug terms excuse do temper though compliment should", null, null, userList.get(8)));*/
     }
 }
