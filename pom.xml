@@ -76,6 +76,12 @@
       <version>7.0.0-beta3</version>
       <scope>test</scope>
     </dependency>
+      <dependency>
+          <groupId>net.minidev</groupId>
+          <artifactId>json-smart</artifactId>
+          <version>2.3</version>
+          <scope>compile</scope>
+      </dependency>
   </dependencies>
 
   <build>

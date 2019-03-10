@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-
-@Entity
-//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @NamedQueries({@NamedQuery(
         name = "User.getAll",
         query = "SELECT u FROM User u"
@@ -22,14 +19,13 @@ import java.util.regex.Pattern;
         name = "User.getFollowing",
         query = "SELECT u FROM User u"
 )})
-@Table(name = "user")
+@Entity
 public class User {
 
     //Variables
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //GenerationType.AUTO //@Column(name = "user_id", updatable = false, nullable=false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
     @Column(unique = true)
     private String username;
@@ -42,12 +38,9 @@ public class User {
     private static final String PASSWORD_REGEX = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,26}$";
     private static final Pattern PASSWORD_PATTERN = Pattern.compile(PASSWORD_REGEX);
 
-    //@JoinColumn(name = "fk_kweet")  //, referencedColumnName = "id"
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST})
+    private List<Kweet> kweets = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user")
-    private List<Kweet> kweets;
-
-    //name --> "user_following"
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
         name = "followings",
@@ -59,9 +52,6 @@ public class User {
     @ManyToMany(mappedBy = "followings", cascade = {CascadeType.ALL})
     private List<User> followers;
 
-    /**
-     * empty constructor
-     */
     public User() {
     }
 
@@ -114,23 +104,14 @@ public class User {
         return isValid;
     }
 
-    /**
-     * @return id
-     */
     public Long getId() {
         return id;
     }
 
-    /**
-     * @param id
-     */
     public void setId(Long id) {
         this.id = id;
     }
 
-    /**
-     * @return username
-     */
     public String getUsername() {
         return username;
     }
@@ -143,97 +124,62 @@ public class User {
         this.password = password;
     }
 
-    /**
-     * @return biography
-     */
     public String getBiography() {
         return biography;
     }
-    /**
-     * @param biography, max 160 charachters
-     */
+
     public void setBiography(String biography) {
         if(biography.length() < 160){
             this.biography = biography;
         }
     }
-    /**
-     * @return location
-     */
+
     public String getLocation() {
         return location;
     }
-    /**
-     * @param location
-     */
+
     public void setLocation(String location) {
         this.location = location;
     }
-    /**
-     * @return role
-     */
+
     public Roles getRole() {
         return role;
     }
-    /**
-     * @param role
-     */
+
     public void setRole(Roles role) {
         this.role = role;
     }
-    /**
-     * @return kweets
-     */
+
     public List<Kweet> getKweets() {
         return kweets;
     }
-    /**
-     * @return followers
-     */
+
     public List<User> getFollowers() {
         return followers;
     }
-    /**
-     * @return following
-     */
+
     public List<User> getFollowing() {
         return followings;
     }
-    /**
-     * @return name
-     */
+
     public String getName() {
         return name;
     }
 
-    /**
-     * @param name
-     */
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     * @param user - add user to following
-     */
     public void addFollowing(User user) {
         followings.add(user);
     }
 
-    /**
-     * @param user - add Follower to user
-     */
     public void addFollower(User user) {
         followers.add(user);
     }
 
-    /**
-     * @param kweet - create kweet
-     */
     public void addKweet(Kweet kweet) {
-        if (!kweets.contains(kweet)) {
-            kweets.add(kweet);
-        }
+        kweets.add(kweet);
     }
 
     /**
@@ -283,9 +229,7 @@ public class User {
      * @param user
      */
     public void removeFollower(User user) {
-        if (followers.contains(user)) {
-            followers.remove(user);
-        }
+        followers.remove(user);
     }
 
     /**
@@ -293,10 +237,7 @@ public class User {
      * @param user
      */
     public void removeFollowing(User user) {
-        if (followings.contains(user)) {
-            followings.remove(user);
-            user.removeFollower(this);
-        }
+        followings.remove(user);
     }
 }
 

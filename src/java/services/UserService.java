@@ -62,7 +62,7 @@ public class UserService{
     }
 
     public void addReactionToKweet(Kweet kweet){
-        kweetDAO.addReaction(kweet);
+        //kweetDAO.addReaction(kweet);
     }
 
     public void removeFollower(User user, User follower) {

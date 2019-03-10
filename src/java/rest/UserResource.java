@@ -100,6 +100,15 @@ public class UserResource {
         return Response.ok(kweet).build();
     }
 
+    @POST
+    @Path("/{id}/{kweetid}/addreaction")
+    @Consumes({"application/json"})
+    @Produces({"application/json"})
+    public Response createKweetReaction(@PathParam("id") Long id, @PathParam("kweetid") Long kweetid, Kweet kweet){
+        kweetService.addReaction(id, kweetid, kweet);
+        return Response.ok(kweet).build();
+    }
+
     // ------------------ PUT ------------------
     @PUT
     @Path("/{id}/update")

@@ -22,6 +22,10 @@ public class KweetService{
     public KweetService(){
     }
 
+    public void addReaction(Long id, Long kweetid, Kweet kweet){
+        this.kweetDAO.addReaction(id, kweetid, kweet);
+    }
+
     public void createKweet(Kweet kweet, Long id){
         this.kweetDAO.createKweet(kweet, id);
     }

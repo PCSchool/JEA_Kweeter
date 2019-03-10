@@ -12,7 +12,7 @@ public interface KweetDAO{
 
     List<Kweet> getAllReactions(Long id);
 
-    void addReaction(Kweet reaction);
+    void addReaction(Long id, Long kweetid, Kweet reaction);
 
     List<Kweet> getKweets(Long id, int amountOfKweets);
 }
