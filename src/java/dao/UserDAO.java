@@ -6,11 +6,11 @@ import entities.User;
 import java.util.List;
 
 public interface UserDAO {
-    void removeUser(User user);
+    boolean removeUser(User user);
 
-    void createUser(User user);
+    boolean createUser(User user);
 
-    void updateUser(User user);
+    boolean updateUser(User user);
 
     User findUserByName(String name);
 
@@ -18,9 +18,9 @@ public interface UserDAO {
 
     void addFollowing(Long user, Long following);
 
-    void addFollower(User user, User follower);
+    void addFollower(Long user, Long follower);
 
-    void removeFollower(User user, User follower);
+    void removeFollower(Long user, Long follower);
 
     void removeFollowing(Long id, Long following);
 

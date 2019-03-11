@@ -6,6 +6,7 @@ import entities.User;
 import javax.ejb.Stateless;
 import javax.persistence.*;
 import java.io.Console;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,153 +24,93 @@ public class UserDAOImpl implements UserDAO{
     public UserDAOImpl(){
     }
 
-    /**
-     * remove the given user from the database
-     * @param user
-     */
     @Override
-    public void removeUser(User user) {
-        this.em.remove(user);
+    public boolean removeUser(User user) {
+        this.em.remove(user); return true;
     }
 
-    /**
-     * add the given user to the database
-     * @param user
-     */
     @Override
-    public void createUser(User user) {
-        this.em.persist(user);
+    public boolean createUser(User user) {
+        this.em.persist(user); return true;
     }
 
-    /**
-     * find user in database by name
-     * @param name
-     * @return
-     */
     @Override
     public User findUserByName(String name){
-        this.em.createQuery("SELECT u FROM User u where u.name = :name");
-        return this.em.find(User.class, name);
+        Query q = em.createNamedQuery("User.findByUsername", User.class);
+        q.setParameter("username", name);
+        return (User) q.getSingleResult();
     }
 
-    /**
-     * find user in database by id
-     * @param id
-     * @return
-     */
     @Override
     public User findUserById(long id){
-        this.em.createQuery("SELECT u FROM User u where u.id = :id");
-        return this.em.find(User.class, id);
+        Query q = em.createNamedQuery("User.findById", User.class);
+        q.setParameter("id", id);
+        return (User) q.getSingleResult();
     }
 
-    /**
-     * add a follower to the user, user id gets saved in column 'follower_id' and follower id gets saved in 'following_id'
-     * @param user
-     * @param following
-     */
     @Override
     public void addFollowing(Long user, Long following) {
         this.em.createQuery("SELECT u FROM User u where u.id = :user");
-        User userAccount = this.em.find(User.class, user);
+        User u1 = this.em.find(User.class, user);
 
         this.em.createQuery("SELECT u FROM User u where u.id = :following");
-        User userFollowing = this.em.find(User.class, following);
+        User u2 = this.em.find(User.class, following);
 
-        //todo fix follower - following
-        userAccount.addFollowing(userFollowing);
-        userFollowing.addFollower(userAccount);
-
-        //this.em.merge(userFollowing);
-        //this.em.merge(userAccount);
-        this.em.persist(userFollowing);
-        this.em.persist(userAccount);
-
-        //Query query = em.createNativeQuery("INSERT INTO followers (user_id, follows_id) VALUES (?, ?)");
-        //query.setParameter(1, following);
-        //query.setParameter(2, user);
-        //query.executeUpdate();
-        //int count = em.createQuery("INSERT INTO user_following VALUES (" + following + ", " + user + ")").executeUpdate();
-        //System.out.println("UserDAO addFollowing --> " + count);
+        //u1.getFollowers().add(u2);
+        u2.getFollowings().add(u1);
+        this.em.merge(u2);
+        this.em.merge(u1);
     }
 
     @Override
-    public void addFollower(User user, User follower) {
+    public void addFollower(Long user, Long follower) {
 
     }
 
-    /**
-     * update the current status of the user
-     * @param user
-     */
     @Override
-    public void updateUser(User user) {
+    public boolean updateUser(User user) {
+        Query q = em.createNamedQuery("User.update", User.class);
+        q.setParameter("name", user.getName());
+        q.setParameter("location", user.getLocation());
+        q.setParameter("biography", user.getBiography());
         this.em.merge(user);
+        return true;
     }
 
-    /**
-     * remove a follower from the user his following
-     * @param user
-     * @param follower
-     */
     @Override
-    public void removeFollower(User user, User follower) {
+    public void removeFollower(Long user, Long follower) {
         //DELETE FROM User WHERE
         this.em.merge(user);
     }
 
-    /**
-     * remove a user from following an certain account
-     * @param id
-     * @param following
-     */
     @Override
     public void removeFollowing(Long id, Long following) {
-        int count = em.createQuery("DELETE FROM user_following WHERE 'following_id' = " + following + " AND 'follower_id' =  " + " id ").executeUpdate();
-        System.out.println("UserDAO removeFollowing --> " + count);
+        //int count = em.createQuery("DELETE FROM user_following WHERE 'following_id' = " + following + " AND 'follower_id' =  " + " id ").executeUpdate();
+        //System.out.println("UserDAO removeFollowing --> " + count);
     }
 
-    /**
-     * returns a list of all users in the kweeter app
-     * @return
-     */
     @Override
     public List<User> getAllUsers(){
         Query query = this.em.createNamedQuery("User.getAll");
         return query.getResultList();
     }
 
-    /**
-     * returns all the kweets from a specific user
-     * @param id
-     * @return
-     */
     @Override
     public List<Kweet> getAllKweets(Long id) {
         Query query = this.em.createNamedQuery("User.getAll");
         return query.getResultList();
     }
 
-    /**
-     * returns all the followers of a specific user
-     * @param id
-     * @return
-     */
     @Override
     public List<User> getAllFollowers(Long id) {
         Query query = this.em.createNamedQuery("User.getFollowers");
         return query.getResultList();
     }
 
-    /**
-     * returns all the user followed by a specific user
-     * @param id
-     * @return
-     */
     @Override
     public List<User> getAllFollowing(Long id)
     {
-        Query query = this.em.createNamedQuery("User.getFollowing");
+        Query query = this.em.createNamedQuery("User.getFollowings");
         return query.getResultList();
     }
 }

@@ -68,7 +68,6 @@ public class UserResource {
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public Response addFollowing(@PathParam("id") Long id, @PathParam("followingId") Long followingId) {
-        System.out.println(followingId);
         userService.addFollowing(id, followingId);
         return Response.ok().build();
     }

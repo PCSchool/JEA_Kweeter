@@ -14,10 +14,28 @@ import java.util.regex.Pattern;
         query = "SELECT u FROM User u"
 ), @NamedQuery(
         name = "User.getFollowers",
-        query = "SELECT u FROM User u"
+        query = "SELECT u FROM User u where u.id = :id"
 ),@NamedQuery(
-        name = "User.getFollowing",
-        query = "SELECT u FROM User u"
+        name = "User.getFollowings",
+        query = "SELECT u FROM User u where u.id = :id"
+), @NamedQuery(
+        name = "User.setPassword",
+        query = "UPDATE User u set u.password = :password where u.id = :id"
+), @NamedQuery(
+        name = "User.getAllFollowers",
+        query = "SELECT u FROM User u where u.id = :id"
+),@NamedQuery(
+        name = "User.getAllFollowings",
+        query = "SELECT u FROM User u where u.id = :id"
+), @NamedQuery(
+        name = "User.findByUsername",
+        query = "SELECT u FROM User u where u.username = :username"
+), @NamedQuery(
+        name = "User.findById",
+        query = "SELECT u FROM User u where u.id = :id"
+),@NamedQuery(
+        name = "User.update",
+        query = "UPDATE User u set u.name = :name, u.biography = :biography, u.location = :location where u.id = :id"
 )})
 @Entity
 public class User {
@@ -38,19 +56,37 @@ public class User {
     private static final String PASSWORD_REGEX = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,26}$";
     private static final Pattern PASSWORD_PATTERN = Pattern.compile(PASSWORD_REGEX);
 
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST})
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Kweet> kweets = new ArrayList<>();
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    // Other Users that are followed by this specific User
+    /**@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE})
     @JoinTable(
-        name = "followings",
-        joinColumns = { @JoinColumn(name = "follower_id", referencedColumnName = "id")},
-        inverseJoinColumns = {@JoinColumn(name = "following_id", referencedColumnName = "id")}
+            name = "follow",
+            joinColumns = @JoinColumn(name = "following_id"),
+            inverseJoinColumns = @JoinColumn(name = "follower_id")
     )
     private List<User> followings;
 
-    @ManyToMany(mappedBy = "followings", cascade = {CascadeType.ALL})
-    private List<User> followers;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE})
+    @JoinTable(
+            name = "follow",
+            joinColumns = @JoinColumn(name = "follower_id"),
+            inverseJoinColumns = @JoinColumn(name = "following_id")
+    )
+    private List<User> followers;**/
+
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "following_follower",
+            joinColumns = {@JoinColumn(name = "follower_id", referencedColumnName = "id", nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "following_id", referencedColumnName = "id", nullable = false)}
+    )
+    private List<User> followers;  //soldToCollection
+
+    @ManyToMany(mappedBy = "followers", targetEntity = User.class, fetch = FetchType.LAZY)  //soldToCollection
+    private List<User> followings;   //boughtFromCollection
 
     public User() {
     }
@@ -129,8 +165,12 @@ public class User {
         return followers;
     }
 
-    public List<User> getFollowing() {
+    public List<User> getFollowings() {
         return followings;
+    }
+
+    public void setFollowings(List<User> followings) {
+        this.followings = followings;
     }
 
     public String getName() {
@@ -147,6 +187,10 @@ public class User {
 
     public void addFollower(User user) {
         followers.add(user);
+    }
+
+    public void setFollowers(List<User> followers) {
+        this.followers = followers;
     }
 
     public void addKweet(Kweet kweet) {

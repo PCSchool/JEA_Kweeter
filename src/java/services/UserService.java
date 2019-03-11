@@ -28,19 +28,16 @@ public class UserService{
     public UserService(){
     }
 
-    public void createUser(User user){
-        if(user != null){
-            System.out.println(user);
-            this.userDAO.createUser(user);
-        }
+    public boolean createUser(User user){
+        return this.userDAO.createUser(user);
     }
 
-    public void removeUser(User user){
-        this.userDAO.removeUser(user);
+    public boolean removeUser(User user){
+        return this.userDAO.removeUser(user);
     }
 
-    public void updateUser(User user) {
-        this.userDAO.updateUser(user);
+    public boolean updateUser(User user) {
+        return this.userDAO.updateUser(user);
     }
 
     public User findUserById(long id){
@@ -48,12 +45,7 @@ public class UserService{
     }
 
     public void addFollowing(Long user, Long following) {
-        //userDAO.addFollowing(user, following);
-        User addFollowing = userDAO.findUserById(user);
-        User userFollowing = userDAO.findUserById(following);
-        addFollowing.addFollower(userFollowing);
-        userDAO.updateUser(addFollowing);
-        userDAO.updateUser(userFollowing);
+        userDAO.addFollowing(user, following);
     }
 
     public void addFollower(User user, User follower) {

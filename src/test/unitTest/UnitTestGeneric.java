@@ -17,15 +17,15 @@ public class UnitTestGeneric {
     @Test
     public void testUserGetAddFollowing(){
         User user = mockDatabase.userList.get(1);
-        Assert.assertEquals(user.getFollowing().size(), 3);
+        Assert.assertEquals(user.getFollowings().size(), 3);
         Assert.assertEquals(user.getFollowers().size(), 6);
 
         user.addFollowing(mockDatabase.userList.get(6));
-        Assert.assertEquals(user.getFollowing().size(), 4);
+        Assert.assertEquals(user.getFollowings().size(), 4);
         Assert.assertEquals(user.getFollowers().size(), 7);
 
         user.addFollowing(mockDatabase.userList.get(6));
-        Assert.assertEquals(user.getFollowing().size(), 4);
+        Assert.assertEquals(user.getFollowings().size(), 4);
         Assert.assertEquals(user.getFollowers().size(), 7);
     }
 
@@ -33,17 +33,17 @@ public class UnitTestGeneric {
     public void testUserRemoveFollowing(){
         User user = mockDatabase.userList.get(1);
         User follower = mockDatabase.userList.get(3);
-        Assert.assertEquals(user.getFollowing().size(), 3);
+        Assert.assertEquals(user.getFollowings().size(), 3);
         Assert.assertEquals(user.getFollowers().size(), 6);
         Assert.assertEquals(follower.getFollowers(), 1);
 
         user.removeFollowing(follower);
-        Assert.assertEquals(user.getFollowing().size(), 2);
+        Assert.assertEquals(user.getFollowings().size(), 2);
         Assert.assertEquals(user.getFollowers().size(), 6);
         Assert.assertEquals(follower.getFollowers(), 0);
 
         user.removeFollowing(mockDatabase.userList.get(8));
-        Assert.assertEquals(user.getFollowing().size(), 2);
+        Assert.assertEquals(user.getFollowings().size(), 2);
         Assert.assertEquals(user.getFollowers().size(), 6);
         Assert.assertEquals(follower.getFollowers(), 0);
     }
@@ -53,11 +53,11 @@ public class UnitTestGeneric {
         User user = mockDatabase.userList.get(1);
         User follower = mockDatabase.userList.get(8);
         Assert.assertEquals(user.getFollowers().size(), 6);
-        Assert.assertEquals(follower.getFollowing().size(), 1);
+        Assert.assertEquals(follower.getFollowings().size(), 1);
 
         follower.removeFollowing(user);
         Assert.assertEquals(user.getFollowers().size(), 5);
-        Assert.assertEquals(follower.getFollowing().size(), 0);
+        Assert.assertEquals(follower.getFollowings().size(), 0);
     }
 
     @Test
@@ -74,7 +74,7 @@ public class UnitTestGeneric {
         User user = mockDatabase.userList.get(5);
         Assert.assertEquals(user.getKweets().size(), 1);
 
-        user.addKweet(new Kweet("Today is a good day :D", null, null));
+        user.addKweet(new Kweet("Today is a good day :D"));
         Assert.assertEquals(user.getKweets().size(), 2);
     }
 
@@ -85,7 +85,11 @@ public class UnitTestGeneric {
         kweet.setId(new Long(1001));
 
         Assert.assertEquals(kweet.getReactions().size(), 0);
-        kweet.addReaction(new Kweet("This is a test", kweet.getId(), user.getName()));
+        Kweet newKweet = new Kweet("This is a test");
+        newKweet.setUser(user);
+        newKweet.setParent(kweet);
+        kweet.addReaction(newKweet);
+
         Assert.assertEquals(kweet.getReactions().size(), 1);
 
     }
