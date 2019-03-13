@@ -7,10 +7,20 @@
 </h:head>
 
 <h:body>
-    <h:panelGrid columns="1" cellpadding="5">
-        <p:commandButton value="Register" type="button" onclick="PF('dlg1').show();" />
-        <p:commandButton value="Login" type="button" onclick="PF('dlg2').show();" />
-    </h:panelGrid>
+    <h:form>
+        <p:growl id="messages"/>
+
+        <p:menubar>
+            <p:menuitem value="Kweeter" icon="fa-twitter-square" />
+            <p:submenu label="User" icon="fa-user">
+                <p:menuitem value="Register" type="button" onclick="PF('dlg1').show();"/>
+                <p:separator />
+                <p:menuitem value="Login" type="button" onclick="PF('dlg2').show();"/>
+            </p:submenu>
+            <p:menuitem value="Quit" url="#"/>
+        </p:menubar>
+    </h:form>
+
     <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="100">
         <h:outputText value="Register page" />
         <h:panelGrid columns="2" cellpadding="5">
@@ -40,5 +50,6 @@
         </h:panelGrid>
         <p:button value="login"></p:button>
     </p:dialog>
+
 </h:body>
 </html>
