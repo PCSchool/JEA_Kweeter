@@ -15,7 +15,13 @@ import java.util.List;
 
 @NamedQueries({@NamedQuery(
         name = "Kweet.getLatest10",
-        query = "SELECT k FROM Kweet k"
+        query = "SELECT k FROM Kweet k JOIN k.user u WHERE k.id = :idUser ORDER BY k.createDate"
+), @NamedQuery(
+        name = "Kweet.getAllKweets",
+        query = "SELECT k FROM Kweet k JOIN k.user u WHERE k.id = :idUser ORDER BY k.createDate"
+), @NamedQuery(
+        name = "Kweet.getAllReactions",
+        query = "SELECT k FROM Kweet k JOIN Kweet k2 WHERE k.parent = k2 AND k2.id = :idKweet"
 )})
 @Entity
 public class Kweet {

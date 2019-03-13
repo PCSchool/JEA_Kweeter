@@ -1,8 +1,5 @@
 package entities;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import java.security.InvalidParameterException;
@@ -15,22 +12,13 @@ import java.util.regex.Pattern;
         query = "SELECT u FROM User u"
 ), @NamedQuery(
         name = "User.count",
-        query = "SELECT u FROM User u"
-), @NamedQuery(
-        name = "User.getFollowers",
-        query = "SELECT u FROM User u where u.id = :id"
-),@NamedQuery(
-        name = "User.getFollowings",
-        query = "SELECT u FROM User u where u.id = :id"
-), @NamedQuery(
-        name = "User.setPassword",
-        query = "UPDATE User u set u.password = :password where u.id = :id"
+        query = "SELECT COUNT(k) FROM Kweet k INNER JOIN User u ON k.user = u"
 ), @NamedQuery(
         name = "User.getAllFollowers",
-        query = "SELECT u FROM User u where u.id = :id"
+        query = "SELECT u.followers FROM User u WHERE u.id = :id "
 ),@NamedQuery(
         name = "User.getAllFollowings",
-        query = "SELECT u FROM User u where u.id = :id"
+        query = "SELECT u.followings FROM User u WHERE u.id = :id"
 ), @NamedQuery(
         name = "User.findByUsername",
         query = "SELECT u FROM User u where u.username = :username"
@@ -81,7 +69,7 @@ public class User {
     )
     private List<User> followers;**/
 
-    //@JsonbTransient
+    @JsonbTransient
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "followers",
@@ -90,7 +78,7 @@ public class User {
     )
     private List<User> followers;
 
-    @JsonbTransient
+    //JsonbTransient
     @ManyToMany(mappedBy = "followers", targetEntity = User.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)  //soldToCollection
     private List<User> followings;
 

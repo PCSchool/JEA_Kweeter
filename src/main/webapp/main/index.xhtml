@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+    <h:panelGrid columns="1" cellpadding="5">
+        <p:commandButton value="Register" type="button" onclick="PF('dlg1').show();" />
+        <p:commandButton value="Login" type="button" onclick="PF('dlg2').show();" />
+    </h:panelGrid>
+    <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="100">
+        <h:outputText value="Register page" />
+        <h:panelGrid columns="2" cellpadding="5">
+            <h:outputText value="Name"></h:outputText>
+            <p:inputText placeholder="Enter name"></p:inputText>
+
+            <h:outputText value="Username"></h:outputText>
+            <p:inputText placeholder="Enter username"></p:inputText>
+
+            <h:outputText value="Password"></h:outputText>
+            <p:password placeholder="Enter password"></p:password>
+
+            <h:outputText value="Repeat password"></h:outputText>
+            <p:password placeholder="Enter password"></p:password>
+        </h:panelGrid>
+        <p:button value="register"></p:button>
+    </p:dialog>
+
+    <p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true"  minHeight="100">
+        <h:outputText value="Login page" />
+        <h:panelGrid columns="2" cellpadding="5">
+            <h:outputText value="Username"></h:outputText>
+            <p:inputText placeholder="Enter username"></p:inputText>
+
+            <h:outputText value="Password"></h:outputText>
+            <p:password placeholder="Enter password"></p:password>
+        </h:panelGrid>
+        <p:button value="login"></p:button>
+    </p:dialog>
+</h:body>
+</html>

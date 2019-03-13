@@ -12,16 +12,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9f6fa31-2795-4d1b-87e0-ba9d11ef349d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/PrimeFaces_6_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/Profile.xhtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/main/common-style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/main/index.xhtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/profile/profile.xhtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/webapp/index.xhtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/webapp/main/index.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/dao/KweetDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/dao/KweetDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/dao/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/dao/UserDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/entities/Kweet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/entities/Kweet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/rest/KweetResource.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/rest/UserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/rest/UserResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/webapp/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven/WEB-INF/beans.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven/WEB-INF/beans.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven/WEB-INF/web.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -50,8 +57,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/java/entities/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="148" lean-forward="true" selection-start-line="148" selection-end-line="148" />
+            <state relative-caret-position="26">
+              <caret line="46" column="32" lean-forward="true" selection-start-line="46" selection-start-column="32" selection-end-line="46" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2166#2815#0" />
@@ -61,25 +68,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/dao/UserDAO.java">
+        <entry file="file://$PROJECT_DIR$/src/webapp/WEB-INF/web.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="48">
+              <caret line="3" column="46" lean-forward="true" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/dao/KweetDAO.java">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/profile/profile.xhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="10" column="43" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="176">
+              <caret line="11" column="7" lean-forward="true" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -87,20 +88,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/dao/UserDAOImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="832">
-              <caret line="59" column="36" selection-start-line="58" selection-end-line="59" selection-end-column="36" />
+            <state relative-caret-position="45">
+              <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#914#915#0" expanded="true" />
+                <element signature="e#965#966#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/entities/Roles.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -108,8 +102,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/rest/UserResource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="672">
-              <caret line="61" column="64" selection-start-line="61" selection-start-column="64" selection-end-line="61" selection-end-column="64" />
+            <state relative-caret-position="-240">
+              <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1618#1619#0" expanded="true" />
@@ -120,16 +114,26 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/main/index.xhtml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="416">
+              <caret line="26" column="41" lean-forward="true" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/services/UserService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="54" column="58" selection-start-line="54" selection-start-column="58" selection-end-line="54" selection-end-column="58" />
+            <state relative-caret-position="71">
+              <caret line="40" column="5" lean-forward="true" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#532#533#0" expanded="true" />
                 <element signature="e#584#585#0" expanded="true" />
                 <element signature="e#1031#1032#0" expanded="true" />
                 <element signature="e#1082#1083#0" expanded="true" />
+                <element signature="e#1142#1143#0" expanded="true" />
                 <element signature="e#1196#1197#0" expanded="true" />
               </folding>
             </state>
@@ -151,8 +155,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/entities/Kweet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="26" column="28" selection-start-line="25" selection-start-column="65" selection-end-line="26" selection-end-column="28" />
+            <state relative-caret-position="368">
+              <caret line="23" column="94" selection-start-line="23" selection-start-column="94" selection-end-line="23" selection-end-column="94" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#Kweet#0;class#Kweet#0" />
@@ -162,10 +166,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+        <entry file="file://$PROJECT_DIR$/src/webapp/main/index.xhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1792">
-              <caret line="112" column="17" selection-start-line="112" selection-start-column="17" selection-end-line="112" selection-end-column="17" />
+            <state relative-caret-position="240">
+              <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -176,11 +180,13 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Singleton" />
-        <option value="CSS File" />
         <option value="HTML File" />
         <option value="cdi.beans_1_0" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Jsp File" />
+        <option value="jsf" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -200,14 +206,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/entities/Domain/User.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/entities/Domain/Kweet.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/entities/Services/UserService.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/entities/User.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/services/UserService.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/dao/KweetDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/dao/UserDAO" />
-        <option value="$PROJECT_DIR$/src/main/webapp/dao/UserDAOImpl.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/dao/KweetDAOImpl.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/entities/classes/Kweet.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/entities/classes/User.java" />
@@ -231,7 +229,6 @@
         <option value="$PROJECT_DIR$/src/test/unitTest/UnitTestUser.java" />
         <option value="$PROJECT_DIR$/src/java/META-INF/persistence.xml" />
         <option value="$PROJECT_DIR$/src/webapp/WEB-INF/beans.xml" />
-        <option value="$PROJECT_DIR$/src/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/java/rest/JAXRSconfig.java" />
         <option value="$PROJECT_DIR$/src/java/rest/FollowerResource.java" />
         <option value="$PROJECT_DIR$/src/java/dao/UserDAO" />
@@ -244,13 +241,22 @@
         <option value="$PROJECT_DIR$/src/test/unitTest/UnitTestGeneric.java" />
         <option value="$PROJECT_DIR$/src/test/unitTest/UnitTestDAO.java" />
         <option value="$PROJECT_DIR$/src/java/services/UserService.java" />
-        <option value="$PROJECT_DIR$/src/java/rest/UserResource.java" />
         <option value="$PROJECT_DIR$/src/java/dao/UserDAO.java" />
         <option value="$PROJECT_DIR$/src/java/dao/KweetDAOImpl.java" />
+        <option value="$PROJECT_DIR$/src/webapp/WEB-INF/index.xhtml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/Profile.xhtml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/profile/Profile.xhtml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/main/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/main/common-style.css" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/webapp/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/src/webapp/main/index.xhtml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/profile/profile.xhtml" />
+        <option value="$PROJECT_DIR$/src/java/rest/UserResource.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/main/index.xhtml" />
         <option value="$PROJECT_DIR$/src/java/entities/Kweet.java" />
-        <option value="$PROJECT_DIR$/src/java/dao/UserDAOImpl.java" />
         <option value="$PROJECT_DIR$/src/java/entities/User.java" />
+        <option value="$PROJECT_DIR$/src/java/dao/UserDAOImpl.java" />
       </list>
     </option>
   </component>
@@ -268,9 +274,9 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="952" />
-    <option name="width" value="974" />
-    <option name="height" value="1045" />
+    <option name="x" value="651" />
+    <option name="width" value="1276" />
+    <option name="height" value="1046" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -330,12 +336,28 @@
               <item name="JEA_Payara" type="b2602c69:ProjectViewProjectNode" />
               <item name="JEA_Payara" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JEA_Payara" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JEA_Payara" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="JEA_Payara" type="b2602c69:ProjectViewProjectNode" />
               <item name="JEA_Payara" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JEA_Payara" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JEA_Payara" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -353,7 +375,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552464525939" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552474916945" />
     <property name="dynamic.classpath" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -361,30 +383,30 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Puck\IdeaProjects\JEA_Payara\src\java" />
-      <recent name="C:\Users\Puck\IdeaProjects\JEA_Payara\src" />
-      <recent name="C:\Users\Puck\IdeaProjects\JEA_Payara\src\main" />
-      <recent name="C:\Users\Puck\IdeaProjects\JEA_Payara\src\main\resources" />
-      <recent name="C:\Users\Puck\IdeaProjects\JEA_Payara\src\main\webapp\resources" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="dao" />
       <recent name="fhict" />
       <recent name="" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Puck\IdeaProjects\JEA_Payara\src\main\test\src" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="rest" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Puck\IdeaProjects\JEA_Payara\src\main\test\src" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Puck\IdeaProjects\JEA_Payara\src\webapp" />
+      <recent name="C:\Users\Puck\IdeaProjects\JEA_Payara\src\java" />
+      <recent name="C:\Users\Puck\IdeaProjects\JEA_Payara\src" />
+      <recent name="C:\Users\Puck\IdeaProjects\JEA_Payara\src\main" />
+      <recent name="C:\Users\Puck\IdeaProjects\JEA_Payara\src\main\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -691,7 +713,7 @@
       <workItem from="1552242257765" duration="18245000" />
       <workItem from="1552288966274" duration="3748000" />
       <workItem from="1552423166376" duration="608000" />
-      <workItem from="1552463606440" duration="654000" />
+      <workItem from="1552463606440" duration="11217000" />
     </task>
     <task id="LOCAL-00001" summary="Update Collection Acces Layer">
       <created>1550442098963</created>
@@ -770,7 +792,14 @@
       <option name="project" value="LOCAL" />
       <updated>1552250301818</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Update REST - Reactions to Kweet">
+      <created>1552464549255</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1552464549255</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -803,7 +832,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="233132000" />
+    <option name="totallyTimeSpent" value="243695000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -815,21 +844,22 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="863" y="0" width="882" height="946" extended-state="0" />
+    <frame x="590" y="0" width="1155" height="947" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49918166" visible="true" weight="0.3106796" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6188119" visible="true" weight="0.23336372" />
       <window_info id="Structure" order="1" sideWeight="0.5008183" side_tool="true" weight="0.26285714" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info id="Web" order="7" side_tool="true" />
+      <window_info id="Web" order="7" sideWeight="0.38118812" side_tool="true" weight="0.2983683" />
       <window_info id="JavaEE:App" order="8" side_tool="true" />
       <window_info id="Persistence" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49952334" weight="0.32844934" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.7791287" weight="0.25763127" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.7791287" weight="0.25490198" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -838,7 +868,7 @@
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49872988" weight="0.32518336" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.22087133" side_tool="true" weight="0.25876662" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.48429585" weight="0.31990233" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.48429585" visible="true" weight="0.31740198" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="bottom" id="Java Enterprise" order="13" sideWeight="0.49872988" weight="0.32518336" />
       <window_info anchor="bottom" id="Version Control" order="14" weight="0.32762837" />
@@ -852,7 +882,7 @@
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info anchor="right" id="Database" order="8" weight="0.32949308" />
-      <window_info anchor="right" id="JSF" order="9" />
+      <window_info anchor="right" id="JSF" order="9" weight="0.32931727" />
       <window_info anchor="right" id="CDI" order="10" />
       <window_info anchor="right" id="Bean Validation" order="11" />
     </layout>
@@ -963,21 +993,6 @@
     <select />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/test/src/Roles.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/test/unitTest/UserKweetTest.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/test/unitTest/UserCreateTest.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/test/src/Models/User.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/test/src/Models/Kweet.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/entities/Services/UserService.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/entities/Domain/User.java" />
-    <entry file="file://$PROJECT_DIR$/src/java/controller/Home/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/unitTest/UnitTestDAL.java" />
     <entry file="file://$PROJECT_DIR$/src/test/META-INF/persistence.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64">
@@ -1035,20 +1050,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
           <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/webapp/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
@@ -1201,17 +1202,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/entities/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="148" lean-forward="true" selection-start-line="148" selection-end-line="148" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2166#2815#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/dao/UserDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
@@ -1232,16 +1222,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/dao/UserDAOImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="832">
-          <caret line="59" column="36" selection-start-line="58" selection-end-line="59" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/entities/Roles.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
@@ -1249,29 +1229,105 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/rest/UserResource.java">
+    <entry file="file://$PROJECT_DIR$/src/webapp/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="61" column="64" selection-start-line="61" selection-start-column="64" selection-end-line="61" selection-end-column="64" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1618#1619#0" expanded="true" />
-            <element signature="e#1672#1673#0" expanded="true" />
-          </folding>
+        <state>
+          <caret selection-end-line="5" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/Profile.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/main/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/beans.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="123" column="28" selection-start-line="123" selection-start-column="28" selection-end-line="123" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/main/common-style.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/javax/javaee-api/7.0/javaee-api-7.0.jar!/javax/faces/webapp/FacesServlet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="3" column="46" lean-forward="true" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/profile/profile.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="11" column="7" lean-forward="true" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/webapp/main/index.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/webapp/index.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/java/services/UserService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="54" column="58" selection-start-line="54" selection-start-column="58" selection-end-line="54" selection-end-column="58" />
+        <state relative-caret-position="71">
+          <caret line="40" column="5" lean-forward="true" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#532#533#0" expanded="true" />
             <element signature="e#584#585#0" expanded="true" />
             <element signature="e#1031#1032#0" expanded="true" />
             <element signature="e#1082#1083#0" expanded="true" />
+            <element signature="e#1142#1143#0" expanded="true" />
             <element signature="e#1196#1197#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/main/index.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="26" column="41" lean-forward="true" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/entities/Kweet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="23" column="94" selection-start-line="23" selection-start-column="94" selection-end-line="23" selection-end-column="94" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#Kweet#0;class#Kweet#0" />
           </folding>
         </state>
       </provider>
@@ -1286,21 +1342,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/entities/Kweet.java">
+    <entry file="file://$PROJECT_DIR$/src/java/rest/UserResource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="26" column="28" selection-start-line="25" selection-start-column="65" selection-end-line="26" selection-end-column="28" />
+        <state relative-caret-position="-240">
+          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#Kweet#0;class#Kweet#0" />
+            <element signature="e#1618#1619#0" expanded="true" />
+            <element signature="e#1672#1673#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/java/dao/UserDAOImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1792">
-          <caret line="112" column="17" selection-start-line="112" selection-start-column="17" selection-end-line="112" selection-end-column="17" />
+        <state relative-caret-position="45">
+          <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#914#915#0" expanded="true" />
+            <element signature="e#965#966#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/entities/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="46" column="32" lean-forward="true" selection-start-line="46" selection-start-column="32" selection-end-line="46" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2166#2815#0" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1370,7 +1443,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Maven: org.mockito:mockito-all:1.10.19</last-edited>
+          <last-edited>PrimeFaces-6.1</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

@@ -56,7 +56,7 @@ public class UserResource {
     }
 
     @GET
-    @Path("/{id}/following")
+    @Path("/{id}/followings")
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public List<User> getUserFollowing(@PathParam("id") Long id){
