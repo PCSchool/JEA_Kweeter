@@ -72,6 +72,15 @@ public class UserResource {
         return Response.ok().build();
     }
 
+    @POST
+    @Path("/{id}/addfollower/{followingId}")
+    @Consumes({"application/json"})
+    @Produces({"application/json"})
+    public Response addFollower(@PathParam("id") Long id, @PathParam("followingId") Long followingId) {
+        userService.addFollower(id, followingId);
+        return Response.ok().build();
+    }
+
     @GET
     @Path("/{id}/getKweets")
     @Consumes({"application/json"})
@@ -120,19 +129,27 @@ public class UserResource {
 
     // ------------------ DELETE ------------------
     @DELETE
-    @Path("/{id}/removeFollowing")
+    @Path("/{id}/{following}/removeFollowing")
     @Consumes({"application/json"})
     @Produces({"application/json"})
-    public Response removeFollowing(@PathParam("id") Long id, Long following) {
+    public Response removeFollowing(@PathParam("id") Long id, @PathParam("following") Long following) {
         userService.removeFollowing(id, following);
         return Response.ok().build();
     }
 
     @DELETE
+    @Path("/{id}/{follower}/removeFollower")
+    public Response removeFollower(@PathParam("id") Long id, @PathParam("follower") Long follower) {
+        userService.removeFollowing(id, follower);
+        return Response.ok().build();
+    }
+
+    @DELETE
+    @Path("/{id}/{user}/removeUser")
     @Consumes({"application/json"})
     @Produces({"application/json"})
-    public Response removeUser(User user){
-        userService.removeUser(user);
+    public Response removeUser(@PathParam("id") Long id, @PathParam("user") Long user){
+        //userService.removeUser(id, user);
         return Response.ok().build();
     }
 

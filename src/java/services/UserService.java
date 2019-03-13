@@ -48,18 +48,12 @@ public class UserService{
         userDAO.addFollowing(user, following);
     }
 
-    public void addFollower(User user, User follower) {
-        user.addFollower(follower);
-        userDAO.updateUser(user);
+    public void addFollower(Long user, Long follower) {
+        userDAO.addFollower(user, follower);
     }
 
-    public void addReactionToKweet(Kweet kweet){
-        //kweetDAO.addReaction(kweet);
-    }
-
-    public void removeFollower(User user, User follower) {
-        user.removeFollower(follower);
-        userDAO.updateUser(user);
+    public void removeFollower(Long user, Long follower) {
+        userDAO.removeFollower(user, follower);
     }
 
     public void removeFollowing(Long id, Long following){

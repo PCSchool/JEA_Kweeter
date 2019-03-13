@@ -43,9 +43,10 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public User findUserById(long id){
-        Query q = em.createNamedQuery("User.findById", User.class);
-        q.setParameter("id", id);
-        return (User) q.getSingleResult();
+        return this.em.find(User.class, id);
+        //Query q = em.createNamedQuery("User.findById", User.class);
+        //q.setParameter("id", id);
+        //return (User) q.getSingleResult();
     }
 
     @Override
@@ -56,15 +57,24 @@ public class UserDAOImpl implements UserDAO{
         this.em.createQuery("SELECT u FROM User u where u.id = :following");
         User u2 = this.em.find(User.class, following);
 
-        //u1.getFollowers().add(u2);
-        u2.getFollowings().add(u1);
+         u2.getFollowings().add(u1);
+        u1.getFollowers().add(u2);
         this.em.merge(u2);
         this.em.merge(u1);
     }
 
     @Override
     public void addFollower(Long user, Long follower) {
+        this.em.createQuery("SELECT u FROM User u where u.id = :user");
+        User u1 = this.em.find(User.class, user);
 
+        this.em.createQuery("SELECT u FROM User u where u.id = :following");
+        User u2 = this.em.find(User.class, follower);
+
+        u2.getFollowings().add(u1);
+        u1.getFollowers().add(u2);
+        this.em.merge(u2);
+        this.em.merge(u1);
     }
 
     @Override

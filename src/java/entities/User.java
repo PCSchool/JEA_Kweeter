@@ -1,5 +1,9 @@
 package entities;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
@@ -51,6 +55,7 @@ public class User {
     private String password;
     private String biography;
     private String location;
+    private String website;
     private entities.Roles role;
 
     private static final String PASSWORD_REGEX = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,26}$";
@@ -76,17 +81,18 @@ public class User {
     )
     private List<User> followers;**/
 
-
+    //@JsonbTransient
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "following_follower",
+    @JoinTable(name = "followers",
             joinColumns = {@JoinColumn(name = "follower_id", referencedColumnName = "id", nullable = false)},
             inverseJoinColumns = {@JoinColumn(name = "following_id", referencedColumnName = "id", nullable = false)}
     )
-    private List<User> followers;  //soldToCollection
+    private List<User> followers;
 
-    @ManyToMany(mappedBy = "followers", targetEntity = User.class, fetch = FetchType.LAZY)  //soldToCollection
-    private List<User> followings;   //boughtFromCollection
+    @JsonbTransient
+    @ManyToMany(mappedBy = "followers", targetEntity = User.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)  //soldToCollection
+    private List<User> followings;
 
     public User() {
     }
@@ -157,6 +163,14 @@ public class User {
         this.role = role;
     }
 
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
     public List<Kweet> getKweets() {
         return kweets;
     }
@@ -165,6 +179,7 @@ public class User {
         return followers;
     }
 
+    @JsonbTransient
     public List<User> getFollowings() {
         return followings;
     }

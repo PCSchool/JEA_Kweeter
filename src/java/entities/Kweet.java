@@ -1,7 +1,8 @@
 package entities;
 
-import net.minidev.json.annotate.JsonIgnore;
+import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 
+import javax.json.bind.annotation.JsonbDateFormat;
 import javax.persistence.*;
 
 import java.security.InvalidParameterException;
@@ -13,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 @NamedQueries({@NamedQuery(
-        name = "Kweet.getAll",
+        name = "Kweet.getLatest10",
         query = "SELECT k FROM Kweet k"
 )})
 @Entity
@@ -23,8 +24,6 @@ public class Kweet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)  //AUTO
     private Long id;
     private String message;                 //max 160 charachters
-
-    @Temporal(TemporalType.DATE)
     private Date createDate;
 
     @ManyToOne(optional = false)
@@ -48,6 +47,7 @@ public class Kweet {
      * @param message value of the tweet, must be between 1 - 160 charachters
      */
     public Kweet(String message, Long inReplyToId, String inReplyToName) {
+        this.createDate = new Date();
         this.message = message;
     }
 
@@ -59,6 +59,7 @@ public class Kweet {
         if(!validation()){
             throw new IllegalArgumentException("entities.Kweet: parameters invalid");
         }
+        this.createDate = new Date();
         this.message = message;
     }
 
@@ -87,7 +88,6 @@ public class Kweet {
     public void setReactions(List<Kweet> reactions) {
         this.reactions = reactions;
     }
-
 
     public User getUser() {
         return user;

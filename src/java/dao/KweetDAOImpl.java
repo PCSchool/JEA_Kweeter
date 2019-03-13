@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -28,8 +29,7 @@ public class KweetDAOImpl implements KweetDAO {
     @Override
     public void createKweet(Kweet kweet, Long id) {
         User user = this.em.find(User.class, id);
-        //java.util.Date now =new Date();
-        kweet.setCreateDate(new java.util.Date());
+        //kweet.setCreateDate(new java.util.Date());
         kweet.setUser(user);
         //user.addKweet(kweet);
         em.persist(kweet);
@@ -68,7 +68,7 @@ public class KweetDAOImpl implements KweetDAO {
     public List<Kweet> getKweets(Long id, int amountOfKweets) {
         User user = this.em.find(User.class, id);
         System.out.println(user);
-        Query query  = this.em.createQuery("SELECT k FROM Kweet k where k.user = :user ORDER BY k.createDate ASC ");
-        return query.getResultList();
+        Query query  = this.em.createQuery("SELECT k FROM Kweet k where k.user = :user ORDER BY k.createDate ASC");
+        return query.getResultList().subList(0, 10);
     }
 }
