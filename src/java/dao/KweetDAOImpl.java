@@ -29,7 +29,7 @@ public class KweetDAOImpl implements KweetDAO {
     @Override
     public void createKweet(Kweet kweet, Long id) {
         User user = this.em.find(User.class, id);
-        //kweet.setCreateDate(new java.util.Date());
+        kweet.setCreateDate(new Date());
         kweet.setUser(user);
         //user.addKweet(kweet);
         em.persist(kweet);
@@ -48,12 +48,12 @@ public class KweetDAOImpl implements KweetDAO {
         return query.getResultList();
     }
 
-
     @Override
     public void addReaction(Long id, Long kweetid, Kweet reaction) {
         User user = this.em.find(User.class, id);
         //java.util.Date now =new Date();
-        reaction.setCreateDate(new java.util.Date());
+        reaction.setCreateDate(new Date());
+
         reaction.setUser(user);
 
         Kweet parent = this.em.find(Kweet.class, kweetid);
@@ -69,6 +69,11 @@ public class KweetDAOImpl implements KweetDAO {
         User user = this.em.find(User.class, id);
         System.out.println(user);
         Query query  = this.em.createQuery("SELECT k FROM Kweet k where k.user = :user ORDER BY k.createDate ASC");
-        return query.getResultList().subList(0, 10);
+        query.setParameter("user", user);
+        List<Kweet> kweetList = query.getResultList();
+        if(kweetList.size() > 10){
+            return query.getResultList().subList(0, 10);
+        }
+        return kweetList;
     }
 }

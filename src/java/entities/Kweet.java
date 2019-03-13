@@ -3,6 +3,7 @@ package entities;
 import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 
 import javax.json.bind.annotation.JsonbDateFormat;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 import java.security.InvalidParameterException;
@@ -30,15 +31,18 @@ public class Kweet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)  //AUTO
     private Long id;
     private String message;                 //max 160 charachters
+
+    //@Temporal(value = TemporalType.TIMESTAMP)
     private Date createDate;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "USER_ID", nullable = false)
+    @JoinColumn(name = "USER_ID", referencedColumnName = "ID", nullable = false)
     private User user;
 
     @ManyToOne
     private Kweet parent;
 
+    @JsonbTransient
     @OneToMany(mappedBy = "parent")
     private List<Kweet> reactions = reactions = new ArrayList<>();
 
@@ -95,6 +99,7 @@ public class Kweet {
         this.reactions = reactions;
     }
 
+    @JsonbTransient
     public User getUser() {
         return user;
     }
@@ -107,10 +112,12 @@ public class Kweet {
         this.parent = parent;
     }
 
+    @JsonbTransient
     public Kweet getParent() {
         return parent;
     }
 
+    @JsonbTransient
     public List<Kweet> getReactions() {
         return reactions;
     }

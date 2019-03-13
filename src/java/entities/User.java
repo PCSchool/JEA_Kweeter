@@ -78,7 +78,6 @@ public class User {
     )
     private List<User> followers;
 
-    //JsonbTransient
     @ManyToMany(mappedBy = "followers", targetEntity = User.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)  //soldToCollection
     private List<User> followings;
 
