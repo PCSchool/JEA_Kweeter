@@ -26,12 +26,20 @@ public class KweetService{
         this.kweetDAO.addReaction(id, kweetid, kweet);
     }
 
+    public List<Kweet> getLastTenKweets(Long id){
+        return this.kweetDAO.getKweets(id, 10);
+    }
+
+    public List<Kweet> getAllKweets(Long id){
+        return this.kweetDAO.getAllKweets(id);
+    }
+
     public void createKweet(Kweet kweet, Long id){
         this.kweetDAO.createKweet(kweet, id);
     }
 
-    public void removeKweet(Kweet kweet, Long id){
-        this.kweetDAO.removeKweet(kweet, id);
+    public void removeKweet(Long kweetId, Long id){
+        this.kweetDAO.removeKweet(kweetId, id);
     }
 
     public List<Kweet> findByFilterKweet(String message){
@@ -40,10 +48,6 @@ public class KweetService{
 
     public List<Kweet> getKweets(Long id, int amount){
         return this.kweetDAO.getKweets(id, amount);
-    }
-
-    public void createKweetReaction(Kweet kweet, Kweet reaction){
-        kweet.addReaction(reaction);
     }
 
 }

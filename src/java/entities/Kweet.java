@@ -15,11 +15,8 @@ import java.util.Date;
 import java.util.List;
 
 @NamedQueries({@NamedQuery(
-        name = "Kweet.getLatest10",
-        query = "SELECT k FROM Kweet k JOIN k.user u WHERE k.id = :idUser ORDER BY k.createDate"
-), @NamedQuery(
         name = "Kweet.getAllKweets",
-        query = "SELECT k FROM Kweet k JOIN k.user u WHERE k.id = :idUser ORDER BY k.createDate"
+        query = "SELECT k FROM Kweet k JOIN k.user u WHERE k.id = :idUser ORDER BY k.createDate DESC"
 ), @NamedQuery(
         name = "Kweet.getAllReactions",
         query = "SELECT k FROM Kweet k JOIN Kweet k2 WHERE k.parent = k2 AND k2.id = :idKweet"
@@ -31,8 +28,6 @@ public class Kweet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)  //AUTO
     private Long id;
     private String message;                 //max 160 charachters
-
-    //@Temporal(value = TemporalType.TIMESTAMP)
     private Date createDate;
 
     @ManyToOne(optional = false)
@@ -56,17 +51,8 @@ public class Kweet {
      * Constructor entities.Kweet
      * @param message value of the tweet, must be between 1 - 160 charachters
      */
-    public Kweet(String message, Long inReplyToId, String inReplyToName) {
-        this.createDate = new Date();
-        this.message = message;
-    }
-
     public Kweet(String message) {
-        if(message.isEmpty()){
-            throw new InvalidParameterException("entities.Kweet: parameter text cant be null.");
-        }
-
-        if(!validation()){
+        if(message.length() > 160){
             throw new IllegalArgumentException("entities.Kweet: parameters invalid");
         }
         this.createDate = new Date();
@@ -84,6 +70,9 @@ public class Kweet {
     }
 
     public void setMessage(String message) {
+        if(message.length() > 160){
+            throw new IllegalArgumentException("entities.Kweet: parameters invalid");
+        }
         this.message = message;
     }
 
@@ -112,7 +101,6 @@ public class Kweet {
         this.parent = parent;
     }
 
-    @JsonbTransient
     public Kweet getParent() {
         return parent;
     }
@@ -120,16 +108,6 @@ public class Kweet {
     @JsonbTransient
     public List<Kweet> getReactions() {
         return reactions;
-    }
-
-    private boolean validation(){
-        boolean isValid = true;
-
-        if(message.length() >= 160){
-            isValid = false;
-        }
-
-        return isValid;
     }
 
     public void addReaction(Kweet kweet){

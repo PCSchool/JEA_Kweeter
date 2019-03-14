@@ -52,23 +52,6 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Kweet> kweets = new ArrayList<>();
 
-    // Other Users that are followed by this specific User
-    /**@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE})
-    @JoinTable(
-            name = "follow",
-            joinColumns = @JoinColumn(name = "following_id"),
-            inverseJoinColumns = @JoinColumn(name = "follower_id")
-    )
-    private List<User> followings;
-
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE})
-    @JoinTable(
-            name = "follow",
-            joinColumns = @JoinColumn(name = "follower_id"),
-            inverseJoinColumns = @JoinColumn(name = "following_id")
-    )
-    private List<User> followers;**/
-
     @JsonbTransient
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})

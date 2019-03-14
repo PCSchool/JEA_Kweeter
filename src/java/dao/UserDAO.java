@@ -10,7 +10,7 @@ public interface UserDAO {
 
     boolean createUser(User user);
 
-    boolean updateUser(User user);
+    boolean updateUser(User user, Long id);
 
     User findUserByName(String name);
 
@@ -20,7 +20,7 @@ public interface UserDAO {
 
     void addFollower(Long user, Long follower);
 
-    void removeFollower(Long user, Long follower);
+    void removeFollower(Long id, Long follower);
 
     void removeFollowing(Long id, Long following);
 

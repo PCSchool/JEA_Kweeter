@@ -31,12 +31,13 @@ public class KweetDAOImpl implements KweetDAO {
         User user = this.em.find(User.class, id);
         kweet.setCreateDate(new Date());
         kweet.setUser(user);
-        //user.addKweet(kweet);
+        user.addKweet(kweet);
         em.persist(kweet);
     }
 
     @Override
-    public void removeKweet(Kweet kweet, Long id) {
+    public void removeKweet(Long kweetId, Long id) {
+        Kweet kweet = this.em.find(Kweet.class, kweetId);
         User user = this.em.find(User.class, id);
         user.removeKweet(kweet);
         this.em.remove(kweet);
@@ -49,26 +50,31 @@ public class KweetDAOImpl implements KweetDAO {
     }
 
     @Override
-    public void addReaction(Long id, Long kweetid, Kweet reaction) {
+    public void addReaction(Long id, Long kweetId, Kweet reaction) {
         User user = this.em.find(User.class, id);
-        //java.util.Date now =new Date();
         reaction.setCreateDate(new Date());
-
         reaction.setUser(user);
 
-        Kweet parent = this.em.find(Kweet.class, kweetid);
+        Kweet parent = this.em.find(Kweet.class, kweetId);
         reaction.setParent(parent);
-        //parent.addReaction(reaction);
+        parent.addReaction(reaction);
 
         em.persist(reaction);
-        //em.persist(parent);
+        em.merge(parent);
+    }
+
+    @Override
+    public List<Kweet> getAllKweets(Long id){
+        User user = this.em.find(User.class, id);
+        Query query  = this.em.createQuery("SELECT k FROM Kweet k where k.user = :user ORDER BY k.createDate DESC");
+        query.setParameter("user", user);
+        return query.getResultList();
     }
 
     @Override
     public List<Kweet> getKweets(Long id, int amountOfKweets) {
         User user = this.em.find(User.class, id);
-        System.out.println(user);
-        Query query  = this.em.createQuery("SELECT k FROM Kweet k where k.user = :user ORDER BY k.createDate ASC");
+        Query query  = this.em.createQuery("SELECT k FROM Kweet k where k.user = :user ORDER BY k.createDate DESC");
         query.setParameter("user", user);
         List<Kweet> kweetList = query.getResultList();
         if(kweetList.size() > 10){
@@ -76,4 +82,6 @@ public class KweetDAOImpl implements KweetDAO {
         }
         return kweetList;
     }
+
+
 }

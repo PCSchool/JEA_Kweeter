@@ -75,25 +75,34 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
-    public boolean updateUser(User user) {
+    public boolean updateUser(User user, Long id) {
         Query q = em.createNamedQuery("User.update", User.class);
         q.setParameter("name", user.getName());
         q.setParameter("location", user.getLocation());
         q.setParameter("biography", user.getBiography());
-        this.em.merge(user);
+        q.setParameter("id", id);
+        q.executeUpdate();
         return true;
     }
 
     @Override
-    public void removeFollower(Long user, Long follower) {
-        //DELETE FROM User WHERE
+    public void removeFollower(Long id, Long follower) {
+        User user = this.em.find(User.class, id);
+        User userUnfollower = this.em.find(User.class, follower);
+        user.removeFollower(userUnfollower);
+        userUnfollower.removeFollowing(user);
+        this.em.merge(userUnfollower);
         this.em.merge(user);
     }
 
     @Override
     public void removeFollowing(Long id, Long following) {
-        //int count = em.createQuery("DELETE FROM user_following WHERE 'following_id' = " + following + " AND 'follower_id' =  " + " id ").executeUpdate();
-        //System.out.println("UserDAO removeFollowing --> " + count);
+        User user = this.em.find(User.class, id);
+        User userUnfollowing = this.em.find(User.class, following);
+        user.removeFollowing(userUnfollowing);
+        userUnfollowing.removeFollower(user);
+        this.em.merge(userUnfollowing);
+        this.em.merge(user);
     }
 
     @Override

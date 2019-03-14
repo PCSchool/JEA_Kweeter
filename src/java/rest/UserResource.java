@@ -1,17 +1,15 @@
 package rest;
 
-        import entities.Kweet;
-        import entities.User;
-        import org.eclipse.persistence.annotations.DeleteAll;
-        import services.KweetService;
-        import services.UserService;
-
-        import javax.ejb.Stateless;
-        import javax.faces.bean.ApplicationScoped;
-        import javax.inject.Inject;
-        import javax.ws.rs.*;
-        import javax.ws.rs.core.Response;
-        import java.util.List;
+import entities.Kweet;
+import entities.User;
+import services.KweetService;
+import services.UserService;
+import javax.ejb.Stateless;
+import javax.faces.bean.ApplicationScoped;
+import javax.inject.Inject;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Stateless
 @Path("users")
@@ -20,9 +18,6 @@ public class UserResource {
 
     @Inject
     private UserService userService;
-
-    @Inject
-    private KweetService kweetService;
 
     // ------------------ GET ------------------
     @GET
@@ -34,21 +29,13 @@ public class UserResource {
     }
 
     @GET
-    @Path("getAll")
+    @Path("/getAllUsers")
     public List<User> getUsers(){
         return userService.getAllUsers();
     }
 
     @GET
-    @Path("/{id}/getallkweets")
-    @Consumes({"application/json"})
-    @Produces({"application/json"})
-    public List<Kweet> getAllKweets(@PathParam("id") Long id){
-        return userService.getAllKweets(id);
-    }
-
-    @GET
-    @Path("/{id}/followers")
+    @Path("/{id}/getFollowers")
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public List<User> getUserFollowers(@PathParam("id") Long id){
@@ -56,7 +43,7 @@ public class UserResource {
     }
 
     @GET
-    @Path("/{id}/followings")
+    @Path("/{id}/getFollowings")
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public List<User> getUserFollowing(@PathParam("id") Long id){
@@ -64,7 +51,7 @@ public class UserResource {
     }
 
     @POST
-    @Path("/{id}/addfollowing/{followingId}")
+    @Path("/{id}/addNewFollowing/{followingId}")
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public Response addFollowing(@PathParam("id") Long id, @PathParam("followingId") Long followingId) {
@@ -73,20 +60,12 @@ public class UserResource {
     }
 
     @POST
-    @Path("/{id}/addfollower/{followingId}")
+    @Path("/{id}/addNewFollower/{followingId}")
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public Response addFollower(@PathParam("id") Long id, @PathParam("followingId") Long followingId) {
         userService.addFollower(id, followingId);
         return Response.ok().build();
-    }
-
-    @GET
-    @Path("/{id}/getKweets")
-    @Consumes({"application/json"})
-    @Produces({"application/json"})
-    public List<Kweet> getKweets(@PathParam("id") Long id){
-        return kweetService.getKweets(id, 10);
     }
 
     // ------------------ POST ------------------
@@ -100,66 +79,49 @@ public class UserResource {
     }
 
     @POST
-    @Path("/{id}/addkweet")
+    @Path("login")
     @Consumes({"application/json"})
     @Produces({"application/json"})
-    public Response createKweet(@PathParam("id") Long id, Kweet kweet){
-        kweetService.createKweet(kweet, id);
-        return Response.ok(kweet).build();
-    }
-
-    @POST
-    @Path("/{id}/{kweetid}/addreaction")
-    @Consumes({"application/json"})
-    @Produces({"application/json"})
-    public Response createKweetReaction(@PathParam("id") Long id, @PathParam("kweetid") Long kweetid, Kweet kweet){
-        kweetService.addReaction(id, kweetid, kweet);
-        return Response.ok(kweet).build();
+    public Response loginUser(User user) {
+        //todo add loginUser with validation
+        return Response.ok(user).build();
     }
 
     // ------------------ PUT ------------------
+    //todo make update working
     @PUT
-    @Path("/{id}/update")
+    @Path("/{id}/updateUser")
     @Consumes({"application/json"})
     @Produces({"application/json"})
-    public Response updateUser(User user){
-        userService.updateUser(user);
+    public Response updateUser(@PathParam("id") Long id, User user){
+        userService.updateUser(user, id);
         return Response.ok().build();
     }
 
     // ------------------ DELETE ------------------
     @DELETE
-    @Path("/{id}/{following}/removeFollowing")
+    @Path("/{id}/removeFollowing/{followingId}")
     @Consumes({"application/json"})
     @Produces({"application/json"})
-    public Response removeFollowing(@PathParam("id") Long id, @PathParam("following") Long following) {
+    public Response removeFollowing(@PathParam("id") Long id, @PathParam("followingId") Long following) {
         userService.removeFollowing(id, following);
         return Response.ok().build();
     }
 
     @DELETE
-    @Path("/{id}/{follower}/removeFollower")
-    public Response removeFollower(@PathParam("id") Long id, @PathParam("follower") Long follower) {
+    @Path("/{id}/removeFollower/{followerId}")
+    public Response removeFollower(@PathParam("id") Long id, @PathParam("followerId") Long follower) {
         userService.removeFollowing(id, follower);
         return Response.ok().build();
     }
 
     @DELETE
-    @Path("/{id}/{user}/removeUser")
+    @Path("/{id}/removeUser/{userId}")
     @Consumes({"application/json"})
     @Produces({"application/json"})
-    public Response removeUser(@PathParam("id") Long id, @PathParam("user") Long user){
+    public Response removeUser(@PathParam("id") Long id, @PathParam("userId") Long user){
         //userService.removeUser(id, user);
         return Response.ok().build();
-    }
-
-    @DELETE
-    @Path("/{id}/{kweetid}")
-    @Consumes({"application/json"})
-    @Produces({"application/json"})
-    public Response removeKweet(@PathParam("id") Long id, @PathParam("kweetid") Long kweetid, Kweet kweet){
-        kweetService.removeKweet(kweet, id);
-        return Response.ok(kweet).build();
     }
 
 }

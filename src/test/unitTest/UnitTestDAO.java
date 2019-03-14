@@ -81,10 +81,10 @@ public class UnitTestDAO {
 
     @Test
     public void testUpdateUser(){
-        when(userDAOMock.updateUser(any(User.class))).thenReturn(true);
-        userDAOMock.updateUser(any(User.class));
+        when(userDAOMock.updateUser(any(User.class), anyLong())).thenReturn(true);
+        userDAOMock.updateUser(any(User.class), anyLong());
 
-        verify(userDAOMock).updateUser(any(User.class));
+        verify(userDAOMock).updateUser(any(User.class), anyLong());
         verify(userDAOMock, never()).removeUser(any(User.class));
     }
 

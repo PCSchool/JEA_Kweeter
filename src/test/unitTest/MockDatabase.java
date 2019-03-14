@@ -13,10 +13,7 @@ public class MockDatabase {
     public List<User> userList = new ArrayList<>();
 
     public MockDatabase(){
-        //User(Long id, String username, String name, String password, String biography, String location, entities.Roles role) {
-
         // add 10 users
-
         userList.add(new User("Kat10101", "Lynda Buckley", "8+bq?7kKc,'U", "Now is the winter of our discontent", "Netherlands","STANDARD"));
         userList.add(new User("ConnorYu", "Connor Yu", "P2VFZ~nQ[>>P", "And all the clouds that lour'd upon our house","Netherlands", "STANDARD"));
         userList.add(new User("Lupita12", "Danniella Neville", "8nbU/E/%d~F", "In the deep bosom of the ocean buried.","Netherlands", "STANDARD"));
@@ -41,23 +38,16 @@ public class MockDatabase {
         userList.get(9).addFollowing(userList.get(1));
         userList.get(10).addFollowing(userList.get(1));
 
-
-        userList.get(1).addKweet(new Kweet( "on Can built must no check she pretty going aften otherwise roof old get ", null, null));
-        userList.get(2).addKweet(new Kweet( "disposed finished mrs knows ample has once lady but not am hope get by bred Own", null, null));
-        userList.get(3).addKweet(new Kweet( "Subjects ham as or would yet to forming to right breakfast do thus we what people only Led juvenile oh newspaper but dine concealed offending when", null, null));
-        userList.get(4).addKweet(new Kweet( "Admitting have you any offended nay snug terms excuse do temper though compliment should", null, null));
-
-        // add 10 kweets
-        //entities.Kweet(Long id, String text, Long inReplyToId, String inReplyToName) {
-        /*userList.get(1).addKweet(new Kweet( "on Can built must no check she pretty going aften otherwise roof old get ", null, null, userList.get(1)));
-        userList.get(2).addKweet(new Kweet( "disposed finished mrs knows ample has once lady but not am hope get by bred Own", null, null, userList.get(1)));
-        userList.get(3).addKweet(new Kweet( "Subjects ham as or would yet to forming to right breakfast do thus we what people only Led juvenile oh newspaper but dine concealed offending when", null, null, userList.get(7)));
-        userList.get(4).addKweet(new Kweet( "Admitting have you any offended nay snug terms excuse do temper though compliment should", null, null, userList.get(4)));
-        userList.get(5).addKweet(new Kweet( "The warmth should why was zealously in He Answer old and Oh is simplicity making begin in barton projection", null, null, userList.get(1)));
-        userList.get(6).addKweet(new Kweet( "His you Entered around out since wholly become Could be An Money be views desirous", null, null, userList.get(4)));
-        userList.get(7).addKweet(new Kweet("Inquietude next right middleton speedily being can cant merely at met you mrs ya formed", null, null, userList.get(3)));
-        userList.get(8).addKweet(new Kweet( "True felicity here hence why i Collected true an jennings came What few out offices ", null, null, userList.get(2)));
-        userList.get(9).addKweet(new Kweet("Dear my totally saw does in plan between drawn", null, null, userList.get(5)));
-        userList.get(10).addKweet(new Kweet("Admitting have you any offended nay snug terms excuse do temper though compliment should", null, null, userList.get(8)));*/
+        // add 10 kweets .getKweets().add(
+        userList.get(1).addKweet(new Kweet( "on Can built must no check she pretty going aften otherwise roof old get "));
+        userList.get(2).addKweet(new Kweet( "disposed finished mrs knows ample has once lady but not am hope get by bred Own"));
+        userList.get(3).addKweet(new Kweet( "Subjects ham as or would yet to forming to right breakfast do thus we what people only Led juvenile oh newspaper but dine concealed offending when"));
+        userList.get(4).addKweet(new Kweet( "Admitting have you any offended nay snug terms excuse do temper though compliment should"));
+        userList.get(5).addKweet(new Kweet( "The warmth should why was zealously in He Answer old and Oh is simplicity making begin in barton projection"));
+        userList.get(6).addKweet(new Kweet( "His you Entered around out since wholly become Could be An Money be views desirous"));
+        userList.get(7).addKweet(new Kweet("Inquietude next right middleton speedily being can cant merely at met you mrs ya formed"));
+        userList.get(8).addKweet(new Kweet( "True felicity here hence why i Collected true an jennings came What few out offices "));
+        userList.get(9).addKweet(new Kweet("Dear my totally saw does in plan between drawn"));
+        userList.get(10).addKweet(new Kweet("Admitting have you any offended nay snug terms excuse do temper though compliment should"));
     }
 }

@@ -21,9 +21,6 @@ public class UserService{
     @EJB
     UserDAO userDAO;
 
-    @EJB
-    KweetDAO kweetDAO;
-
     // -    constructor
     public UserService(){
     }
@@ -36,8 +33,9 @@ public class UserService{
         return this.userDAO.removeUser(user);
     }
 
-    public boolean updateUser(User user) {
-        return this.userDAO.updateUser(user);
+    public boolean updateUser(User user, Long id) {
+
+        return this.userDAO.updateUser(user, id);
     }
 
     public User findUserById(long id){
@@ -63,10 +61,6 @@ public class UserService{
     public List<User> getAllUsers(){
         return  userDAO.getAllUsers();
     }
-
-    public List<Kweet> getAllKweets(Long id) {
-        return userDAO.getAllKweets(id);
-}
 
     public List<User> getAllFollowers(Long id) {
         return userDAO.getAllFollowers(id);
