@@ -47,7 +47,7 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
-    public void addFollowing(Long user, Long following) {
+    public boolean addFollowing(Long user, Long following) {
         this.em.createQuery("SELECT u FROM User u where u.id = :user");
         User u1 = this.em.find(User.class, user);
 
@@ -58,10 +58,11 @@ public class UserDAOImpl implements UserDAO{
         u1.getFollowers().add(u2);
         this.em.merge(u2);
         this.em.merge(u1);
+        return true;
     }
 
     @Override
-    public void addFollower(Long user, Long follower) {
+    public boolean addFollower(Long user, Long follower) {
         this.em.createQuery("SELECT u FROM User u where u.id = :user");
         User u1 = this.em.find(User.class, user);
 
@@ -72,6 +73,7 @@ public class UserDAOImpl implements UserDAO{
         u1.getFollowers().add(u2);
         this.em.merge(u2);
         this.em.merge(u1);
+        return true;
     }
 
     @Override
@@ -86,23 +88,25 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
-    public void removeFollower(Long id, Long follower) {
+    public boolean removeFollower(Long id, Long follower) {
         User user = this.em.find(User.class, id);
         User userUnfollower = this.em.find(User.class, follower);
         user.removeFollower(userUnfollower);
         userUnfollower.removeFollowing(user);
         this.em.merge(userUnfollower);
         this.em.merge(user);
+        return true;
     }
 
     @Override
-    public void removeFollowing(Long id, Long following) {
+    public boolean removeFollowing(Long id, Long following) {
         User user = this.em.find(User.class, id);
         User userUnfollowing = this.em.find(User.class, following);
         user.removeFollowing(userUnfollowing);
         userUnfollowing.removeFollower(user);
         this.em.merge(userUnfollowing);
         this.em.merge(user);
+        return true;
     }
 
     @Override

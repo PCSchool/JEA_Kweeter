@@ -16,13 +16,13 @@ public interface UserDAO {
 
     User findUserById(long id);
 
-    void addFollowing(Long user, Long following);
+    boolean addFollowing(Long user, Long following);
 
-    void addFollower(Long user, Long follower);
+    boolean addFollower(Long user, Long follower);
 
-    void removeFollower(Long id, Long follower);
+    boolean removeFollower(Long id, Long follower);
 
-    void removeFollowing(Long id, Long following);
+    boolean removeFollowing(Long id, Long following);
 
     List<User> getAllUsers();
 

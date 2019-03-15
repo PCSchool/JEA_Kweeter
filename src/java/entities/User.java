@@ -71,6 +71,9 @@ public class User {
         if (username.isEmpty() || name.isEmpty() || password.isEmpty()) {
             throw new InvalidParameterException("User: parameters username, name and password cant be empty.");
         }
+        if(biography.length() > 160){
+            throw new IllegalArgumentException("User: parameters invalid");
+        }
         this.username = username;
         this.name = name;
         this.password = password;
@@ -112,9 +115,7 @@ public class User {
     }
 
     public void setBiography(String biography) {
-        if(biography.length() < 160){
-            this.biography = biography;
-        }
+        this.biography = biography;
     }
 
     public String getLocation() {

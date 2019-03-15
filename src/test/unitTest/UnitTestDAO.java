@@ -2,6 +2,7 @@ package unitTest;
 
 import dao.KweetDAO;
 import dao.UserDAO;
+import entities.Kweet;
 import entities.User;
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -13,11 +14,16 @@ import org.mockito.runners.MockitoJUnitRunner;
 import services.KweetService;
 import services.UserService;
 
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
@@ -48,6 +54,9 @@ public class UnitTestDAO {
 
     @Mock
     ResultSet mockResultSet;
+
+    @Mock
+    MockDatabase mockDatabase;
 
     int userId = 100;
 
@@ -92,15 +101,101 @@ public class UnitTestDAO {
     public void testRemoveUser(){
         when(userDAOMock.removeUser(any(User.class))).thenReturn(true);
         userDAOMock.removeUser(any(User.class));
-
-        verify(userDAOMock).removeUser(any(User.class));
+        assertEquals(userDAOMock.removeUser(any(User.class)), true);
     }
 
     @Test
     public void testFindByUsername(){
-        userDAOMock.findUserByName(anyString());
-        verify(userDAOMock).findUserByName(anyString());
+        User user = new User();
+        when(userDAOMock.findUserByName(anyString())).thenReturn(user);
+        assertEquals(user, userDAOMock.findUserByName(anyString()));
+        verify(userDAOMock, times(1)).findUserByName(anyString());
+    }
 
+    @Test
+    public void testFindByUserId(){
+        User user = new User();
+        when(userDAOMock.findUserById(anyLong())).thenReturn(user);
+        assertEquals(user, userDAOMock.findUserById(anyLong()));
+        verify(userDAOMock, times(1)).findUserById(anyLong());
+    }
+
+    @Test
+    public void testAddFollower(){
+        User u1 = new User("Kat10101", "Lynda Buckley", "8+bq?7kKc,'U", "Now is the winter of our discontent", "Netherlands","STANDARD");
+        Long id1 = 1L;
+        u1.setId(id1);
+        User u2 = new User("DOH1010101", "Renad Buckley", "8+bq?7kKc,'U", "Now is the winter of our discontent", "Netherlands","STANDARD");
+        Long id2 = 2L;
+        u2.setId(id2);
+
+        when(userDAOMock.addFollower(id1, id2)).thenReturn(true);
+        assertEquals(true, userDAOMock.addFollower(id1, id2));
+        verify(userDAOMock, times(1)).addFollower(id1, id2);
+    }
+
+    @Test
+    public void testAddFollowing(){
+        User u1 = new User("Kat10101", "Lynda Buckley", "8+bq?7kKc,'U", "Now is the winter of our discontent", "Netherlands","STANDARD");
+        Long id1 = 1L;
+        u1.setId(id1);
+        User u2 = new User("DOH1010101", "Renad Buckley", "8+bq?7kKc,'U", "Now is the winter of our discontent", "Netherlands","STANDARD");
+        Long id2 = 2L;
+        u2.setId(id2);
+
+        when(userDAOMock.addFollowing(id1, id2)).thenReturn(true);
+        assertEquals(true, userDAOMock.addFollowing(id1, id2));
+        verify(userDAOMock, times(1)).addFollowing(id1, id2);
+    }
+
+    @Test
+    public void testRemoveFollower(){
+        Long id2 = 2L;
+        Long id1 = 1L;
+        when(userDAOMock.removeFollowing(id1, id2)).thenReturn(true);
+        assertEquals(true, userDAOMock.removeFollowing(id1, id2));
+        verify(userDAOMock, times(1)).removeFollowing(id1, id2);
+    }
+
+    @Test
+    public void testRemoveFollowing(){
+        Long id2 = 2L;
+        Long id1 = 1L;
+        when(userDAOMock.removeFollower(id1, id2)).thenReturn(true);
+        assertEquals(true, userDAOMock.removeFollower(id1, id2));
+        verify(userDAOMock, times(1)).removeFollower(id1, id2);
+    }
+
+    @Test
+    public void testGetAllFollowing(){
+        List<User> mockList = new ArrayList<User>();
+        when(userDAOMock.getAllFollowing(anyLong())).thenReturn(mockList);
+        assertEquals(mockList, userDAOMock.getAllFollowing(anyLong()));
+        verify(userDAOMock, times(1)).getAllFollowing(anyLong());
+    }
+
+    @Test
+    public void testGetAllFollowers(){
+        List<User> mockList = new ArrayList<User>();
+        when(userDAOMock.getAllFollowers(anyLong())).thenReturn(mockList);
+        assertEquals(mockList, userDAOMock.getAllFollowers(anyLong()));
+        verify(userDAOMock, times(1)).getAllFollowers(anyLong());
+    }
+
+    @Test
+    public void testGetAllUsers(){
+        List<User> mockList = new ArrayList<User>();
+        when(userDAOMock.getAllUsers()).thenReturn(mockList);
+        assertEquals(mockList, userDAOMock.getAllUsers());
+        verify(userDAOMock, times(1)).getAllUsers();
+    }
+
+    @Test
+    public void testGetAllKweets(){
+        List<Kweet> mockList = new ArrayList<Kweet>();
+        when(userDAOMock.getAllKweets(anyLong())).thenReturn(mockList);
+        assertEquals(mockList, userDAOMock.getAllKweets(anyLong()));
+        verify(userDAOMock, times(1)).getAllKweets(anyLong());
     }
 
 

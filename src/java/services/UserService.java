@@ -42,20 +42,20 @@ public class UserService{
         return userDAO.findUserById(id);
     }
 
-    public void addFollowing(Long user, Long following) {
-        userDAO.addFollowing(user, following);
+    public boolean addFollowing(Long user, Long following) {
+        return userDAO.addFollowing(user, following);
     }
 
-    public void addFollower(Long user, Long follower) {
-        userDAO.addFollower(user, follower);
+    public boolean addFollower(Long user, Long follower) {
+        return userDAO.addFollower(user, follower);
     }
 
-    public void removeFollower(Long user, Long follower) {
-        userDAO.removeFollower(user, follower);
+    public boolean removeFollower(Long user, Long follower) {
+        return userDAO.removeFollower(user, follower);
     }
 
-    public void removeFollowing(Long id, Long following){
-        userDAO.removeFollowing(id, following);
+    public boolean removeFollowing(Long id, Long following){
+        return userDAO.removeFollowing(id, following);
     }
 
     public List<User> getAllUsers(){
