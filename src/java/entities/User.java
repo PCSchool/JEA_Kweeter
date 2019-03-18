@@ -46,19 +46,12 @@ public class User {
     private String website;
     private entities.Roles role;
 
-    private static final String PASSWORD_REGEX = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,26}$";
-    private static final Pattern PASSWORD_PATTERN = Pattern.compile(PASSWORD_REGEX);
-
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Kweet> kweets = new ArrayList<>();
 
     @JsonbTransient
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "followers",
-            joinColumns = {@JoinColumn(name = "follower_id", referencedColumnName = "id", nullable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "following_id", referencedColumnName = "id", nullable = false)}
-    )
     private List<User> followers;
 
     @ManyToMany(mappedBy = "followers", targetEntity = User.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)  //soldToCollection
@@ -68,12 +61,6 @@ public class User {
     }
 
     public User(String username, String name, String password, String biography, String location, String role) {
-        if (username.isEmpty() || name.isEmpty() || password.isEmpty()) {
-            throw new InvalidParameterException("User: parameters username, name and password cant be empty.");
-        }
-        if(biography.length() > 160){
-            throw new IllegalArgumentException("User: parameters invalid");
-        }
         this.username = username;
         this.name = name;
         this.password = password;
@@ -105,9 +92,12 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
-
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public String getBiography() {

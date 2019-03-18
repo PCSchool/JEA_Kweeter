@@ -14,7 +14,6 @@ import java.util.List;
 
 @Stateless
 @Path("kweeter")
-@ApplicationScoped
 public class KweetResource {
 
     @Inject
@@ -22,7 +21,7 @@ public class KweetResource {
 
     // ------------------ GET ------------------
     @GET
-    @Path("/{id}/getLastKweets")
+    @Path("/{id}")
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public List<Kweet> getKweetByUser(@PathParam("id") Long id){
@@ -30,7 +29,7 @@ public class KweetResource {
     }
 
     @GET
-    @Path("/{id}/getAllKweets")
+    @Path("/{id}/getAll")
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public List<Kweet> getAllKweetByUser(@PathParam("id") Long id){
@@ -39,7 +38,7 @@ public class KweetResource {
 
 
     @GET
-    @Path("/getAllKweets/{filter}")
+    @Path("/getAll/{filter}")
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public List<Kweet> getAllKweetByFilter(@PathParam("filter") String message){
@@ -48,7 +47,7 @@ public class KweetResource {
 
     // ------------------ POST ------------------
     @POST
-    @Path("/{id}/addKweet")
+    @Path("/{id}")
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public Response createKweet(@PathParam("id") Long id, Kweet kweet){
@@ -57,7 +56,7 @@ public class KweetResource {
     }
 
     @POST
-    @Path("/{id}/kweet/{kweetId}/addReaction")
+    @Path("/{id}/kweet/{kweetId}")
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public Response createKweetReaction(@PathParam("id") Long id, @PathParam("kweetId") Long kweetId, Kweet kweet){
@@ -69,7 +68,7 @@ public class KweetResource {
 
     // ------------------ DELETE ------------------
     @DELETE
-    @Path("/{id}/kweet/{kweetid}/removeKweet")
+    @Path("/{id}/kweet/{kweetid}")
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public Response removeKweet(@PathParam("id") Long id, @PathParam("kweetid") Long kweetId){

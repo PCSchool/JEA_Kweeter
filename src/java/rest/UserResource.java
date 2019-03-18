@@ -13,7 +13,6 @@ import java.util.List;
 
 @Stateless
 @Path("users")
-@ApplicationScoped
 public class UserResource {
 
     @Inject
@@ -29,13 +28,13 @@ public class UserResource {
     }
 
     @GET
-    @Path("/getAllUsers")
+    @Produces({"application/json"})
     public List<User> getUsers(){
         return userService.getAllUsers();
     }
 
     @GET
-    @Path("/{id}/getFollowers")
+    @Path("/{id}/followers")
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public List<User> getUserFollowers(@PathParam("id") Long id){
@@ -43,7 +42,7 @@ public class UserResource {
     }
 
     @GET
-    @Path("/{id}/getFollowings")
+    @Path("/{id}/followings")
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public List<User> getUserFollowing(@PathParam("id") Long id){
@@ -51,7 +50,7 @@ public class UserResource {
     }
 
     @POST
-    @Path("/{id}/addNewFollowing/{followingId}")
+    @Path("/{id}/followings/{followingId}")
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public Response addFollowing(@PathParam("id") Long id, @PathParam("followingId") Long followingId) {
@@ -60,7 +59,7 @@ public class UserResource {
     }
 
     @POST
-    @Path("/{id}/addNewFollower/{followingId}")
+    @Path("/{id}/followers/{followingId}")
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public Response addFollower(@PathParam("id") Long id, @PathParam("followingId") Long followingId) {
@@ -90,7 +89,7 @@ public class UserResource {
     // ------------------ PUT ------------------
     //todo make update working
     @PUT
-    @Path("/{id}/updateUser")
+    @Path("/{id}")
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public Response updateUser(@PathParam("id") Long id, User user){
@@ -100,7 +99,7 @@ public class UserResource {
 
     // ------------------ DELETE ------------------
     @DELETE
-    @Path("/{id}/removeFollowing/{followingId}")
+    @Path("/{id}/following/{followingId}")
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public Response removeFollowing(@PathParam("id") Long id, @PathParam("followingId") Long following) {
@@ -109,18 +108,18 @@ public class UserResource {
     }
 
     @DELETE
-    @Path("/{id}/removeFollower/{followerId}")
+    @Path("/{id}/follower/{followerId}")
     public Response removeFollower(@PathParam("id") Long id, @PathParam("followerId") Long follower) {
-        userService.removeFollowing(id, follower);
+        userService.removeFollower(id, follower);
         return Response.ok().build();
     }
 
     @DELETE
-    @Path("/{id}/removeUser/{userId}")
+    @Path("/{id}/remove/{removeUserId}")
     @Consumes({"application/json"})
     @Produces({"application/json"})
-    public Response removeUser(@PathParam("id") Long id, @PathParam("userId") Long user){
-        //userService.removeUser(id, user);
+    public Response removeUser(@PathParam("id") Long id, @PathParam("removeUserId") Long removeUserId){
+        userService.removeUser(id, removeUserId);
         return Response.ok().build();
     }
 

@@ -85,7 +85,7 @@ public class UnitTestDAO {
         userDAOMock.createUser(any(User.class));
 
         verify(userDAOMock).createUser(any(User.class));
-        verify(userDAOMock, never()).removeUser(any(User.class));
+        verify(userDAOMock, never()).removeUser(anyLong(), anyLong());
     }
 
     @Test
@@ -94,14 +94,14 @@ public class UnitTestDAO {
         userDAOMock.updateUser(any(User.class), anyLong());
 
         verify(userDAOMock).updateUser(any(User.class), anyLong());
-        verify(userDAOMock, never()).removeUser(any(User.class));
+        verify(userDAOMock, never()).removeUser(anyLong(), anyLong());
     }
 
     @Test
     public void testRemoveUser(){
-        when(userDAOMock.removeUser(any(User.class))).thenReturn(true);
-        userDAOMock.removeUser(any(User.class));
-        assertEquals(userDAOMock.removeUser(any(User.class)), true);
+        when(userDAOMock.removeUser(anyLong(), anyLong())).thenReturn(true);
+        userDAOMock.removeUser(anyLong(), anyLong());
+        assertEquals(userDAOMock.removeUser(anyLong(), anyLong()), true);
     }
 
     @Test
@@ -188,14 +188,6 @@ public class UnitTestDAO {
         when(userDAOMock.getAllUsers()).thenReturn(mockList);
         assertEquals(mockList, userDAOMock.getAllUsers());
         verify(userDAOMock, times(1)).getAllUsers();
-    }
-
-    @Test
-    public void testGetAllKweets(){
-        List<Kweet> mockList = new ArrayList<Kweet>();
-        when(userDAOMock.getAllKweets(anyLong())).thenReturn(mockList);
-        assertEquals(mockList, userDAOMock.getAllKweets(anyLong()));
-        verify(userDAOMock, times(1)).getAllKweets(anyLong());
     }
 
 

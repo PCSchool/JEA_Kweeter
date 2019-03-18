@@ -22,8 +22,12 @@ public class KweetService{
     public KweetService(){
     }
 
-    public void addReaction(Long id, Long kweetid, Kweet kweet){
+    public boolean addReaction(Long id, Long kweetid, Kweet kweet){
+        if(kweet.getMessage().length() > 160){
+            return false;
+        }
         this.kweetDAO.addReaction(id, kweetid, kweet);
+        return true;
     }
 
     public List<Kweet> getLastTenKweets(Long id){
@@ -34,12 +38,20 @@ public class KweetService{
         return this.kweetDAO.getAllKweets(id);
     }
 
-    public void createKweet(Kweet kweet, Long id){
+    public boolean createKweet(Kweet kweet, Long id){
+        if(kweet.getMessage().length() > 160){
+            return false;
+        }
         this.kweetDAO.createKweet(kweet, id);
+        return true;
     }
 
-    public void removeKweet(Long kweetId, Long id){
+    public boolean removeKweet(Long kweetId, Long id){
+        if(kweetId < -1| id < -1){
+            return false;
+        }
         this.kweetDAO.removeKweet(kweetId, id);
+        return true;
     }
 
     public List<Kweet> findByFilterKweet(String message){

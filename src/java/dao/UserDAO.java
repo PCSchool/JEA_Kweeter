@@ -6,7 +6,7 @@ import entities.User;
 import java.util.List;
 
 public interface UserDAO {
-    boolean removeUser(User user);
+    boolean removeUser(Long id, Long userId);
 
     boolean createUser(User user);
 
@@ -25,8 +25,6 @@ public interface UserDAO {
     boolean removeFollowing(Long id, Long following);
 
     List<User> getAllUsers();
-
-    List<Kweet> getAllKweets(Long id);
 
     List<User> getAllFollowers(Long id);
 

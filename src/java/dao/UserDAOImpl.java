@@ -1,6 +1,7 @@
 package dao;
 
 import entities.Kweet;
+import entities.Roles;
 import entities.User;
 
 import javax.ejb.Stateless;
@@ -25,8 +26,21 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
-    public boolean removeUser(User user) {
-        this.em.remove(user); return true;
+    public boolean removeUser(Long id, Long userId) {
+        User user = this.em.find(User.class, id);
+        User removeUser = this.em.find(User.class, userId);
+
+        if(user.getRole() == Roles.ADMINISTRATOR || user.getRole() == Roles.MODERATOR){
+
+            for(int i = 0; i< removeUser.getFollowings().size(); i++){
+                removeFollowing(removeUser.getId(), removeUser.getFollowings().get(i).getId());
+            }
+            for(int i = 0; i< removeUser.getFollowers().size(); i++){
+                removeFollower(removeUser.getId(), removeUser.getFollowers().get(i).getId());
+            }
+            this.em.remove(removeUser); return true;
+        }
+        return true;
     }
 
     @Override
@@ -48,14 +62,11 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public boolean addFollowing(Long user, Long following) {
-        this.em.createQuery("SELECT u FROM User u where u.id = :user");
         User u1 = this.em.find(User.class, user);
-
-        this.em.createQuery("SELECT u FROM User u where u.id = :following");
         User u2 = this.em.find(User.class, following);
-
         u2.getFollowings().add(u1);
         u1.getFollowers().add(u2);
+
         this.em.merge(u2);
         this.em.merge(u1);
         return true;
@@ -63,14 +74,11 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public boolean addFollower(Long user, Long follower) {
-        this.em.createQuery("SELECT u FROM User u where u.id = :user");
         User u1 = this.em.find(User.class, user);
-
-        this.em.createQuery("SELECT u FROM User u where u.id = :following");
         User u2 = this.em.find(User.class, follower);
 
-        u2.getFollowings().add(u1);
         u1.getFollowers().add(u2);
+        u2.getFollowings().add(u1);
         this.em.merge(u2);
         this.em.merge(u1);
         return true;
@@ -111,12 +119,6 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public List<User> getAllUsers(){
-        Query query = this.em.createNamedQuery("User.getAll");
-        return query.getResultList();
-    }
-
-    @Override
-    public List<Kweet> getAllKweets(Long id) {
         Query query = this.em.createNamedQuery("User.getAll");
         return query.getResultList();
     }
