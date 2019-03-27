@@ -12,7 +12,7 @@ public interface UserDAO {
 
     boolean updateUser(User user, Long id);
 
-    User findUserByName(String name);
+    List<User> findUserByName(String name);
 
     User findUserById(long id);
 

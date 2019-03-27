@@ -49,10 +49,12 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
-    public User findUserByName(String name){
+        public List<User> findUserByName(String name){
         Query q = em.createNamedQuery("User.findByUsername", User.class);
-        q.setParameter("username", name);
-        return (User) q.getSingleResult();
+        //String str = "\'%"+name+"%\'";
+        q.setParameter("name", name);
+        //q.setParameter("name", "'%'" + name + "'%'");
+        return q.getResultList();
     }
 
     @Override

@@ -58,8 +58,4 @@ public class KweetService{
         return this.kweetDAO.findByFilter(message);
     }
 
-    public List<Kweet> getKweets(Long id, int amount){
-        return this.kweetDAO.getKweets(id, amount);
-    }
-
 }

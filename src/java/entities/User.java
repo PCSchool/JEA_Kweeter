@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
         query = "SELECT u.followings FROM User u WHERE u.id = :id"
 ), @NamedQuery(
         name = "User.findByUsername",
-        query = "SELECT u FROM User u where u.username = :username"
+        query = "SELECT u FROM User u where u.username = :name"
 ), @NamedQuery(
         name = "User.findById",
         query = "SELECT u FROM User u where u.id = :id"

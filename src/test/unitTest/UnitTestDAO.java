@@ -107,8 +107,8 @@ public class UnitTestDAO {
     @Test
     public void testFindByUsername(){
         User user = new User();
-        when(userDAOMock.findUserByName(anyString())).thenReturn(user);
-        assertEquals(user, userDAOMock.findUserByName(anyString()));
+        when(userDAOMock.findUserByName(anyString())).thenReturn(anyListOf(User.class));
+        assertEquals(anyListOf(User.class), userDAOMock.findUserByName(anyString()));
         verify(userDAOMock, times(1)).findUserByName(anyString());
     }
 

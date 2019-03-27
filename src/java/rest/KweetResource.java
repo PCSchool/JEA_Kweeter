@@ -36,7 +36,6 @@ public class KweetResource {
         return kweetService.getAllKweets(id);
     }
 
-
     @GET
     @Path("/getAll/{filter}")
     @Consumes({"application/json"})

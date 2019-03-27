@@ -27,6 +27,13 @@ public class UserResource {
         return userService.findUserById(id);
     }
 
+    @POST
+    @Path("/{username}")
+    public List<User>  getUserByUsername(@PathParam("username") String username){
+        return userService.findUserByUsername(username);
+    }
+
+
     @GET
     @Produces({"application/json"})
     public List<User> getUsers(){

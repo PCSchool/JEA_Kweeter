@@ -15,6 +15,10 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
+    <servlet-name>jsp</servlet-name>
+    <url-pattern>*.html</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>/main/*</url-pattern>
   </servlet-mapping>

@@ -19,5 +19,12 @@
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/java/META-INF/persistence.xml" />
       </configuration>
     </facet>
+    <facet type="ejb" name="EJB">
+      <configuration>
+        <ejbRoots>
+          <root url="file://$MODULE_DIR$/src/test" />
+        </ejbRoots>
+      </configuration>
+    </facet>
   </component>
 </module>
