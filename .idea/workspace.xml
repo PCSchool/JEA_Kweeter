@@ -12,22 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9f6fa31-2795-4d1b-87e0-ba9d11ef349d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/JEA_Payara_ejb_exploded4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/webapp/WEB-INF/faces-config.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/webapp/beans/userManagedBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JEA_Payara.iml" beforeDir="false" afterPath="$PROJECT_DIR$/JEA_Payara.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/dao/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/dao/UserDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/rest/JAXRSconfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/rest/JAXRSconfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/rest/KweetResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/rest/KweetResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/rest/UserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/rest/UserResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/services/KweetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/services/KweetService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/main/index.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/main/index.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/profile/profile.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/profile/profile.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/unitTest/UnitTestDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/unitTest/UnitTestDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven.war" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven/WEB-INF/web.xml" afterDir="false" />
     </list>
@@ -61,8 +46,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/webapp/beans/userManagedBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="164" column="76" selection-start-line="164" selection-start-column="76" selection-end-line="164" selection-end-column="76" />
+            <state relative-caret-position="202">
+              <caret line="162" column="34" lean-forward="true" selection-start-line="162" selection-start-column="34" selection-end-line="162" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1537#1538#0" expanded="true" />
@@ -382,7 +367,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553731000109" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553731014652" />
     <property name="dynamic.classpath" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -736,7 +721,7 @@
       <workItem from="1553506702408" duration="4554000" />
       <workItem from="1553627564120" duration="7670000" />
       <workItem from="1553683194793" duration="6511000" />
-      <workItem from="1553714642240" duration="11273000" />
+      <workItem from="1553714642240" duration="11520000" />
     </task>
     <task id="LOCAL-00001" summary="Update Collection Acces Layer">
       <created>1550442098963</created>
@@ -871,7 +856,28 @@
       <option name="project" value="LOCAL" />
       <updated>1552694341739</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="JSF - list of all users + functionality to select user, see kweets and delete a kweet">
+      <created>1553730915979</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1553730915979</updated>
+    </task>
+    <task id="LOCAL-00021" summary="JSF - list of all users + functionality to select user, see kweets and delete a kweet">
+      <created>1553730960095</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1553730960095</updated>
+    </task>
+    <task id="LOCAL-00022" summary="JSF - list of all users + functionality to select user, see kweets and delete a kweet">
+      <created>1553731023568</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1553731023568</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -907,7 +913,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="339420000" />
+    <option name="totallyTimeSpent" value="339667000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -920,22 +926,21 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="703" y="0" width="1043" height="947" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6246246" visible="true" weight="0.23959391" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.62363636" visible="true" weight="0.23959391" />
       <window_info id="Structure" order="1" sideWeight="0.39137647" side_tool="true" weight="0.21919192" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" sideWeight="0.37293234" side_tool="true" weight="0.2347561" />
-      <window_info id="Web" order="7" sideWeight="0.3753754" side_tool="true" visible="true" weight="0.23959391" />
+      <window_info id="Web" order="7" sideWeight="0.37636364" side_tool="true" visible="true" weight="0.23959391" />
       <window_info id="JavaEE:App" order="8" side_tool="true" />
       <window_info id="Persistence" order="9" side_tool="true" />
       <window_info id="EJB" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49952334" weight="0.32844934" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.7791287" visible="true" weight="0.18382353" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4142132" weight="0.18382353" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -943,13 +948,13 @@
       <window_info anchor="bottom" id="Application Servers" order="7" sideWeight="0.4970364" weight="0.32396087" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49872988" weight="0.32396087" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.22087133" side_tool="true" weight="0.25876662" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="10" sideWeight="0.50152284" side_tool="true" visible="true" weight="0.3259804" />
       <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.48429585" weight="0.30637255" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="bottom" id="Java Enterprise" order="13" sideWeight="0.49872988" weight="0.32396087" />
-      <window_info anchor="bottom" id="Version Control" order="14" weight="0.32640588" />
-      <window_info anchor="bottom" id="Inspection Results" order="15" sideWeight="0.49952334" weight="0.32885087" />
-      <window_info anchor="bottom" id="Statistic" order="16" />
+      <window_info anchor="bottom" id="Inspection Results" order="14" sideWeight="0.49952334" weight="0.32885087" />
+      <window_info anchor="bottom" id="Version Control" order="15" sideWeight="0.49847716" visible="true" weight="0.3259804" />
+      <window_info anchor="bottom" id="Statistic" order="16" sideWeight="0.49949238" weight="0.32965687" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1064,7 +1069,8 @@
     <MESSAGE value="Begin front-end" />
     <MESSAGE value="Final REST back end" />
     <MESSAGE value="Update DAO Mockito testing v1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update DAO Mockito testing v1" />
+    <MESSAGE value="JSF - list of all users + functionality to select user, see kweets and delete a kweet" />
+    <option name="LAST_COMMIT_MESSAGE" value="JSF - list of all users + functionality to select user, see kweets and delete a kweet" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>
@@ -1432,8 +1438,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/webapp/beans/userManagedBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="164" column="76" selection-start-line="164" selection-start-column="76" selection-end-line="164" selection-end-column="76" />
+        <state relative-caret-position="202">
+          <caret line="162" column="34" lean-forward="true" selection-start-line="162" selection-start-column="34" selection-end-line="162" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1537#1538#0" expanded="true" />
