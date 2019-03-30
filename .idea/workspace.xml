@@ -12,21 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9f6fa31-2795-4d1b-87e0-ba9d11ef349d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/main/login.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/main/login/login.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/main/profile.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/webapp/beans/AuthorizationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/webapp/beans/SessionUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/dao/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/dao/UserDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/rest/UserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/rest/UserResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Profile.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Admin.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/main/index.xhtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/webapp/WEB-INF/faces-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/webapp/WEB-INF/faces-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/webapp/beans/userManagedBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/webapp/beans/userManagedBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven.war" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -161,8 +147,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/main/profile.xhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="56" column="143" selection-start-line="56" selection-start-column="143" selection-end-line="56" selection-end-column="143" />
+            <state relative-caret-position="324">
+              <caret line="51" column="136" lean-forward="true" selection-start-line="51" selection-start-column="136" selection-end-line="51" selection-end-column="136" />
             </state>
           </provider>
         </entry>
@@ -377,7 +363,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553945581411" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553945629473" />
     <property name="dynamic.classpath" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/webapp" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -736,7 +722,7 @@
       <workItem from="1553683194793" duration="6511000" />
       <workItem from="1553714642240" duration="11621000" />
       <workItem from="1553812941794" duration="8528000" />
-      <workItem from="1553880342861" duration="19450000" />
+      <workItem from="1553880342861" duration="19886000" />
     </task>
     <task id="LOCAL-00001" summary="Update Collection Acces Layer">
       <created>1550442098963</created>
@@ -906,7 +892,14 @@
       <option name="project" value="LOCAL" />
       <updated>1553731071690</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="JSF - login and register working">
+      <created>1553945946759</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1553945946759</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -942,7 +935,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="367746000" />
+    <option name="totallyTimeSpent" value="368182000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -955,7 +948,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="839" y="0" width="907" height="949" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.58721936" visible="true" weight="0.2909305" />
       <window_info id="Structure" order="1" sideWeight="0.39137647" side_tool="true" weight="0.21919192" />
@@ -964,13 +956,13 @@
       <window_info id="Capture Tool" order="4" />
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" sideWeight="0.37293234" side_tool="true" weight="0.2347561" />
-      <window_info active="true" id="Web" order="7" sideWeight="0.41278064" side_tool="true" visible="true" weight="0.2909305" />
+      <window_info id="Web" order="7" sideWeight="0.41278064" side_tool="true" visible="true" weight="0.2909305" />
       <window_info id="JavaEE:App" order="8" side_tool="true" />
       <window_info id="Persistence" order="9" side_tool="true" />
       <window_info id="EJB" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49952334" weight="0.32844934" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8514151" visible="true" weight="0.29217604" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8514151" visible="true" weight="0.29217604" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1101,7 +1093,8 @@
     <MESSAGE value="Final REST back end" />
     <MESSAGE value="Update DAO Mockito testing v1" />
     <MESSAGE value="JSF - list of all users + functionality to select user, see kweets and delete a kweet" />
-    <option name="LAST_COMMIT_MESSAGE" value="JSF - list of all users + functionality to select user, see kweets and delete a kweet" />
+    <MESSAGE value="JSF - login and register working" />
+    <option name="LAST_COMMIT_MESSAGE" value="JSF - login and register working" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>
@@ -1520,8 +1513,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/main/profile.xhtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="56" column="143" selection-start-line="56" selection-start-column="143" selection-end-line="56" selection-end-column="143" />
+        <state relative-caret-position="324">
+          <caret line="51" column="136" lean-forward="true" selection-start-line="51" selection-start-column="136" selection-end-line="51" selection-end-column="136" />
         </state>
       </provider>
     </entry>
