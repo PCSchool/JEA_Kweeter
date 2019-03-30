@@ -27,7 +27,10 @@ import java.util.regex.Pattern;
         query = "SELECT u FROM User u where u.id = :id"
 ),@NamedQuery(
         name = "User.update",
-        query = "UPDATE User u set u.name = :name, u.biography = :biography, u.location = :location where u.id = :id"
+        query = "UPDATE User u set u.name = :name, u.biography = :biography, u.location = :location, u.role = :role where u.id = :id"
+),@NamedQuery(
+        name = "User.validate",
+        query = "SELECT u FROM User u WHERE u.username = :username AND u.password = :password"
 )})
 @Entity
 public class User {

@@ -92,9 +92,20 @@ public class UserDAOImpl implements UserDAO{
         q.setParameter("name", user.getName());
         q.setParameter("location", user.getLocation());
         q.setParameter("biography", user.getBiography());
+        q.setParameter("role", user.getRole());
         q.setParameter("id", id);
         q.executeUpdate();
         return true;
+    }
+
+    @Override
+    public User validateUser(String username, String password) {
+        User user = null;
+        Query q = em.createNamedQuery("User.validate", User.class);
+        q.setParameter("username", username);
+        q.setParameter("password", password);
+        user = (User)q.getSingleResult();
+        return user;
     }
 
     @Override

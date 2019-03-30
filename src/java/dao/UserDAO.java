@@ -12,6 +12,8 @@ public interface UserDAO {
 
     boolean updateUser(User user, Long id);
 
+    User validateUser(String username, String password);
+
     List<User> findUserByName(String name);
 
     User findUserById(long id);

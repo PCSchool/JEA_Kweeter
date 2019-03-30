@@ -29,6 +29,10 @@ public class UserService{
     public UserService(){
     }
 
+    public User validateUser(String username, String password){
+        return userDAO.validateUser(username, password);
+    }
+
     public boolean createUser(User user){
         if (user.getUsername().isEmpty() || user.getName().isEmpty() || user.getPassword().isEmpty()) {
             return false;

@@ -10,6 +10,7 @@ import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import services.KweetService;
 import services.UserService;
+import sun.net.httpserver.AuthFilter;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -20,14 +21,19 @@ import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.management.relation.Role;
+import javax.servlet.http.HttpSession;
+import javax.validation.constraints.Size;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 @ManagedBean
 @SessionScoped
-public class userManagedBean {
+public class userManagedBean implements Serializable {
+
+    private static final long serialVersionUID = 1094801825228386363L;
 
     @Inject
     private UserService userService = new UserService();
@@ -35,24 +41,46 @@ public class userManagedBean {
     @Inject
     private KweetService kweetService = new KweetService();
 
+    private User loginUser;
     private User selectedUser;
     private Kweet selectedKweet;
     private User currentUser;
+    @Size(min=6, max=26)
     private String username;
+    @Size(min=4, max=26)
     private String password;
+    @Size(min=6, max=26)
     private String usernameRegister;
+    @Size(min=6, max=26)
     private String nameRegister;
+    @Size(min=4, max=26)
     private String passwordRegister;
+    @Size(min=4, max=26)
     private String passwordRepeatRegister;
+    @Size(min=4, max=26)
     private String searchUser;
     private List<User> searchUsersResults;
     private List<User> allUsers;
     private List<Kweet> allUserKweets;
+    private List<String> roles;
     private String selectedRole;
 
     @PostConstruct
     public void init(){
         allUsers = userService.getAllUsers();
+        roles = new ArrayList<>();
+        roles.add("ADMINISTRATOR");
+        roles.add("MODERATOR");
+        roles.add("STANDARD");
+        selectedRole = roles.get(0);
+    }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
     }
 
     public Kweet getSelectedKweet() {
@@ -159,6 +187,14 @@ public class userManagedBean {
         this.allUsers = allUsers;
     }
 
+    public void setLoginUser(User loginUser) {
+        this.loginUser = loginUser;
+    }
+
+    public User getLoginUser() {
+        return loginUser;
+    }
+
     public String removeKweet(){
         if(selectedKweet != null){
             kweetService.removeKweet(selectedKweet.getId(), selectedUser.getId());
@@ -167,39 +203,54 @@ public class userManagedBean {
         return "succes";
     }
 
-    public void login(){
-        RequestContext requestContext = RequestContext.getCurrentInstance();
-        FacesMessage message = null;
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        boolean loggedIn = false;
+    public String validateUsernamePassword() {
+        User user = userService.validateUser(username, password);
 
-        if(username.isEmpty() || password.isEmpty()){
-            message = new FacesMessage(FacesMessage.SEVERITY_WARN, "login error", "No username and/or password");
+        boolean valid = false;
+        if(user != null){
+            valid = true;
         }
-        if(username != null && password != null){
-            loggedIn = true;
-            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "welcome", username);
-
-            try {
-                facesContext.getExternalContext().redirect("profile/profile.xhtml");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-
-        }else{
-            loggedIn =false;
-            message = new FacesMessage(FacesMessage.SEVERITY_WARN, "login error", "invalid credentials");
+        if(user.getRole().equals(Roles.STANDARD)){
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "Incorrect user roles",
+                            "POnly for administrators and moderators."));
+            return "login";
         }
+        else if (valid) {
+            HttpSession session = SessionUtils.getSession();
+            session.setAttribute("username", user.getUsername());
+            session.setAttribute("userid", user.getId());
+            session.setAttribute("user", user);
+            redirectProfile();
+            return "profile";
+        } else {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "Incorrect Username and Password.",
+                            "Please enter correct username and Password."));
+            return "login";
+        }
+    }
 
+    public String getSessionUsername(){
+        HttpSession session = SessionUtils.getSession();
+        return (String)session.getAttribute("username");
+    }
 
-        //requestContext.addCallbackParam("loggedIn", loggedIn);
+    public String logout() {
+        HttpSession session = SessionUtils.getSession();
+        session.invalidate();
+        redirectDashboard();
+        return "login";
     }
 
     public void redirectDashboard(){
         FacesContext facesContext = FacesContext.getCurrentInstance();
         try {
-            facesContext.getExternalContext().redirect("main/index.xhtml");
+            facesContext.getExternalContext().redirect("login.xhtml");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -208,9 +259,29 @@ public class userManagedBean {
     public void redirectProfile(){
         FacesContext facesContext = FacesContext.getCurrentInstance();
         try {
-            facesContext.getExternalContext().redirect("profile/profile.xhtml");
+            facesContext.getExternalContext().redirect("profile.xhtml");
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+
+    public void updateAdmin(){
+        updateProfile(roles.get(0));
+    }
+
+    public void updateMod(){
+        updateProfile(roles.get(1));
+    }
+
+    public void updateStandard(){
+        updateProfile(roles.get(2));
+    }
+
+    private void updateProfile(String value){
+        if(selectedUser != null){
+            selectedUser.setRole(Roles.valueOf(value));
+            userService.updateUser(selectedUser, selectedUser.getId());
         }
     }
 
@@ -233,36 +304,36 @@ public class userManagedBean {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         boolean valid = true;
 
+        if(usernameRegister.isEmpty() || nameRegister.isEmpty() || passwordRegister.isEmpty() || passwordRepeatRegister.isEmpty()){
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "Incorrect user roles",
+                            "Please fill all fields for the register form in."));
+            valid =false;
+        } else if(passwordRepeatRegister != passwordRegister){
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "Incorrect password repeat",
+                            "Make sure the password and repeat passsword are the same."));
+            valid = false;
+        } else if(userService.findUserByUsername(usernameRegister) != null){
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "Incorrect username",
+                            "This username is already in existence. Please pick something else."));
+            valid = false;
+        }
 
-        if(userService.createUser(new User(usernameRegister, nameRegister, passwordRegister, "", "", selectedRole))){
-            redirectProfile();
-        }
-
-        /*if(usernameRegister.isEmpty() || nameRegister.isEmpty() || passwordRegister.isEmpty() || passwordRepeatRegister.isEmpty() || selectedRole.isEmpty()){
-            message = new FacesMessage("Fill in all the fields of the register form");
-            message.setSeverity(FacesMessage.SEVERITY_ERROR);
-            facesContext.addMessage(usernameRegister, message);
-            facesContext.renderResponse();
-            valid = false;
-        }
-        else if(passwordRepeatRegister != passwordRegister){
-            message = new FacesMessage("Password and repeat password must be the same");
-            message.setSeverity(FacesMessage.SEVERITY_ERROR);
-            facesContext.addMessage(passwordRegister, message);
-            facesContext.renderResponse();
-            valid = false;
-        }
-        else if(userService.findUserByUsername(usernameRegister) != null){
-            message = new FacesMessage("User with this username already exists");
-            message.setSeverity(FacesMessage.SEVERITY_ERROR);
-            facesContext.addMessage(usernameRegister, message);
-            facesContext.renderResponse();
-            valid = false;
+        if(selectedRole.isEmpty()){
+            selectedRole = "STANDARD";
         }
 
         if(valid){
-            userService.createUser(new User(usernameRegister, nameRegister, passwordRegister, "", "", selectedRole));
-        }*/
+            userService.createUser(new User(usernameRegister, nameRegister, passwordRegister, "", "",  selectedRole));
+        }
     }
 
     public List<Kweet> getAllKweets(){

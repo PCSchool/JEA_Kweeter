@@ -33,7 +33,6 @@ public class UserResource {
         return userService.findUserByUsername(username);
     }
 
-
     @GET
     @Produces({"application/json"})
     public List<User> getUsers(){
@@ -76,7 +75,7 @@ public class UserResource {
 
     // ------------------ POST ------------------
     @POST
-    @Path("register")
+    @Path("/register")
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public Response createUser(User user) {
@@ -85,7 +84,7 @@ public class UserResource {
     }
 
     @POST
-    @Path("login")
+    @Path("/login")
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public Response loginUser(User user) {

@@ -1,0 +1,82 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+    <h:form>
+        <p:menubar>
+            <p:menuitem value="#{user.username}"/>
+            <p:menuitem value="Logout" type="button" action="#{userManagedBean.logout}"/>
+        </p:menubar>
+    </h:form>
+    <p:layout>
+        <p:layoutUnit position="center" resizable="false" closable="false" collapsible="false">
+            <p:layout>
+                <p:layoutUnit position="north">
+                    <p:dataList id="users" value="#{userManagedBean.allUsers}" var="user" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated">
+                        <f:facet name="header">
+                            All users
+                        </f:facet>
+                        <p:commandButton value="select" update="userInformation" action="#{userManagedBean.outcome}" >
+                            <f:setPropertyActionListener value="#{user}" target="#{userManagedBean.selectedUser}"/>
+                        </p:commandButton>
+                        <h:outputText value="#{user.id}: #{user.username} #{user.role}" style="display:inline-block"/>
+                    </p:dataList>
+                </p:layoutUnit>
+                #{userManagedBean.selectedUser}
+                <p:layoutUnit position="center">
+                    <p:tabView id="userInformation">
+                        <p:tab title="User information">
+                            <h:form id="userForm">
+                                <h:panelGrid columns="2" cellpadding="5">
+                                    <p:outputLabel for="usernameCurrentSelected" value="username" />
+                                    <p:inputText id="usernameCurrentSelected" value="#{userManagedBean.selectedUser.username}" disabled="true"/>
+
+                                    <p:outputLabel for="nameCurrentSelected" value="name"/>
+                                    <p:inputText id="nameCurrentSelected" value="#{userManagedBean.selectedUser.name}" disabled="true"/>
+
+                                    <p:outputLabel for="locationCurrentSelected" value="location"/>
+                                    <p:inputText id="locationCurrentSelected" value="#{userManagedBean.selectedUser.location}" disabled="true"/>
+
+                                    <p:outputLabel for="websiteCurrentSelected" value="website"/>
+                                    <p:inputText id="websiteCurrentSelected" value="#{userManagedBean.selectedUser.website}" disabled="true"/>
+
+                                    <p:outputLabel for="bioCurrentSelected" value="biography"/>
+                                    <p:inputText id="bioCurrentSelected" value="#{userManagedBean.selectedUser.biography}" disabled="true"/>
+
+                                    <p:outputLabel for="roleCurrentSelected" value="Role"/>
+                                    <p:inputText id="roleCurrentSelected" value="#{userManagedBean.selectedUser.role}" disabled="true"/>
+                                </h:panelGrid>
+                            </h:form>
+                            <p:commandButton id="btnUpdateAdmin" value="update to admin" actionListener="#{userManagedBean.updateAdmin}" />
+                            <p:commandButton id="btnUpdateMod" value="update to moderator" actionListener="#{userManagedBean.updateMod}" />
+                            <p:commandButton id="btnUpdateStandard" value="update to standard" actionListener="#{userManagedBean.updateStandard}" />
+                        </p:tab>
+                        <p:tab title="Kweets">
+                            <h:form>
+                                <p:dataList value="#{userManagedBean.allUserKweets}" var="kweet" type="ordered">
+                                    <f:facet name="header">
+                                        Kweets
+                                    </f:facet>
+                                    <h:panelGrid columns="3" cellpadding="5">
+                                        <p:commandButton value="remove Kweet" action="#{userManagedBean.removeKweet}">
+                                            <f:setPropertyActionListener value="#{kweet}" target="#{userManagedBean.selectedKweet}"/>
+                                        </p:commandButton>
+                                        <p:outputLabel value="#{kweet.message}"/>
+                                        <p:outputLabel value="#{kweet.createDate}"/>
+                                    </h:panelGrid>
+                                </p:dataList>
+                            </h:form>
+                        </p:tab>
+                    </p:tabView>
+                </p:layoutUnit>
+            </p:layout>
+
+        </p:layoutUnit>
+    </p:layout>
+</h:body>
+</html>
