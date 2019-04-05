@@ -21,7 +21,8 @@ import java.util.regex.Pattern;
         query = "SELECT u.followings FROM User u WHERE u.id = :id"
 ), @NamedQuery(
         name = "User.findByUsername",
-        query = "SELECT u FROM User u where u.username = :name"
+        //SELECT * FROM users WHERE user_id like "%bc%"
+        query = "SELECT u FROM User u where u.username LIKE :username"
 ), @NamedQuery(
         name = "User.findById",
         query = "SELECT u FROM User u where u.id = :id"

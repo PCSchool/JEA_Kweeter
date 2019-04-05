@@ -41,7 +41,7 @@ public class UserService{
     }
 
     public boolean removeUser(Long id, Long userId){
-        if(id ==  userId){
+        if(id == userId){
             return false;
         }
         return this.userDAO.removeUser(id, userId);

@@ -123,7 +123,21 @@
       <artifactId>primefaces</artifactId>
       <version>6.2</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/com.nimbusds/nimbus-jose-jwt -->
+    <dependency>
+      <groupId>com.nimbusds</groupId>
+      <artifactId>nimbus-jose-jwt</artifactId>
+      <version>7.0.1</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.glassfish.soteria/jakarta.security.enterprise -->
+    <dependency>
+      <groupId>org.glassfish.soteria</groupId>
+      <artifactId>jakarta.security.enterprise</artifactId>
+      <version>1.0.1</version>
+    </dependency>
+
   </dependencies>
+
 
   <build>
     <finalName>maven</finalName>

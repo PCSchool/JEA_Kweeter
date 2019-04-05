@@ -27,9 +27,9 @@ public class UserResource {
         return userService.findUserById(id);
     }
 
-    @POST
-    @Path("/{username}")
-    public List<User>  getUserByUsername(@PathParam("username") String username){
+    @GET
+    @Path("/profile/{username}")
+    public List<User> getUserByUsername(@PathParam("username") String username){
         return userService.findUserByUsername(username);
     }
 
@@ -88,12 +88,14 @@ public class UserResource {
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public Response loginUser(User user) {
-        //todo add loginUser with validation
-        return Response.ok(user).build();
+        User returnUser = userService.validateUser(user.getUsername(), user.getPassword());
+        if(returnUser!=null){
+            return Response.ok().build();
+        }
+        return Response.noContent().build();
     }
 
     // ------------------ PUT ------------------
-    //todo make update working
     @PUT
     @Path("/{id}")
     @Consumes({"application/json"})

@@ -52,8 +52,8 @@ public class UserDAOImpl implements UserDAO{
         public List<User> findUserByName(String name){
         Query q = em.createNamedQuery("User.findByUsername", User.class);
         //String str = "\'%"+name+"%\'";
-        q.setParameter("name", name);
-        //q.setParameter("name", "'%'" + name + "'%'");
+        String like = '%'+name+'%';
+        q.setParameter("username", like);
         return q.getResultList();
     }
 
