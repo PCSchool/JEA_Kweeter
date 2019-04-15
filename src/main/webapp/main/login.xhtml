@@ -11,70 +11,26 @@
         <p:growl id="messages"/>
         <p:menubar>
             <p:menuitem value="Kweeter" icon="fa-twitter-square" />
-            <p:menuitem value="Register" type="button" onclick="PF('dlg1').show();"/>
-            <p:menuitem value="Login" type="button" onclick="PF('dlg2').show();"/>
         </p:menubar>
     </h:form>
     <p:panel>
         <h1>Kweeter management</h1>
+        <p:panel>
+            <h:form id="loginForm">
+                <h2>Login form</h2>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputText for="usernameLogin" value="usernameLogin"></h:outputText>
+                    <p:inputText id="usernameLogin" value="#{userManagedBean.username}" placeholder="Enter username"></p:inputText>
+
+                    <h:outputText for="passwordLogin" value="Password"></h:outputText>
+                    <p:password id="passwordLogin" value="#{userManagedBean.password}" placeholder="Enter password"></p:password>
+                </h:panelGrid>
+                <h:commandButton id="btnLogin" value="login" action="#{userManagedBean.validateUsernamePassword}"/>
+                <h:message class="error" for="usernameLogin" id="usernameLoginError"/>
+                <h:message class="error" for="passwordLogin" id="generalLoginError"/>
+            </h:form>
+        </p:panel>
     </p:panel>
-
-    <!-- Dialogs -->
-    <p:dialog header="Register" widgetVar="dlg1" modal="true" minHeight="100">
-       <h:form id="registerForm">
-           <p:messages id="messagesRegister" for="registerForm:btnRegister" showDetail="true" closable="true" autoUpdate="true">
-           </p:messages>
-           <h2>Register form</h2>
-           <h:panelGrid columns="2" cellpadding="5">
-               <h:outputText for="nameRegister" value="Name"></h:outputText>
-               <h:inputText id="nameRegister" value="#{userManagedBean.nameRegister}" placeholder="Enter name">
-               </h:inputText>
-
-               <h:outputText for="usernameRegister" value="Username"></h:outputText>
-               <h:inputText id="usernameRegister" value="#{userManagedBean.usernameRegister}" placeholder="Enter username">
-               </h:inputText>
-
-               <h:outputText for="passwordRegister" value="Password"></h:outputText>
-               <h:inputSecret id="passwordRegister" value="#{userManagedBean.passwordRegister}" placeholder="Enter password">
-               </h:inputSecret>
-
-               <h:outputText for="passwordRepeatRegister" value="Repeat password"></h:outputText>
-               <h:inputSecret id="passwordRepeatRegister" value="#{userManagedBean.passwordRepeatRegister}" placeholder="Enter password">
-               </h:inputSecret>
-
-               <h:outputText for="rbtnRole" value="Is admin"/>
-               <p:selectOneRadio id="rbtnRole" value="#{userManagedBean.selectedRole}" unselectable="true">
-                   <f:selectItem  itemLabel="ADMINISTRATOR" itemValue="ADMINISTRATOR"/>
-                   <f:selectItem itemLabel="MODERATOR" itemValue="MODERATOR"/>
-                   <f:selectItem itemLabel="STANDARD" itemValue="STANDARD" />
-               </p:selectOneRadio>
-               <h:message id="errorUsernameRegister" for="usernameRegister" />
-               <h:message id="errorNameRegister" for="nameRegister" />
-               <h:message id="errorPasswordRegister" for="passwordRegister" />
-               <h:message id="errorPasswordRepeatRegister" for="passwordRepeatRegister" />
-
-           </h:panelGrid>
-           <p:commandButton id="btnRegister" value="register" actionListener="#{userManagedBean.register}" />
-
-       </h:form>
-    </p:dialog>
-
-    <p:dialog header="Login" widgetVar="dlg2" modal="true"  minHeight="100">
-        <h:form id="loginForm">
-            <p:messages id="messagesLogin" for="loginForm:btnLogin"  showDetail="true" closable="true" autoUpdate="true">
-            </p:messages>
-            <h2>Login form</h2>
-            <h:panelGrid columns="2" cellpadding="5">
-                <h:outputText for="usernameLogin" value="usernameLogin"></h:outputText>
-                <p:inputText id="usernameLogin" value="#{userManagedBean.username}" placeholder="Enter username"></p:inputText>
-
-                <h:outputText for="passwordLogin" value="Password"></h:outputText>
-                <p:password id="passwordLogin" value="#{userManagedBean.password}" placeholder="Enter password"></p:password>
-            </h:panelGrid>
-            <h:commandButton id="btnLogin" value="login" action="#{userManagedBean.validateUsernamePassword}"/>
-
-        </h:form>
-    </p:dialog>
 
 </h:body>
 </html>

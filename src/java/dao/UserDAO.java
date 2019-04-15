@@ -18,6 +18,8 @@ public interface UserDAO {
 
     User findUserById(long id);
 
+    User findSingleUserByName(String name);
+
     boolean addFollowing(Long user, Long following);
 
     boolean addFollower(Long user, Long follower);

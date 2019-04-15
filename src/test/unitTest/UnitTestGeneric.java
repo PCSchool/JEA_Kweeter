@@ -86,8 +86,8 @@ public class UnitTestGeneric {
 
         Assert.assertEquals(kweet.getReactions().size(), 0);
         Kweet newKweet = new Kweet("This is a test");
-        newKweet.setUser(user);
-        newKweet.setParent(kweet);
+        //newKweet.setUser(user);
+        //newKweet.setParent(kweet);
         kweet.addReaction(newKweet);
 
         Assert.assertEquals(kweet.getReactions().size(), 1);

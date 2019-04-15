@@ -2,6 +2,8 @@ package entities;
 
 import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
+import javax.sql.rowset.serial.SerialArray;
+import java.io.Serializable;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +14,7 @@ import java.util.regex.Pattern;
         query = "SELECT u FROM User u"
 ), @NamedQuery(
         name = "User.count",
-        query = "SELECT COUNT(k) FROM Kweet k INNER JOIN User u ON k.user = u"
+        query = "SELECT k FROM Kweet k INNER JOIN User u ON k.user = u"
 ), @NamedQuery(
         name = "User.getAllFollowers",
         query = "SELECT u.followers FROM User u WHERE u.id = :id "
@@ -21,22 +23,23 @@ import java.util.regex.Pattern;
         query = "SELECT u.followings FROM User u WHERE u.id = :id"
 ), @NamedQuery(
         name = "User.findByUsername",
-        //SELECT * FROM users WHERE user_id like "%bc%"
         query = "SELECT u FROM User u where u.username LIKE :username"
+),@NamedQuery(
+        name = "User.findBySingleUsername",
+        query = "SELECT u FROM User u where u.username = :username"
 ), @NamedQuery(
         name = "User.findById",
         query = "SELECT u FROM User u where u.id = :id"
 ),@NamedQuery(
         name = "User.update",
-        query = "UPDATE User u set u.name = :name, u.biography = :biography, u.location = :location, u.role = :role where u.id = :id"
+        query = "UPDATE User u set u.name = :name, u.biography = :biography, u.location = :location, u.website = :website, u.role = :role where u.id = :id"
 ),@NamedQuery(
         name = "User.validate",
         query = "SELECT u FROM User u WHERE u.username = :username AND u.password = :password"
 )})
 @Entity
-public class User {
+public class User{
 
-    //Variables
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -50,15 +53,14 @@ public class User {
     private String website;
     private entities.Roles role;
 
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private List<Kweet> kweets = new ArrayList<>();
+    @OneToMany(fetch=FetchType.LAZY, mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private List<Kweet> kweets;
 
     @JsonbTransient
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<User> followers;
 
-    @ManyToMany(mappedBy = "followers", targetEntity = User.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)  //soldToCollection
+    @ManyToMany(mappedBy = "followers", targetEntity = User.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<User> followings;
 
     public User() {
@@ -79,6 +81,11 @@ public class User {
         else{
             this.role = Roles.STANDARD;
         }
+    }
+
+    public User(String username, String password){
+        this.username = username;
+        this.password = password;
     }
 
     public Long getId() {
@@ -136,8 +143,13 @@ public class User {
         this.website = website;
     }
 
+    @JsonbTransient
     public List<Kweet> getKweets() {
         return kweets;
+    }
+
+    public void setKweets(List<Kweet> kweets) {
+        this.kweets = kweets;
     }
 
     public List<User> getFollowers() {
@@ -165,50 +177,8 @@ public class User {
         followings.add(user);
     }
 
-    public void addFollower(User user) {
-        followers.add(user);
-    }
-
-    public void setFollowers(List<User> followers) {
-        this.followers = followers;
-    }
-
     public void addKweet(Kweet kweet) {
         kweets.add(kweet);
-    }
-
-    /**
-     * Update the profile
-     * @param name
-     * @param biography
-     * @param location
-     */
-    public void updateProfile(String name, String biography, String location) {
-        this.name = name;
-        this.biography = biography;
-        this.location = location;
-    }
-
-    /**
-     * Update the role
-     * @param user
-     * @param role  only ADMINISTRATOR or MODERATOR can use this function
-     */
-    public void updateUserRole(User user, Roles role) {
-        if (this.role == Roles.ADMINISTRATOR || this.role == Roles.MODERATOR) {
-            user.setRole(role);
-        }
-    }
-
-    /**
-     * Remove a specific kweet of the user
-     * @param kweet
-     * @param user
-     */
-    public void removeUserKweet(Kweet kweet, User user) {
-        if (this.role == Roles.ADMINISTRATOR || this.role == Roles.MODERATOR) {
-            user.removeKweet(kweet);
-        }
     }
 
     /**

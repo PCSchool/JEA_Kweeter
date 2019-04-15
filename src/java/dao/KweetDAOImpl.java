@@ -24,13 +24,13 @@ public class KweetDAOImpl implements KweetDAO {
     public KweetDAOImpl(){
     }
 
-
     //when adding an entity or removing it from an assocatiation you need to perform operation on both ends
     @Override
     public void createKweet(Kweet kweet, Long id) {
         User user = this.em.find(User.class, id);
         kweet.setCreateDate(new Date());
         kweet.setUser(user);
+        kweet.setUsername(user.getUsername());
         user.addKweet(kweet);
         em.persist(kweet);
     }
@@ -53,7 +53,7 @@ public class KweetDAOImpl implements KweetDAO {
     public void addReaction(Long id, Long kweetId, Kweet reaction) {
         User user = this.em.find(User.class, id);
         reaction.setCreateDate(new Date());
-        reaction.setUser(user);
+        //reaction.setUser(user);
 
         Kweet parent = this.em.find(Kweet.class, kweetId);
         reaction.setParent(parent);
@@ -66,15 +66,17 @@ public class KweetDAOImpl implements KweetDAO {
     @Override
     public List<Kweet> getAllKweets(Long id){
         User user = this.em.find(User.class, id);
-        Query query  = this.em.createQuery("SELECT k FROM Kweet k where k.user = :user ORDER BY k.createDate DESC");
-        query.setParameter("user", user);
-        return query.getResultList();
+        Query query  = this.em.createNativeQuery("select k.ID, k.CREATEDATE, k.MESSAGE, k.PARENT_ID, k.user_id, k.username from user_user u inner join kweet k on k.user_id = u.followers_ID where u.followings_ID = "+ id.toString()+" ORDER BY k.createDate DESC");
+        List<Kweet> kweetList = query.getResultList();
+        query  = this.em.createNativeQuery("select k.ID, k.CREATEDATE, k.MESSAGE, k.PARENT_ID, k.user_id, k.username from kweet k where k.user_id = "+ id.toString()+" ORDER BY k.createDate DESC");
+        kweetList.addAll(query.getResultList());
+        return kweetList;
     }
 
     @Override
     public List<Kweet> getKweets(Long id, int amountOfKweets) {
         User user = this.em.find(User.class, id);
-        Query query  = this.em.createQuery("SELECT k FROM Kweet k where k.user = :user ORDER BY k.createDate DESC");
+        Query query  = this.em.createQuery("SELECT k FROM Kweet as k where k.user = :user ORDER BY k.createDate DESC");
         query.setParameter("user", user);
         List<Kweet> kweetList = query.getResultList();
         if(kweetList.size() > 10){

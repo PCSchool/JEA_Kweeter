@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 import javax.persistence.*;
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -31,6 +32,10 @@ public class UserService{
 
     public User validateUser(String username, String password){
         return userDAO.validateUser(username, password);
+    }
+
+    public User findSingleUser(String username){
+        return userDAO.findSingleUserByName(username);
     }
 
     public boolean createUser(User user){
@@ -96,10 +101,22 @@ public class UserService{
     }
 
     public List<User> getAllFollowers(Long id) {
+        List<User> returnList = userDAO.getAllFollowers(id);
+        if(returnList.size() == 1){
+            if(returnList.get(0) == null){
+                return new ArrayList<User>();
+            }
+        }
         return userDAO.getAllFollowers(id);
     }
 
     public List<User> getAllFollowing(Long id) {
+        List<User> returnList = userDAO.getAllFollowing(id);
+        if(returnList.size() == 1){
+            if(returnList.get(0) == null){
+                return new ArrayList<User>();
+            }
+        }
         return userDAO.getAllFollowing(id);
     }
 

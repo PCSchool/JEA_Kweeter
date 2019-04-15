@@ -34,22 +34,22 @@
                             <h:form id="userForm">
                                 <h:panelGrid columns="2" cellpadding="5">
                                     <p:outputLabel for="usernameCurrentSelected" value="username" />
-                                    <p:inputText id="usernameCurrentSelected" value="#{userManagedBean.selectedUser.username}" disabled="true"/>
+                                    <p:outputLabel id="usernameCurrentSelected" value="#{userManagedBean.selectedUser.username}" disabled="true"/>
 
                                     <p:outputLabel for="nameCurrentSelected" value="name"/>
-                                    <p:inputText id="nameCurrentSelected" value="#{userManagedBean.selectedUser.name}" disabled="true"/>
+                                    <p:outputLabel id="nameCurrentSelected" value="#{userManagedBean.selectedUser.name}" disabled="true"/>
 
                                     <p:outputLabel for="locationCurrentSelected" value="location"/>
-                                    <p:inputText id="locationCurrentSelected" value="#{userManagedBean.selectedUser.location}" disabled="true"/>
+                                    <p:outputLabel id="locationCurrentSelected" value="#{userManagedBean.selectedUser.location}" disabled="true"/>
 
                                     <p:outputLabel for="websiteCurrentSelected" value="website"/>
-                                    <p:inputText id="websiteCurrentSelected" value="#{userManagedBean.selectedUser.website}" disabled="true"/>
+                                    <p:outputLabel id="websiteCurrentSelected" value="#{userManagedBean.selectedUser.website}" disabled="true"/>
 
                                     <p:outputLabel for="bioCurrentSelected" value="biography"/>
-                                    <p:inputText id="bioCurrentSelected" value="#{userManagedBean.selectedUser.biography}" disabled="true"/>
+                                    <p:outputLabel id="bioCurrentSelected" value="#{userManagedBean.selectedUser.biography}" disabled="true"/>
 
                                     <p:outputLabel for="roleCurrentSelected" value="Role"/>
-                                    <p:inputText id="roleCurrentSelected" value="#{userManagedBean.selectedUser.role}" disabled="true"/>
+                                    <p:outputLabel id="roleCurrentSelected" value="#{userManagedBean.selectedUser.role}" disabled="true"/>
                                 </h:panelGrid>
                             </h:form>
                             <p:commandButton id="btnUpdateAdmin" value="update to admin" actionListener="#{userManagedBean.updateAdmin}" />

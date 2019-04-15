@@ -1,15 +1,8 @@
 package entities;
 
-import org.eclipse.persistence.jpa.jpql.parser.DateTime;
-
-import javax.json.bind.annotation.JsonbDateFormat;
 import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
-
-import java.security.InvalidParameterException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,19 +15,20 @@ import java.util.List;
         query = "SELECT k FROM Kweet k JOIN Kweet k2 WHERE k.parent = k2 AND k2.id = :idKweet"
 )})
 @Entity
-public class Kweet {
+public class Kweet{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)  //AUTO
     private Long id;
     private String message;                 //max 160 charachters
     private Date createDate;
+    private String username;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "USER_ID", referencedColumnName = "ID", nullable = false)
+    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
     private Kweet parent;
 
     @JsonbTransient
@@ -84,11 +78,6 @@ public class Kweet {
         this.createDate = createDate;
     }
 
-    public void setReactions(List<Kweet> reactions) {
-        this.reactions = reactions;
-    }
-
-    @JsonbTransient
     public User getUser() {
         return user;
     }
@@ -97,9 +86,18 @@ public class Kweet {
         this.user = user;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public void setParent(Kweet parent) {
         this.parent = parent;
     }
+
 
     public Kweet getParent() {
         return parent;
@@ -108,6 +106,10 @@ public class Kweet {
     @JsonbTransient
     public List<Kweet> getReactions() {
         return reactions;
+    }
+
+    public void setReactions(List<Kweet> reactions) {
+        this.reactions = reactions;
     }
 
     public void addReaction(Kweet kweet){

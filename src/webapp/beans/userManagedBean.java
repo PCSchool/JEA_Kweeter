@@ -45,19 +45,19 @@ public class userManagedBean implements Serializable {
     private User selectedUser;
     private Kweet selectedKweet;
     private User currentUser;
-    @Size(min=6, max=26)
+    @Size(min=3, max=26)
     private String username;
-    @Size(min=4, max=26)
+    @Size(min=3, max=26)
     private String password;
-    @Size(min=6, max=26)
+    @Size(min=3, max=26)
     private String usernameRegister;
-    @Size(min=6, max=26)
+    @Size(min=3, max=26)
     private String nameRegister;
-    @Size(min=4, max=26)
+    @Size(min=3, max=26)
     private String passwordRegister;
-    @Size(min=4, max=26)
+    @Size(min=3, max=26)
     private String passwordRepeatRegister;
-    @Size(min=4, max=26)
+    @Size(min=3, max=26)
     private String searchUser;
     private List<User> searchUsersResults;
     private List<User> allUsers;
@@ -204,21 +204,24 @@ public class userManagedBean implements Serializable {
     }
 
     public String validateUsernamePassword() {
-        User user = userService.validateUser(username, password);
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        if(username.isEmpty() || password.isEmpty()){
+            facesContext.addMessage("loginForm:usernameLoginError", new FacesMessage("Please enter a valid username and Password."));
+            return "login";
+        }
 
+        User findUser = userService.findSingleUser(username);
         boolean valid = false;
-        if(user != null){
+        if(findUser != null){
             valid = true;
         }
-        if(user.getRole().equals(Roles.STANDARD)){
-            FacesContext.getCurrentInstance().addMessage(
-                    null,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "Incorrect user roles",
-                            "POnly for administrators and moderators."));
+
+        if(findUser.getRole().equals(Roles.STANDARD)){
+            facesContext.addMessage("loginForm:generalLoginError", new FacesMessage("Incorrect user role. Only for administrators and moderators."));
             return "login";
         }
         else if (valid) {
+            User user = userService.validateUser(username, password);
             HttpSession session = SessionUtils.getSession();
             session.setAttribute("username", user.getUsername());
             session.setAttribute("userid", user.getId());
@@ -226,11 +229,7 @@ public class userManagedBean implements Serializable {
             redirectProfile();
             return "profile";
         } else {
-            FacesContext.getCurrentInstance().addMessage(
-                    null,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "Incorrect Username and Password.",
-                            "Please enter correct username and Password."));
+            facesContext.addMessage("loginForm:usernameLoginError", new FacesMessage("Please enter a valid username and Password."));
             return "login";
         }
     }
@@ -299,41 +298,6 @@ public class userManagedBean implements Serializable {
     }
 
     public void register(){
-        RequestContext requestContext = RequestContext.getCurrentInstance();
-        FacesMessage message = null;
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        boolean valid = true;
-
-        if(usernameRegister.isEmpty() || nameRegister.isEmpty() || passwordRegister.isEmpty() || passwordRepeatRegister.isEmpty()){
-            FacesContext.getCurrentInstance().addMessage(
-                    null,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "Incorrect user roles",
-                            "Please fill all fields for the register form in."));
-            valid =false;
-        } else if(passwordRepeatRegister != passwordRegister){
-            FacesContext.getCurrentInstance().addMessage(
-                    null,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "Incorrect password repeat",
-                            "Make sure the password and repeat passsword are the same."));
-            valid = false;
-        } else if(userService.findUserByUsername(usernameRegister) != null){
-            FacesContext.getCurrentInstance().addMessage(
-                    null,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "Incorrect username",
-                            "This username is already in existence. Please pick something else."));
-            valid = false;
-        }
-
-        if(selectedRole.isEmpty()){
-            selectedRole = "STANDARD";
-        }
-
-        if(valid){
-            userService.createUser(new User(usernameRegister, nameRegister, passwordRegister, "", "",  selectedRole));
-        }
     }
 
     public List<Kweet> getAllKweets(){

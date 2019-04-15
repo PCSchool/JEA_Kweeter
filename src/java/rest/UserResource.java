@@ -1,22 +1,30 @@
 package rest;
 
-import entities.Kweet;
 import entities.User;
-import services.KweetService;
 import services.UserService;
+
 import javax.ejb.Stateless;
-import javax.faces.bean.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
+
+import static javax.ws.rs.core.HttpHeaders.AUTHORIZATION;
+import static javax.ws.rs.core.Response.Status.UNAUTHORIZED;
 
 @Stateless
 @Path("users")
 public class UserResource {
 
     @Inject
+    private IJWTKey ijwtKey;
+
+    @Inject
     private UserService userService;
+
 
     // ------------------ GET ------------------
     @GET
@@ -60,6 +68,7 @@ public class UserResource {
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public Response addFollowing(@PathParam("id") Long id, @PathParam("followingId") Long followingId) {
+
         userService.addFollowing(id, followingId);
         return Response.ok().build();
     }
@@ -69,30 +78,40 @@ public class UserResource {
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public Response addFollower(@PathParam("id") Long id, @PathParam("followingId") Long followingId) {
-        userService.addFollower(id, followingId);
-        return Response.ok().build();
+        if(userService.addFollower(id, followingId)){
+            return Response.ok().build();
+        }
+        return Response.noContent().build();
+
     }
 
     // ------------------ POST ------------------
     @POST
-    @Path("/register")
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public Response createUser(User user) {
-        userService.createUser(user);
-        return Response.ok(user).build();
+        ResponseBuilder builder;
+        if(userService.createUser(user)){
+            builder = Response.status(Response.Status.CREATED);
+        }else{
+            builder = Response.status(Response.Status.NOT_ACCEPTABLE);
+        }
+        return builder.build();
     }
 
     @POST
     @Path("/login")
     @Consumes({"application/json"})
-    @Produces({"application/json"})
+
     public Response loginUser(User user) {
-        User returnUser = userService.validateUser(user.getUsername(), user.getPassword());
-        if(returnUser!=null){
-            return Response.ok().build();
+        try{
+            User returnUser = userService.validateUser(user.getUsername(), user.getPassword());
+            String token = this.ijwtKey.generateJWT(returnUser.getUsername());
+            //generateToken(user.getUsername(), Arrays.asList("STANDARD", "MODERATOR", "ADMINISTRATOR"));
+            return Response.ok().header(AUTHORIZATION, token).entity(returnUser).build();
+        }catch(Exception e){
+            return Response.status(UNAUTHORIZED).build();
         }
-        return Response.noContent().build();
     }
 
     // ------------------ PUT ------------------
@@ -101,8 +120,10 @@ public class UserResource {
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public Response updateUser(@PathParam("id") Long id, User user){
-        userService.updateUser(user, id);
-        return Response.ok().build();
+        if(userService.updateUser(user, id)){
+            return Response.ok().build();
+        }
+        return Response.noContent().build();
     }
 
     // ------------------ DELETE ------------------
@@ -111,15 +132,19 @@ public class UserResource {
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public Response removeFollowing(@PathParam("id") Long id, @PathParam("followingId") Long following) {
-        userService.removeFollowing(id, following);
-        return Response.ok().build();
+        if(userService.removeFollowing(id, following)){
+            return Response.ok().build();
+        }
+        return Response.noContent().build();
     }
 
     @DELETE
     @Path("/{id}/follower/{followerId}")
     public Response removeFollower(@PathParam("id") Long id, @PathParam("followerId") Long follower) {
-        userService.removeFollower(id, follower);
-        return Response.ok().build();
+        if(userService.removeFollower(id, follower)){
+            return Response.ok().build();
+        }
+        return Response.noContent().build();
     }
 
     @DELETE
@@ -127,8 +152,10 @@ public class UserResource {
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public Response removeUser(@PathParam("id") Long id, @PathParam("removeUserId") Long removeUserId){
-        userService.removeUser(id, removeUserId);
-        return Response.ok().build();
+        if(userService.removeUser(id, removeUserId)){
+            return Response.ok().build();
+        }
+        return Response.noContent().build();
     }
 
 }

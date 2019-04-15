@@ -3,8 +3,12 @@ package dao;
 import entities.Kweet;
 import entities.Roles;
 import entities.User;
+import security.Algorithm;
+import security.HashGenerator;
+import sun.plugin.javascript.navig.Array;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.*;
 import java.io.Console;
 import java.util.ArrayList;
@@ -18,6 +22,12 @@ public class UserDAOImpl implements UserDAO{
 
     @PersistenceContext
     private EntityManager em;
+
+    @Inject
+    HashGenerator tokenHash;
+
+    @Inject
+    HashGenerator passwordHash;
 
     /**
      * empty constructor
@@ -45,13 +55,15 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public boolean createUser(User user) {
+        this.passwordHash = new HashGenerator(Algorithm.SHA512.getAlgorihmName());
+        String securedPassword = this.passwordHash.getHashText(user.getPassword());
+        user.setPassword(securedPassword);
         this.em.persist(user); return true;
     }
 
     @Override
         public List<User> findUserByName(String name){
         Query q = em.createNamedQuery("User.findByUsername", User.class);
-        //String str = "\'%"+name+"%\'";
         String like = '%'+name+'%';
         q.setParameter("username", like);
         return q.getResultList();
@@ -60,6 +72,13 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public User findUserById(long id){
         return this.em.find(User.class, id);
+    }
+
+    @Override
+    public User findSingleUserByName(String name) {
+        Query q = em.createNamedQuery("User.findBySingleUsername", User.class);
+        q.setParameter("username", name);
+        return (User) q.getSingleResult();
     }
 
     @Override
@@ -92,6 +111,7 @@ public class UserDAOImpl implements UserDAO{
         q.setParameter("name", user.getName());
         q.setParameter("location", user.getLocation());
         q.setParameter("biography", user.getBiography());
+        q.setParameter("website", user.getWebsite());
         q.setParameter("role", user.getRole());
         q.setParameter("id", id);
         q.executeUpdate();
@@ -103,9 +123,10 @@ public class UserDAOImpl implements UserDAO{
         User user = null;
         Query q = em.createNamedQuery("User.validate", User.class);
         q.setParameter("username", username);
-        q.setParameter("password", password);
-        user = (User)q.getSingleResult();
-        return user;
+        this.passwordHash = new HashGenerator(Algorithm.SHA512.getAlgorihmName());
+        String securedPassword = this.passwordHash.getHashText(password);
+        q.setParameter("password", securedPassword);
+        return (User)q.getSingleResult();
     }
 
     @Override
@@ -140,7 +161,8 @@ public class UserDAOImpl implements UserDAO{
     public List<User> getAllFollowers(Long id) {
         Query query = this.em.createNamedQuery("User.getAllFollowers");
         query.setParameter("id", id);
-        return query.getResultList();
+        List<User> returnList = query.getResultList();
+        return returnList;
     }
 
     @Override
@@ -148,6 +170,7 @@ public class UserDAOImpl implements UserDAO{
     {
         Query query = this.em.createNamedQuery("User.getAllFollowings");
         query.setParameter("id", id);
-        return query.getResultList();
+        List<User> returnList = query.getResultList();
+        return returnList;
     }
 }
