@@ -37,28 +37,14 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public boolean removeUser(Long id, Long userId) {
-        User user = this.em.find(User.class, id);
         User removeUser = this.em.find(User.class, userId);
-
-        if(user.getRole() == Roles.ADMINISTRATOR || user.getRole() == Roles.MODERATOR){
-
-            for(int i = 0; i< removeUser.getFollowings().size(); i++){
-                removeFollowing(removeUser.getId(), removeUser.getFollowings().get(i).getId());
-            }
-            for(int i = 0; i< removeUser.getFollowers().size(); i++){
-                removeFollower(removeUser.getId(), removeUser.getFollowers().get(i).getId());
-            }
-            this.em.remove(removeUser); return true;
-        }
+        removeUser.setActive(false);
         return true;
     }
 
     @Override
-    public boolean createUser(User user) {
-        this.passwordHash = new HashGenerator(Algorithm.SHA512.getAlgorihmName());
-        String securedPassword = this.passwordHash.getHashText(user.getPassword());
-        user.setPassword(securedPassword);
-        this.em.persist(user); return true;
+    public User createUser(User user) {
+        this.em.persist(user); return user;
     }
 
     @Override
@@ -106,7 +92,7 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
-    public boolean updateUser(User user, Long id) {
+    public User updateUser(User user, Long id) {
         Query q = em.createNamedQuery("User.update", User.class);
         q.setParameter("name", user.getName());
         q.setParameter("location", user.getLocation());
@@ -115,7 +101,7 @@ public class UserDAOImpl implements UserDAO{
         q.setParameter("role", user.getRole());
         q.setParameter("id", id);
         q.executeUpdate();
-        return true;
+        return user;
     }
 
     @Override

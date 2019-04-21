@@ -80,8 +80,9 @@ public class UnitTestDAO {
 
     @Test
     public void testCreateUser(){
+        User user = mock(User.class);
         //when(userDAOMock.createUser(any(User.class))).thenReturn(new User());
-        when(userDAOMock.createUser(any(User.class))).thenReturn(true);
+        when(userDAOMock.createUser(any(User.class))).thenReturn(user);
         userDAOMock.createUser(any(User.class));
 
         verify(userDAOMock).createUser(any(User.class));
@@ -90,7 +91,8 @@ public class UnitTestDAO {
 
     @Test
     public void testUpdateUser(){
-        when(userDAOMock.updateUser(any(User.class), anyLong())).thenReturn(true);
+        User user = mock(User.class);
+        when(userDAOMock.updateUser(any(User.class), anyLong())).thenReturn(user);
         userDAOMock.updateUser(any(User.class), anyLong());
 
         verify(userDAOMock).updateUser(any(User.class), anyLong());
@@ -189,6 +191,5 @@ public class UnitTestDAO {
         assertEquals(mockList, userDAOMock.getAllUsers());
         verify(userDAOMock, times(1)).getAllUsers();
     }
-
 
 }

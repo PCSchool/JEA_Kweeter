@@ -51,6 +51,7 @@ public class User{
     private String biography;
     private String location;
     private String website;
+    private boolean active;
     private entities.Roles role;
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
@@ -171,6 +172,14 @@ public class User{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean getActive() {
+        return active;
+    }
+
+    public void setActive(boolean active){
+        this.active = active;
     }
 
     public void addFollowing(User user) {

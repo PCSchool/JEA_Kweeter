@@ -10,6 +10,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -66,11 +67,14 @@ public class KweetDAOImpl implements KweetDAO {
     @Override
     public List<Kweet> getAllKweets(Long id){
         User user = this.em.find(User.class, id);
-        Query query  = this.em.createNativeQuery("select k.ID, k.CREATEDATE, k.MESSAGE, k.PARENT_ID, k.user_id, k.username from user_user u inner join kweet k on k.user_id = u.followers_ID where u.followings_ID = "+ id.toString()+" ORDER BY k.createDate DESC");
-        List<Kweet> kweetList = query.getResultList();
-        query  = this.em.createNativeQuery("select k.ID, k.CREATEDATE, k.MESSAGE, k.PARENT_ID, k.user_id, k.username from kweet k where k.user_id = "+ id.toString()+" ORDER BY k.createDate DESC");
-        kweetList.addAll(query.getResultList());
-        return kweetList;
+        List<Long> test = new ArrayList<>();
+        test.add(new Long(35));
+        List<User> userList = new ArrayList<User>();
+        userList.addAll(user.getFollowers());
+        userList.add(user);
+        Query query = this.em.createNamedQuery("Kweet.getAll", Kweet.class);
+        query.setParameter("list", userList);
+        return query.getResultList();
     }
 
     @Override

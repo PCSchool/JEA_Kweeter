@@ -13,6 +13,9 @@ import java.util.List;
 ), @NamedQuery(
         name = "Kweet.getAllReactions",
         query = "SELECT k FROM Kweet k JOIN Kweet k2 WHERE k.parent = k2 AND k2.id = :idKweet"
+), @NamedQuery(
+        name = "Kweet.getAll",
+        query = "SELECT DISTINCT  k FROM Kweet k, User u1 WHERE k.user IN :list ORDER BY k.createDate DESC"
 )})
 @Entity
 public class Kweet{

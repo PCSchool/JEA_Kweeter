@@ -1,26 +1,32 @@
 package rest;
 
 import entities.User;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
+import jdk.nashorn.internal.objects.NativeJSON;
+import net.minidev.json.JSONObject;
 import services.UserService;
 
+import javax.crypto.KeyGenerator;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import java.lang.reflect.Array;
+import java.security.Key;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import static javax.ws.rs.core.HttpHeaders.AUTHORIZATION;
 import static javax.ws.rs.core.Response.Status.UNAUTHORIZED;
+import static rest.LoginResource.ONE_MINUTE_IN_MILLIS;
 
 @Stateless
 @Path("users")
 public class UserResource {
-
-    @Inject
-    private IJWTKey ijwtKey;
 
     @Inject
     private UserService userService;
@@ -91,27 +97,60 @@ public class UserResource {
     @Produces({"application/json"})
     public Response createUser(User user) {
         ResponseBuilder builder;
-        if(userService.createUser(user)){
-            builder = Response.status(Response.Status.CREATED);
-        }else{
+        User createdUser = null;
+        try{
+            createdUser = userService.createUser(user);
+            builder = Response.status(Response.Status.ACCEPTED);
+            return builder.entity(createdUser).build();
+        }catch (IllegalArgumentException ex){
             builder = Response.status(Response.Status.NOT_ACCEPTABLE);
+            return builder.entity(ex).build();
         }
-        return builder.build();
     }
 
     @POST
     @Path("/login")
     @Consumes({"application/json"})
-
+    @Produces({"application/json"})
     public Response loginUser(User user) {
         try{
             User returnUser = userService.validateUser(user.getUsername(), user.getPassword());
-            String token = this.ijwtKey.generateJWT(returnUser.getUsername());
-            //generateToken(user.getUsername(), Arrays.asList("STANDARD", "MODERATOR", "ADMINISTRATOR"));
-            return Response.ok().header(AUTHORIZATION, token).entity(returnUser).build();
+            String token = issueToken(Long.toString(returnUser.getId()));
+            JSONObject jsonToken = new JSONObject();
+            jsonToken.put("access_token", "Bearer" + token);
+            return Response.ok(jsonToken).header(AUTHORIZATION, token).build();
         }catch(Exception e){
             return Response.status(UNAUTHORIZED).build();
         }
+    }
+
+    @POST
+    @Path("/loginAuth")
+    @Consumes({"application/json"})
+    @Produces({"application/json"})
+    public Response loginAuthUser(User user) {
+        try{
+            User returnUser = userService.validateUser(user.getUsername(), user.getPassword());
+            return Response.ok().entity(returnUser).build();
+        }catch(Exception e){
+            return Response.status(UNAUTHORIZED).build();
+        }
+    }
+
+    private String issueToken(String login) {
+        //Key key = keyGenerator.generateKey();
+        Key key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
+        Date issuedAt = new Date();
+        long time = issuedAt.getTime();
+        Date expirationDate = new Date(time + (15 * ONE_MINUTE_IN_MILLIS));
+
+        String jwtToken = Jwts.builder()
+                .setSubject(login)
+                .setIssuedAt(new Date())
+                .setExpiration(expirationDate)
+                .signWith(SignatureAlgorithm.HS512, key)
+                .compact();
+        return jwtToken;
     }
 
     // ------------------ PUT ------------------
@@ -120,10 +159,17 @@ public class UserResource {
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public Response updateUser(@PathParam("id") Long id, User user){
-        if(userService.updateUser(user, id)){
-            return Response.ok().build();
+        ResponseBuilder builder = Response.status(Response.Status.BAD_REQUEST);
+        User updateUser = null;
+        try{
+            updateUser = userService.updateUser(user, id);
+            builder = Response.status(Response.Status.ACCEPTED);
+        }catch (IllegalArgumentException ex){
+            builder = Response.status(Response.Status.ACCEPTED);
+            return builder.entity(ex).build();
+        }finally {
+            return builder.entity(updateUser).build();
         }
-        return Response.noContent().build();
     }
 
     // ------------------ DELETE ------------------

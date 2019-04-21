@@ -15,13 +15,19 @@ import dao.KweetDAO;
 import dao.UserDAO;
 import dao.UserDAOImpl;
 import entities.Kweet;
+import entities.Roles;
 import entities.User;
+import security.Algorithm;
+import security.HashGenerator;
 
 @Stateless
 public class UserService{
 
     private static final String PASSWORD_REGEX = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,26}$";
     private static final Pattern PASSWORD_PATTERN = Pattern.compile(PASSWORD_REGEX);
+
+    @Inject
+    HashGenerator passwordHash;
 
     @EJB
     UserDAO userDAO;
@@ -31,33 +37,38 @@ public class UserService{
     }
 
     public User validateUser(String username, String password){
-        return userDAO.validateUser(username, password);
+        return userDAO.validateUser(username, hashPassword(password));
     }
 
     public User findSingleUser(String username){
         return userDAO.findSingleUserByName(username);
     }
 
-    public boolean createUser(User user){
-        if (user.getUsername().isEmpty() || user.getName().isEmpty() || user.getPassword().isEmpty()) {
-            return false;
-        }
+    public User createUser(User user){
+        user.setActive(true);
+        user.setPassword(hashPassword(user.getPassword()));
         return this.userDAO.createUser(user);
     }
 
-    public boolean removeUser(Long id, Long userId){
-        if(id == userId){
-            return false;
-        }
-        return this.userDAO.removeUser(id, userId);
+    private String hashPassword(String password){
+        this.passwordHash = new HashGenerator(Algorithm.SHA512.getAlgorihmName());
+        return this.passwordHash.getHashText(password);
     }
 
-    public boolean updateUser(User user, Long id) {
-        if(user.getBiography().length() > 160){
+    public boolean removeUser(Long id, Long userToRemoveId){
+        if(id == userToRemoveId){
             return false;
         }
-        if(user.getLocation().length() > 100){
+        User user = findUserById(id);
+        if(user.getRole() != Roles.ADMINISTRATOR || user.getRole() != Roles.MODERATOR){
             return false;
+        }
+        return this.userDAO.removeUser(id, userToRemoveId);
+    }
+
+    public User updateUser(User user, Long id) {
+        if(user.getBiography().length() > 160 || user.getLocation().length() > 100){
+            throw new IllegalArgumentException("Invalid arguments. Maxlength for biography is 160 and for location its 100");
         }
         return this.userDAO.updateUser(user, id);
     }
@@ -83,21 +94,21 @@ public class UserService{
     }
 
     public boolean removeFollower(Long user, Long follower) {
-        if(user != follower){
-            return userDAO.removeFollower(user, follower);
+        if(user == follower){
+            return false;
         }
-        return false;
+        return userDAO.removeFollower(user, follower);
     }
 
     public boolean removeFollowing(Long id, Long following){
-        if(id != following){
-            return userDAO.removeFollowing(id, following);
+        if(id == following){
+            return false;
         }
-        return false;
+        return userDAO.removeFollowing(id, following);
     }
 
     public List<User> getAllUsers(){
-        return  userDAO.getAllUsers();
+        return userDAO.getAllUsers();
     }
 
     public List<User> getAllFollowers(Long id) {
@@ -119,6 +130,4 @@ public class UserService{
         }
         return userDAO.getAllFollowing(id);
     }
-
-
 }

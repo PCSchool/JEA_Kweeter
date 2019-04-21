@@ -8,9 +8,9 @@ import java.util.List;
 public interface UserDAO {
     boolean removeUser(Long id, Long userId);
 
-    boolean createUser(User user);
+    User createUser(User user);
 
-    boolean updateUser(User user, Long id);
+    User updateUser(User user, Long id);
 
     User validateUser(String username, String password);
 
