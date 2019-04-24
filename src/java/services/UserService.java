@@ -37,7 +37,14 @@ public class UserService{
     }
 
     public User validateUser(String username, String password){
-        return userDAO.validateUser(username, hashPassword(password));
+        User user = null;
+        try{
+            user =  userDAO.validateUser(username, password);
+        }catch (Exception ex){
+            throw new IllegalArgumentException("Invalid user");
+        }finally {
+            return user;
+        }
     }
 
     public User findSingleUser(String username){
@@ -114,9 +121,7 @@ public class UserService{
     public List<User> getAllFollowers(Long id) {
         List<User> returnList = userDAO.getAllFollowers(id);
         if(returnList.size() == 1){
-            if(returnList.get(0) == null){
-                return new ArrayList<User>();
-            }
+            return null;
         }
         return userDAO.getAllFollowers(id);
     }

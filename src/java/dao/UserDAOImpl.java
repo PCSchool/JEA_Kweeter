@@ -148,7 +148,7 @@ public class UserDAOImpl implements UserDAO{
         Query query = this.em.createNamedQuery("User.getAllFollowers");
         query.setParameter("id", id);
         List<User> returnList = query.getResultList();
-        return returnList;
+        return query.getResultList();
     }
 
     @Override
@@ -157,6 +157,6 @@ public class UserDAOImpl implements UserDAO{
         Query query = this.em.createNamedQuery("User.getAllFollowings");
         query.setParameter("id", id);
         List<User> returnList = query.getResultList();
-        return returnList;
+        return query.getResultList();
     }
 }

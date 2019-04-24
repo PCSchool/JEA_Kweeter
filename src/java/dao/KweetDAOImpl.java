@@ -67,14 +67,13 @@ public class KweetDAOImpl implements KweetDAO {
     @Override
     public List<Kweet> getAllKweets(Long id){
         User user = this.em.find(User.class, id);
-        List<Long> test = new ArrayList<>();
-        test.add(new Long(35));
         List<User> userList = new ArrayList<User>();
         userList.addAll(user.getFollowers());
         userList.add(user);
         Query query = this.em.createNamedQuery("Kweet.getAll", Kweet.class);
         query.setParameter("list", userList);
         return query.getResultList();
+
     }
 
     @Override
