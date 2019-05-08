@@ -112,7 +112,8 @@ public class UserDAOImpl implements UserDAO{
         this.passwordHash = new HashGenerator(Algorithm.SHA512.getAlgorihmName());
         String securedPassword = this.passwordHash.getHashText(password);
         q.setParameter("password", securedPassword);
-        return (User)q.getSingleResult();
+        user = (User) q.getSingleResult();
+        return user;
     }
 
     @Override
