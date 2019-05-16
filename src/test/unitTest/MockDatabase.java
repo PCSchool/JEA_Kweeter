@@ -14,16 +14,16 @@ public class MockDatabase {
 
     public MockDatabase(){
         // add 10 users
-        userList.add(new User("Kat10101", "Lynda Buckley", "8+bq?7kKc,'U", "Now is the winter of our discontent", "Netherlands","STANDARD"));
-        userList.add(new User("ConnorYu", "Connor Yu", "P2VFZ~nQ[>>P", "And all the clouds that lour'd upon our house","Netherlands", "STANDARD"));
-        userList.add(new User("Lupita12", "Danniella Neville", "8nbU/E/%d~F", "In the deep bosom of the ocean buried.","Netherlands", "STANDARD"));
-        userList.add(new User("Henrietta2", "Lola-Rose Long", "M<[33z6&Y>g", "Now are our brows bound with victorious wreaths;", "Netherlands","STANDARD"));
-        userList.add(new User("PEGSHar21", "Fredrick Gregory", "?J9aQyXs=W]5", "Our bruised arms hung up for monuments", "Netherlands","STANDARD"));
-        userList.add(new User("JeffJeff", "Rome Solomon", "Q)^UG9kAg=d+", "Our stern alarums changed to merry meetings","Netherlands", "STANDARD"));
-        userList.add(new User("LanceLA", "Rowena Stacey", "gaCAEc#)N9#)", "And now, instead of mounting barded steeds", "Netherlands","STANDARD"));
-        userList.add(new User("JadAJA", "Enrique Norman", "NbbEpF%RW77~", "I, that am rudely stamp'd, and want love's majesty","Netherlands", "MODERATOR"));
-        userList.add(new User("ULA_ULA", "Herman Shelton", "k%m3^Q$nZE,g", "To strut before a wanton ambling nymph", "Netherlands", "MODERATOR"));
-        userList.add(new User("FidelA", "Solomon Betts", "/S(4j5AP/8y=", "I, that am curtail'd of this fair proportion,", "Netherlands","ADMINISTRATOR"));
+        userList.add(new User(1L, "Kat10101", "Lynda Buckley", "8+bq?7kKc,'U", "Now is the winter of our discontent", "Netherlands","STANDARD"));
+        userList.add(new User(2L, "ConnorYu", "Connor Yu", "P2VFZ~nQ[>>P", "And all the clouds that lour'd upon our house","Netherlands", "STANDARD"));
+        userList.add(new User(3L, "Lupita12", "Danniella Neville", "8nbU/E/%d~F", "In the deep bosom of the ocean buried.","Netherlands", "STANDARD"));
+        userList.add(new User(4L, "Henrietta2", "Lola-Rose Long", "M<[33z6&Y>g", "Now are our brows bound with victorious wreaths;", "Netherlands","STANDARD"));
+        userList.add(new User(5L, "PEGSHar21", "Fredrick Gregory", "?J9aQyXs=W]5", "Our bruised arms hung up for monuments", "Netherlands","STANDARD"));
+        userList.add(new User(6L, "JeffJeff", "Rome Solomon", "Q)^UG9kAg=d+", "Our stern alarums changed to merry meetings","Netherlands", "STANDARD"));
+        userList.add(new User(7L, "LanceLA", "Rowena Stacey", "gaCAEc#)N9#)", "And now, instead of mounting barded steeds", "Netherlands","STANDARD"));
+        userList.add(new User(8L, "JadAJA", "Enrique Norman", "NbbEpF%RW77~", "I, that am rudely stamp'd, and want love's majesty","Netherlands", "MODERATOR"));
+        userList.add(new User(9L, "ULA_ULA", "Herman Shelton", "k%m3^Q$nZE,g", "To strut before a wanton ambling nymph", "Netherlands", "MODERATOR"));
+        userList.add(new User(10L, "FidelA", "Solomon Betts", "/S(4j5AP/8y=", "I, that am curtail'd of this fair proportion,", "Netherlands","ADMINISTRATOR"));
 
         userList.get(1).addFollowing(userList.get(2));
         userList.get(1).addFollowing(userList.get(3));

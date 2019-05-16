@@ -197,8 +197,8 @@ public class userManagedBean implements Serializable {
 
     public String removeKweet(){
         if(selectedKweet != null){
-            kweetService.removeKweet(selectedKweet.getId(), selectedUser.getId());
-            allUserKweets = kweetService.getAllKweets(selectedUser.getId());
+            kweetService.removeKweet(selectedKweet.getId(), selectedUser.getIdUser());
+            allUserKweets = kweetService.getAllKweets(selectedUser.getIdUser());
         }
         return "succes";
     }
@@ -280,12 +280,12 @@ public class userManagedBean implements Serializable {
     private void updateProfile(String value){
         if(selectedUser != null){
             selectedUser.setRole(Roles.valueOf(value));
-            userService.updateUser(selectedUser, selectedUser.getId());
+            userService.updateUser(selectedUser, selectedUser.getIdUser());
         }
     }
 
     public String outcome(){
-        allUserKweets = kweetService.getAllKweets(selectedUser.getId());
+        allUserKweets = kweetService.getAllKweets(selectedUser.getIdUser());
         return  "result";
     }
 
@@ -293,7 +293,7 @@ public class userManagedBean implements Serializable {
         selectedUser = user;
         if(selectedUser != null){
             //allUserKweets = selectedUser.getKweets();
-            allUserKweets = kweetService.getAllKweets(selectedUser.getId());
+            allUserKweets = kweetService.getAllKweets(selectedUser.getIdUser());
         }
     }
 
@@ -304,7 +304,7 @@ public class userManagedBean implements Serializable {
         if(selectedUser == null){
             return null;
         }
-        return kweetService.getAllKweets(selectedUser.getId());
+        return kweetService.getAllKweets(selectedUser.getIdUser());
     }
 
     public void searchStringValueChanged()

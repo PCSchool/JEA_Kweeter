@@ -1,13 +1,23 @@
 package entities;
 
+import controller.UserController;
+import org.jfree.util.ResourceBundleSupport;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.ResourceSupport;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
+
 import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import javax.sql.rowset.serial.SerialArray;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
+
+import static org.springframework.hateoas.jaxrs.JaxRsLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @NamedQueries({@NamedQuery(
         name = "User.getAll",
@@ -38,7 +48,7 @@ import java.util.regex.Pattern;
         query = "SELECT u FROM User u WHERE u.username = :username AND u.password = :password"
 )})
 @Entity
-public class User{
+public class User extends ResourceSupport {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -68,34 +78,57 @@ public class User{
     }
 
     public User(String username, String name, String password, String biography, String location, String role) {
-        this.username = username;
-        this.name = name;
-        this.password = password;
-        this.biography = biography;
-        this.location = location;
+        setUsername(username);
+        setName(name);
+        setPassword(password);
+        setWebsite(website);
+        setBiography(biography);
+        setLocation(location);
         if(role.equals(Roles.ADMINISTRATOR.toString())){
-            this.role = Roles.ADMINISTRATOR;
+            setRole(Roles.ADMINISTRATOR);
         }
         else if(role.equals(Roles.MODERATOR.toString())){
-            this.role = Roles.MODERATOR;
+            setRole(Roles.MODERATOR);
         }
         else{
-            this.role = Roles.STANDARD;
+            setRole(Roles.STANDARD);
+        }
+    }
+
+    public User(Long userId, String username, String name, String password, String biography, String location, String role) {
+        setIdUser(userId);
+        setUsername(username);
+        setName(name);
+        setPassword(password);
+        setWebsite(website);
+        setBiography(biography);
+        setLocation(location);
+        if(role.equals(Roles.ADMINISTRATOR.toString())){
+            setRole(Roles.ADMINISTRATOR);
+        }
+        else if(role.equals(Roles.MODERATOR.toString())){
+            setRole(Roles.MODERATOR);
+        }
+        else{
+            setRole(Roles.STANDARD);
         }
     }
 
     public User(String username, String password){
-        this.username = username;
-        this.password = password;
+        setUsername(username);
+        setPassword(password);
     }
 
-    public Long getId() {
+    public void setIdUser(Long id) {this.id = id;}
+
+    public Long getIdUser() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
+    public Long getId(Long id ) {return id;}
 
     public String getUsername() {
         return username;
@@ -184,6 +217,15 @@ public class User{
 
     public void addFollowing(User user) {
         followings.add(user);
+
+        //super.add(new Link("http://localhost:8080/maven/api/users/" + user.getIdUser(), "following"));
+        //super.add(linkTo(UserController.class).slash(user.getIdUser()).withRel("followings"));
+    }
+
+    public void addFollower(User user){
+        followers.add(user);
+        //super.add(linkTo(UserController.class).slash(user.getIdUser()).withRel("follower"));
+        //super.add(new Link("http://localhost:8080/maven/api/users/" + user.getIdUser(), "follower"));
     }
 
     public void addKweet(Kweet kweet) {

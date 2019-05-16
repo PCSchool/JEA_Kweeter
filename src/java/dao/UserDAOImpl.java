@@ -24,9 +24,6 @@ public class UserDAOImpl implements UserDAO{
     private EntityManager em;
 
     @Inject
-    HashGenerator tokenHash;
-
-    @Inject
     HashGenerator passwordHash;
 
     /**
@@ -37,14 +34,26 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public boolean removeUser(Long id, Long userId) {
-        User removeUser = this.em.find(User.class, userId);
-        removeUser.setActive(false);
-        return true;
+        User removeUser = null;
+        try{
+            removeUser = this.em.find(User.class, userId);
+            removeUser.setActive(false);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override
     public User createUser(User user) {
-        this.em.persist(user); return user;
+        try{
+            this.em.persist(user);
+            this.em.flush();
+            return user;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
@@ -57,6 +66,7 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public User findUserById(long id){
+
         return this.em.find(User.class, id);
     }
 
@@ -69,73 +79,100 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public boolean addFollowing(Long user, Long following) {
-        User u1 = this.em.find(User.class, user);
-        User u2 = this.em.find(User.class, following);
-        u2.getFollowings().add(u1);
-        u1.getFollowers().add(u2);
-
-        this.em.merge(u2);
-        this.em.merge(u1);
-        return true;
+        try{
+            User u1 = this.em.find(User.class, user);
+            User u2 = this.em.find(User.class, following);
+            u2.addFollowing(u1);
+            u1.addFollower(u2);
+            this.em.merge(u2);
+            this.em.merge(u1);
+            return true;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     @Override
     public boolean addFollower(Long user, Long follower) {
-        User u1 = this.em.find(User.class, user);
-        User u2 = this.em.find(User.class, follower);
+        try{
+            User u1 = this.em.find(User.class, user);
+            User u2 = this.em.find(User.class, follower);
 
-        u1.getFollowers().add(u2);
-        u2.getFollowings().add(u1);
-        this.em.merge(u2);
-        this.em.merge(u1);
-        return true;
+            u1.addFollower(u2);
+            u2.addFollowing(u1);
+            this.em.merge(u2);
+            this.em.merge(u1);
+            return true;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     @Override
     public User updateUser(User user, Long id) {
-        Query q = em.createNamedQuery("User.update", User.class);
-        q.setParameter("name", user.getName());
-        q.setParameter("location", user.getLocation());
-        q.setParameter("biography", user.getBiography());
-        q.setParameter("website", user.getWebsite());
-        q.setParameter("role", user.getRole());
-        q.setParameter("id", id);
-        q.executeUpdate();
-        return user;
+        Query q = null;
+        try{
+            q = em.createNamedQuery("User.update", User.class);
+            q.setParameter("name", user.getName());
+            q.setParameter("location", user.getLocation());
+            q.setParameter("biography", user.getBiography());
+            q.setParameter("website", user.getWebsite());
+            q.setParameter("role", user.getRole());
+            q.setParameter("id", id);
+            q.executeUpdate();
+            return user;
+        }catch(Exception e){
+            return null;
+        }
     }
 
     @Override
     public User validateUser(String username, String password) {
         User user = null;
-        Query q = em.createNamedQuery("User.validate", User.class);
-        q.setParameter("username", username);
-        this.passwordHash = new HashGenerator(Algorithm.SHA512.getAlgorihmName());
-        String securedPassword = this.passwordHash.getHashText(password);
-        q.setParameter("password", securedPassword);
-        user = (User) q.getSingleResult();
-        return user;
+        try{
+            Query q = em.createNamedQuery("User.validate", User.class);
+            q.setParameter("username", username);
+            this.passwordHash = new HashGenerator(Algorithm.SHA512.getAlgorihmName());
+            String securedPassword = this.passwordHash.getHashText(password);
+            q.setParameter("password", securedPassword);
+            user = (User) q.getSingleResult();
+            return user;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
     public boolean removeFollower(Long id, Long follower) {
-        User user = this.em.find(User.class, id);
-        User userUnfollower = this.em.find(User.class, follower);
-        user.removeFollower(userUnfollower);
-        userUnfollower.removeFollowing(user);
-        this.em.merge(userUnfollower);
-        this.em.merge(user);
-        return true;
+        try{
+            User user = this.em.find(User.class, id);
+            User userUnfollower = this.em.find(User.class, follower);
+            user.removeFollower(userUnfollower);
+            userUnfollower.removeFollowing(user);
+            this.em.merge(userUnfollower);
+            this.em.merge(user);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override
     public boolean removeFollowing(Long id, Long following) {
-        User user = this.em.find(User.class, id);
-        User userUnfollowing = this.em.find(User.class, following);
-        user.removeFollowing(userUnfollowing);
-        userUnfollowing.removeFollower(user);
-        this.em.merge(userUnfollowing);
-        this.em.merge(user);
-        return true;
+        try{
+            User user = this.em.find(User.class, id);
+            User userUnfollowing = this.em.find(User.class, following);
+            user.removeFollowing(userUnfollowing);
+            userUnfollowing.removeFollower(user);
+            this.em.merge(userUnfollowing);
+            this.em.merge(user);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override

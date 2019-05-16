@@ -3,6 +3,7 @@ package websocket;
 import com.google.gson.Gson;
 import entities.Kweet;
 import services.KweetService;
+import websocket.configurator.UserConfigurator;
 import websocket.decoders.KweetDecoder;
 import websocket.encoders.KweetEncoder;
 
@@ -11,25 +12,35 @@ import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.security.Principal;
+import java.util.*;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
-//@ServerEndpoint(value = "/maven/api", ///api/profile/{id}
-//    encoders = {KweetEncoder.class},
-//    decoders = {KweetDecoder.class})
+//ws://localhost:8080/maven/api/profile
+@ServerEndpoint(value = "/api/profile", ///api/profile/{id}
+    encoders = {KweetEncoder.class},
+    decoders = {KweetDecoder.class},
+    configurator = UserConfigurator.class)
 public class KweeterAllEndpoint {
 
-    private static final Logger logger = Logger.getLogger("KweeterAllEndPoint");
+    private static final Logger logger = Logger.getLogger(KweeterAllEndpoint.class.getName());
     private static final Set<Session> peers = Collections.synchronizedSet(new HashSet<Session>());
+    private static final Map<String, Session> sessions = Collections.synchronizedMap(new HashMap<>());
 
     @Inject private KweetService kweetService;
 
     @OnOpen
-    public void open(Session session, EndpointConfig c, @PathParam("username") String username){
-        System.out.println("New session added.");
-        peers.add(session);
+    public void open(Session session, EndpointConfig c){
+        try {
+            session.getBasicRemote().sendText("Connected");
+            System.out.println(c.getUserProperties());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        sessions.put(session.getId(), session);
+        //peers.add(session);
     }
 
     @OnMessage
@@ -38,16 +49,16 @@ public class KweeterAllEndpoint {
             if(msg instanceof Kweet){
                 Kweet kweet = (Kweet)msg;
                 System.out.println("KweeterAllEndpoint - instance of kweet");
-            }
 
-            Gson gson = new Gson();
-            String str = gson.toJson(msg);
-            for(Session s: session.getOpenSessions()){
-                if(s.isOpen()){
-                    s.getBasicRemote().sendText(str);
+                Gson gson = new Gson();
+                String str = gson.toJson(kweet);
+                for(Session s: session.getOpenSessions()){
+                    if(s.isOpen()){
+                        s.getBasicRemote().sendText(str);
+                    }
                 }
             }
-            //for each peer connected to endpoint, send text)
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -55,7 +66,8 @@ public class KweeterAllEndpoint {
 
     @OnClose
     public void close(Session session){
-        peers.remove(session);
+        //peers.remove(session);
+        sessions.remove(session.getId());
     }
 
     @OnError
