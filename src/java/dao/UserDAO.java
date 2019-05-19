@@ -6,7 +6,7 @@ import entities.User;
 import java.util.List;
 
 public interface UserDAO {
-    boolean removeUser(Long id, Long userId);
+    boolean removeUser(User user);
 
     User createUser(User user);
 

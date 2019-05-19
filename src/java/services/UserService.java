@@ -36,14 +36,11 @@ public class UserService{
     public UserService(){
     }
 
-    public User validateUser(String username, String password){
-        User user = null;
+    public User validateUser(String username, String password) throws IllegalArgumentException{
         try{
-            user =  userDAO.validateUser(username, password);
+            return userDAO.validateUser(username, password);
         }catch (Exception ex){
             throw new IllegalArgumentException("Invalid user");
-        }finally {
-            return user;
         }
     }
 
@@ -51,10 +48,20 @@ public class UserService{
         return userDAO.findSingleUserByName(username);
     }
 
-    public User createUser(User user){
-        user.setActive(true);
-        user.setPassword(hashPassword(user.getPassword()));
-        return this.userDAO.createUser(user);
+    public User findUserById(long id){
+        return userDAO.findUserById(id);
+    }
+
+    public List<User> findUserByUsername(String name){return userDAO.findUserByName(name);}
+
+    public User createUser(User user) throws InvalidParameterException{
+        try{
+            user.setActive(true);
+            user.setPassword(hashPassword(user.getPassword()));
+            return this.userDAO.createUser(user);
+        }catch (Exception ex){
+            throw new InvalidParameterException("Invalid parameters");
+        }
     }
 
     private String hashPassword(String password){
@@ -66,25 +73,23 @@ public class UserService{
         if(id == userToRemoveId){
             return false;
         }
-        User user = findUserById(id);
-        if(user.getRole() != Roles.ADMINISTRATOR || user.getRole() != Roles.MODERATOR){
+        User adminOrMod = findUserById(id);
+        User removeUser = findUserById(userToRemoveId);
+        if(adminOrMod == null || removeUser == null){
             return false;
         }
-        return this.userDAO.removeUser(id, userToRemoveId);
+        if(adminOrMod.getRole() != Roles.ADMINISTRATOR || adminOrMod.getRole() != Roles.MODERATOR){
+            return false;
+        }
+        return this.userDAO.removeUser(removeUser);
     }
 
-    public User updateUser(User user, Long id) {
+    public User updateUser(User user, Long id) throws IllegalArgumentException{
         if(user.getBiography().length() > 160 || user.getLocation().length() > 100){
             throw new IllegalArgumentException("Invalid arguments. Maxlength for biography is 160 and for location its 100");
         }
         return this.userDAO.updateUser(user, id);
     }
-
-    public User findUserById(long id){
-        return userDAO.findUserById(id);
-    }
-
-    public List<User> findUserByUsername(String name){return userDAO.findUserByName(name);}
 
     public boolean addFollowing(Long user, Long following) {
         if(user == following){

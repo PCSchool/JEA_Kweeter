@@ -6,7 +6,7 @@ import entities.Kweet;
 import java.util.List;
 
 public interface KweetDAO{
-    void createKweet(Kweet kweet, Long id);
+    void createKweet(Kweet kweet);
 
     void removeKweet(Long kweetId, Long id);
 

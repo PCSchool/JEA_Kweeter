@@ -25,14 +25,8 @@ public class KweetDAOImpl implements KweetDAO {
     public KweetDAOImpl(){
     }
 
-    //when adding an entity or removing it from an assocatiation you need to perform operation on both ends
     @Override
-    public void createKweet(Kweet kweet, Long id) {
-        User user = this.em.find(User.class, id);
-        kweet.setCreateDate(new Date());
-        kweet.setUser(user);
-        kweet.setUsername(user.getUsername());
-        user.addKweet(kweet);
+    public void createKweet(Kweet kweet) {
         em.persist(kweet);
     }
 
@@ -54,7 +48,6 @@ public class KweetDAOImpl implements KweetDAO {
     public void addReaction(Long id, Long kweetId, Kweet reaction) {
         User user = this.em.find(User.class, id);
         reaction.setCreateDate(new Date());
-        //reaction.setUser(user);
 
         Kweet parent = this.em.find(Kweet.class, kweetId);
         reaction.setParent(parent);
@@ -73,7 +66,6 @@ public class KweetDAOImpl implements KweetDAO {
         Query query = this.em.createNamedQuery("Kweet.getAll", Kweet.class);
         query.setParameter("list", userList);
         return query.getResultList();
-
     }
 
     @Override

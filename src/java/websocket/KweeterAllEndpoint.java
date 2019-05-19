@@ -67,6 +67,11 @@ public class KweeterAllEndpoint {
     @OnClose
     public void close(Session session){
         //peers.remove(session);
+        try {
+            session.getBasicRemote().sendText("Disconnected");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         sessions.remove(session.getId());
     }
 

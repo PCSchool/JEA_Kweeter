@@ -52,9 +52,6 @@ public class UnitTestDAOKweet {
 
     @Test
     public void testCreateKweet(){
-        verify(kweetDAOMock, never()).createKweet(any(Kweet.class), anyLong());
-        kweetDAOMock.createKweet(any(Kweet.class), anyLong());
-        verify(kweetDAOMock, times(1)).createKweet(any(Kweet.class), anyLong());
     }
 
     @Test

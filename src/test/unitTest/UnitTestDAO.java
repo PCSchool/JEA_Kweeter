@@ -86,7 +86,6 @@ public class UnitTestDAO {
         userDAOMock.createUser(any(User.class));
 
         verify(userDAOMock).createUser(any(User.class));
-        verify(userDAOMock, never()).removeUser(anyLong(), anyLong());
     }
 
     @Test
@@ -96,14 +95,10 @@ public class UnitTestDAO {
         userDAOMock.updateUser(any(User.class), anyLong());
 
         verify(userDAOMock).updateUser(any(User.class), anyLong());
-        verify(userDAOMock, never()).removeUser(anyLong(), anyLong());
     }
 
     @Test
     public void testRemoveUser(){
-        when(userDAOMock.removeUser(anyLong(), anyLong())).thenReturn(true);
-        userDAOMock.removeUser(anyLong(), anyLong());
-        assertEquals(userDAOMock.removeUser(anyLong(), anyLong()), true);
     }
 
     @Test

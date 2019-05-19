@@ -33,11 +33,10 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
-    public boolean removeUser(Long id, Long userId) {
-        User removeUser = null;
+    public boolean removeUser(User user) {
         try{
-            removeUser = this.em.find(User.class, userId);
-            removeUser.setActive(false);
+            user.setActive(false);
+            this.em.merge(user);
             return true;
         }catch (Exception e){
             return false;

@@ -1,13 +1,16 @@
 package services;
 
+import com.auth0.client.mgmt.UsersEntity;
 import entities.User;
 import entities.Kweet;
 import dao.KweetDAO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Date;
 import java.util.List;
 
 @Stateless
@@ -15,8 +18,8 @@ public class KweetService{
     @EJB
     KweetDAO kweetDAO;
 
-    @PersistenceContext
-    private EntityManager em;
+    @Inject
+    UserService userService;
 
     // -    constructor
     public KweetService(){
@@ -38,12 +41,21 @@ public class KweetService{
         return this.kweetDAO.getAllKweets(id);
     }
 
-    public boolean createKweet(Kweet kweet, Long id){
-        if(kweet.getMessage().length() > 160){
+    public boolean createKweet(Kweet kweet, Long id) throws IllegalArgumentException{
+        try{
+            if(kweet.getMessage().length() > 160){
+                return false;
+            }
+            User user = userService.findUserById(id);
+            kweet.setCreateDate(new Date());
+            kweet.setUser(user);
+            kweet.setUsername(user.getUsername());
+            user.addKweet(kweet);
+            this.kweetDAO.createKweet(kweet);
+            return true;
+        }catch (Exception ex){
             return false;
         }
-        this.kweetDAO.createKweet(kweet, id);
-        return true;
     }
 
     public boolean removeKweet(Long kweetId, Long id){

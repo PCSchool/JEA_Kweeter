@@ -22,18 +22,21 @@ public class KweetResource {
     // ------------------ GET ------------------
     @GET
     @Path("/{id}")
+    @JWTTokenNeeded
     public List<Kweet> getKweetByUser(@PathParam("id") Long id){
         return kweetService.getLastTenKweets(id);
     }
 
     @GET
     @Path("/{id}/getAll")
+    @JWTTokenNeeded
     public List<Kweet> getAllKweetByUser(@PathParam("id") Long id){
         return kweetService.getAllKweets(id);
     }
 
     @GET
     @Path("/getAll/{filter}")
+    @JWTTokenNeeded
     public List<Kweet> getAllKweetByFilter(@PathParam("filter") String message){
         return kweetService.findByFilterKweet(message);
     }
@@ -41,6 +44,7 @@ public class KweetResource {
     // ------------------ POST ------------------
     @POST
     @Path("/{id}")
+    @JWTTokenNeeded
     public Response createKweet(@PathParam("id") Long id, Kweet kweet){
         kweetService.createKweet(kweet, id);
         return Response.ok(kweet).build();
@@ -48,6 +52,7 @@ public class KweetResource {
 
     @POST
     @Path("/{id}/kweet/{kweetId}")
+    @JWTTokenNeeded
     public Response createKweetReaction(@PathParam("id") Long id, @PathParam("kweetId") Long kweetId, Kweet kweet){
         kweetService.addReaction(id, kweetId, kweet);
         return Response.ok(kweet).build();
