@@ -126,7 +126,9 @@ public class UserService{
     public List<User> getAllFollowers(Long id) {
         List<User> returnList = userDAO.getAllFollowers(id);
         if(returnList.size() == 1){
-            return null;
+            if(returnList.get(0) == null){
+                return new ArrayList<User>();
+            }
         }
         return userDAO.getAllFollowers(id);
     }

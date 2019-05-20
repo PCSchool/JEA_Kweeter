@@ -37,7 +37,7 @@ public class KweeterEndPoint{
     @OnMessage
     public void message(Session session, String msg){
         try{
-            System.out.println("Message 0.");
+            System.out.println(msg);
 
             for(Session s: session.getOpenSessions()){
                 System.out.println("Message 1.");
@@ -59,8 +59,6 @@ public class KweeterEndPoint{
             }
         });*/
     }
-
-
 }
 
 

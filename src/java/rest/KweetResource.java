@@ -44,7 +44,7 @@ public class KweetResource {
     // ------------------ POST ------------------
     @POST
     @Path("/{id}")
-    @JWTTokenNeeded
+    //@JWTTokenNeeded
     public Response createKweet(@PathParam("id") Long id, Kweet kweet){
         kweetService.createKweet(kweet, id);
         return Response.ok(kweet).build();

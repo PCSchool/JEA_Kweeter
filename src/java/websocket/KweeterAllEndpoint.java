@@ -46,9 +46,9 @@ public class KweeterAllEndpoint {
     @OnMessage
     public void message(Session session, Kweet msg){
         try{
+            System.out.println(msg);
             if(msg instanceof Kweet){
                 Kweet kweet = (Kweet)msg;
-                System.out.println("KweeterAllEndpoint - instance of kweet");
 
                 Gson gson = new Gson();
                 String str = gson.toJson(kweet);
@@ -57,8 +57,9 @@ public class KweeterAllEndpoint {
                         s.getBasicRemote().sendText(str);
                     }
                 }
+            }else{
+                System.out.println(msg);
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
